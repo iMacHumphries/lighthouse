@@ -16,6 +16,17 @@
 		B500DECD1B7971610028D315 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B500DECC1B7971610028D315 /* Images.xcassets */; };
 		B500DED01B7971610028D315 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B500DECE1B7971610028D315 /* LaunchScreen.xib */; };
 		B500DEDC1B7971610028D315 /* MarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DEDB1B7971610028D315 /* MarTests.m */; };
+		B500DEE71B7975CA0028D315 /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DEE61B7975CA0028D315 /* Ship.m */; };
+		B500DEE91B7977050028D315 /* ship.png in Resources */ = {isa = PBXBuildFile; fileRef = B500DEE81B7977050028D315 /* ship.png */; };
+		B500DEEF1B79992B0028D315 /* Spawner.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DEEE1B79992B0028D315 /* Spawner.m */; };
+		B500DEF41B799B4C0028D315 /* ShipManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DEF31B799B4C0028D315 /* ShipManager.m */; };
+		B500DEF71B79A8210028D315 /* SpotLight.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DEF61B79A8210028D315 /* SpotLight.m */; };
+		B500DEF91B79A9E40028D315 /* water.png in Resources */ = {isa = PBXBuildFile; fileRef = B500DEF81B79A9E40028D315 /* water.png */; };
+		B500DEFF1B79B9DC0028D315 /* Background.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DEFE1B79B9DC0028D315 /* Background.m */; };
+		B500DF011B79BCAF0028D315 /* lighthouse.png in Resources */ = {isa = PBXBuildFile; fileRef = B500DF001B79BCAF0028D315 /* lighthouse.png */; };
+		B500DF031B79C1FE0028D315 /* beam.png in Resources */ = {isa = PBXBuildFile; fileRef = B500DF021B79C1FE0028D315 /* beam.png */; };
+		B500DF061B79C2B60028D315 /* Lighthouse.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DF051B79C2B60028D315 /* Lighthouse.m */; };
+		B500DF091B79C4E00028D315 /* TouchBox.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DF081B79C4E00028D315 /* TouchBox.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +56,24 @@
 		B500DED51B7971610028D315 /* MarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B500DEDA1B7971610028D315 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B500DEDB1B7971610028D315 /* MarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarTests.m; sourceTree = "<group>"; };
+		B500DEE51B7975CA0028D315 /* Ship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ship.h; sourceTree = "<group>"; };
+		B500DEE61B7975CA0028D315 /* Ship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ship.m; sourceTree = "<group>"; };
+		B500DEE81B7977050028D315 /* ship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ship.png; sourceTree = "<group>"; };
+		B500DEED1B79992B0028D315 /* Spawner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spawner.h; sourceTree = "<group>"; };
+		B500DEEE1B79992B0028D315 /* Spawner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spawner.m; sourceTree = "<group>"; };
+		B500DEF21B799B4C0028D315 /* ShipManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipManager.h; sourceTree = "<group>"; };
+		B500DEF31B799B4C0028D315 /* ShipManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShipManager.m; sourceTree = "<group>"; };
+		B500DEF51B79A8210028D315 /* SpotLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotLight.h; sourceTree = "<group>"; };
+		B500DEF61B79A8210028D315 /* SpotLight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotLight.m; sourceTree = "<group>"; };
+		B500DEF81B79A9E40028D315 /* water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water.png; sourceTree = "<group>"; };
+		B500DEFD1B79B9DC0028D315 /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
+		B500DEFE1B79B9DC0028D315 /* Background.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Background.m; sourceTree = "<group>"; };
+		B500DF001B79BCAF0028D315 /* lighthouse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lighthouse.png; sourceTree = "<group>"; };
+		B500DF021B79C1FE0028D315 /* beam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beam.png; sourceTree = "<group>"; };
+		B500DF041B79C2B60028D315 /* Lighthouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lighthouse.h; sourceTree = "<group>"; };
+		B500DF051B79C2B60028D315 /* Lighthouse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lighthouse.m; sourceTree = "<group>"; };
+		B500DF071B79C4E00028D315 /* TouchBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchBox.h; sourceTree = "<group>"; };
+		B500DF081B79C4E00028D315 /* TouchBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchBox.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,8 +120,12 @@
 				B500DEC11B7971610028D315 /* GameScene.h */,
 				B500DEC21B7971610028D315 /* GameScene.m */,
 				B500DEC41B7971610028D315 /* GameScene.sks */,
+				B500DEED1B79992B0028D315 /* Spawner.h */,
+				B500DEEE1B79992B0028D315 /* Spawner.m */,
 				B500DEC61B7971610028D315 /* GameViewController.h */,
 				B500DEC71B7971610028D315 /* GameViewController.m */,
+				B500DEF11B799B3B0028D315 /* controllers */,
+				B500DEF01B799B2E0028D315 /* modal */,
 				B500DEC91B7971610028D315 /* Main.storyboard */,
 				B500DECC1B7971610028D315 /* Images.xcassets */,
 				B500DECE1B7971610028D315 /* LaunchScreen.xib */,
@@ -104,6 +137,10 @@
 		B500DEBA1B7971610028D315 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B500DF021B79C1FE0028D315 /* beam.png */,
+				B500DF001B79BCAF0028D315 /* lighthouse.png */,
+				B500DEF81B79A9E40028D315 /* water.png */,
+				B500DEE81B7977050028D315 /* ship.png */,
 				B500DEBB1B7971610028D315 /* Info.plist */,
 				B500DEBC1B7971610028D315 /* main.m */,
 			);
@@ -125,6 +162,32 @@
 				B500DEDA1B7971610028D315 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B500DEF01B799B2E0028D315 /* modal */ = {
+			isa = PBXGroup;
+			children = (
+				B500DEE51B7975CA0028D315 /* Ship.h */,
+				B500DEE61B7975CA0028D315 /* Ship.m */,
+				B500DEF51B79A8210028D315 /* SpotLight.h */,
+				B500DEF61B79A8210028D315 /* SpotLight.m */,
+				B500DF041B79C2B60028D315 /* Lighthouse.h */,
+				B500DF051B79C2B60028D315 /* Lighthouse.m */,
+				B500DEFD1B79B9DC0028D315 /* Background.h */,
+				B500DEFE1B79B9DC0028D315 /* Background.m */,
+				B500DF071B79C4E00028D315 /* TouchBox.h */,
+				B500DF081B79C4E00028D315 /* TouchBox.m */,
+			);
+			name = modal;
+			sourceTree = "<group>";
+		};
+		B500DEF11B799B3B0028D315 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B500DEF21B799B4C0028D315 /* ShipManager.h */,
+				B500DEF31B799B4C0028D315 /* ShipManager.m */,
+			);
+			name = controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,10 +270,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B500DF031B79C1FE0028D315 /* beam.png in Resources */,
 				B500DED01B7971610028D315 /* LaunchScreen.xib in Resources */,
+				B500DF011B79BCAF0028D315 /* lighthouse.png in Resources */,
+				B500DEE91B7977050028D315 /* ship.png in Resources */,
 				B500DECD1B7971610028D315 /* Images.xcassets in Resources */,
 				B500DEC51B7971610028D315 /* GameScene.sks in Resources */,
 				B500DECB1B7971610028D315 /* Main.storyboard in Resources */,
+				B500DEF91B79A9E40028D315 /* water.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,7 +295,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B500DF091B79C4E00028D315 /* TouchBox.m in Sources */,
+				B500DEE71B7975CA0028D315 /* Ship.m in Sources */,
+				B500DEF41B799B4C0028D315 /* ShipManager.m in Sources */,
 				B500DEC81B7971610028D315 /* GameViewController.m in Sources */,
+				B500DF061B79C2B60028D315 /* Lighthouse.m in Sources */,
+				B500DEEF1B79992B0028D315 /* Spawner.m in Sources */,
+				B500DEFF1B79B9DC0028D315 /* Background.m in Sources */,
+				B500DEF71B79A8210028D315 /* SpotLight.m in Sources */,
 				B500DEC01B7971610028D315 /* AppDelegate.m in Sources */,
 				B500DEC31B7971610028D315 /* GameScene.m in Sources */,
 				B500DEBD1B7971610028D315 /* main.m in Sources */,
@@ -428,6 +502,7 @@
 				B500DEE11B7971610028D315 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B500DEE21B7971610028D315 /* Build configuration list for PBXNativeTarget "MarTests" */ = {
 			isa = XCConfigurationList;
@@ -436,6 +511,7 @@
 				B500DEE41B7971610028D315 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
