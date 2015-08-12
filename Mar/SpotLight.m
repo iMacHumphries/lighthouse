@@ -37,8 +37,9 @@
         [self.physicsBody setUsesPreciseCollisionDetection:YES];
         
         [self.physicsBody setCategoryBitMask:SPOT_LIGHT]; // This is a spotlight
-        [self.physicsBody setCollisionBitMask:SHIP];
+        [self.physicsBody setCollisionBitMask:0];
         [self.physicsBody setContactTestBitMask:SHIP];    //we test for contact with ships
+        [self setZPosition:1];
         
     }
     return self;

@@ -11,6 +11,7 @@
 
 @interface Ship : SKSpriteNode {
     CGVector direction;
+    BOOL hasTurnedAround;
 }
 
 - (void)turnAround;

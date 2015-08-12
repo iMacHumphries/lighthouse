@@ -87,6 +87,7 @@
         secondBody = contact.bodyA;
     }
     
+     NSLog(@"contact!");
     if ((firstBody.categoryBitMask & SPOT_LIGHT) != 0)
     {
         NSLog(@"got one!");

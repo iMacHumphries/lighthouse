@@ -8,9 +8,7 @@
 
 #import "Ship.h"
 
-@implementation Ship {
-
-}
+@implementation Ship
 
 - (id)init {
     if (self = [super initWithImageNamed:@"ship.png"]) {
@@ -24,10 +22,9 @@
         [self setPhysicsBody:[SKPhysicsBody bodyWithTexture:self.texture alphaThreshold:0.5 size:self.size]];
         [self.physicsBody setAffectedByGravity:NO];
         [self.physicsBody setUsesPreciseCollisionDetection:YES];
-        [self.physicsBody setDynamic:NO];
-        
+               
         [self.physicsBody setCategoryBitMask:SHIP]; // This is a ship
-        //[self.physicsBody setCollisionBitMask:SPOT_LIGHT];
+        [self.physicsBody setCollisionBitMask:0];
         [self.physicsBody setContactTestBitMask:SPOT_LIGHT];    //we test for contact with spotlights
        
         
@@ -47,11 +44,14 @@
 }
 
 - (void)turnAround {
-    [self removeAllActions];
-    SKAction *turn = [SKAction rotateByAngle:M_PI duration:0.4];
-    direction = CGVectorMake(-direction.dx, -direction.dy);
-    SKAction *move = [SKAction moveBy:direction duration:10];
-    [self runAction:[SKAction sequence:@[turn, move]]];
+    if (!hasTurnedAround) {
+        hasTurnedAround = true;
+        [self removeAllActions];
+        SKAction *turn = [SKAction rotateByAngle:M_PI duration:0.4];
+        direction = CGVectorMake(-direction.dx, -direction.dy);
+        SKAction *move = [SKAction moveBy:direction duration:10];
+        [self runAction:[SKAction sequence:@[turn, move]]];
+    }
 }
 
 - (BOOL)isOffScreen {
