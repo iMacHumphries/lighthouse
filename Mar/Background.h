@@ -8,6 +8,9 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface Background : SKSpriteNode
-
+@interface Background : SKSpriteNode {
+    SKShader *shader;
+    float moveFactor;
+}
+- (void)update:(NSTimeInterval)currentTime;
 @end

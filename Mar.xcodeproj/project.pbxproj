@@ -26,7 +26,14 @@
 		B500DF011B79BCAF0028D315 /* lighthouse.png in Resources */ = {isa = PBXBuildFile; fileRef = B500DF001B79BCAF0028D315 /* lighthouse.png */; };
 		B500DF031B79C1FE0028D315 /* beam.png in Resources */ = {isa = PBXBuildFile; fileRef = B500DF021B79C1FE0028D315 /* beam.png */; };
 		B500DF061B79C2B60028D315 /* Lighthouse.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DF051B79C2B60028D315 /* Lighthouse.m */; };
-		B500DF091B79C4E00028D315 /* TouchBox.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DF081B79C4E00028D315 /* TouchBox.m */; };
+		B5F7F8971B7B887B007FDC81 /* waterShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B5F7F8961B7B887B007FDC81 /* waterShader.fsh */; };
+		B5F7F8991B7BFB6D007FDC81 /* waterTile.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F7F8981B7BFB6D007FDC81 /* waterTile.png */; };
+		B5F7F89B1B7BFBBB007FDC81 /* waterDUDV.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F7F89A1B7BFBBB007FDC81 /* waterDUDV.png */; };
+		B5F7F89D1B7BFBED007FDC81 /* todo.txt in Resources */ = {isa = PBXBuildFile; fileRef = B5F7F89C1B7BFBED007FDC81 /* todo.txt */; };
+		B5F7F8A01B7C3352007FDC81 /* LightControlRail.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F7F89F1B7C3352007FDC81 /* LightControlRail.m */; };
+		B5F7F8A31B7C3AA9007FDC81 /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F7F8A11B7C3AA9007FDC81 /* ball.png */; };
+		B5F7F8A41B7C3AA9007FDC81 /* blackTrack.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F7F8A21B7C3AA9007FDC81 /* blackTrack.png */; };
+		B5F7F8A71B7D9962007FDC81 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F7F8A61B7D9962007FDC81 /* Level.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,8 +79,16 @@
 		B500DF021B79C1FE0028D315 /* beam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beam.png; sourceTree = "<group>"; };
 		B500DF041B79C2B60028D315 /* Lighthouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lighthouse.h; sourceTree = "<group>"; };
 		B500DF051B79C2B60028D315 /* Lighthouse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lighthouse.m; sourceTree = "<group>"; };
-		B500DF071B79C4E00028D315 /* TouchBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchBox.h; sourceTree = "<group>"; };
-		B500DF081B79C4E00028D315 /* TouchBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchBox.m; sourceTree = "<group>"; };
+		B5F7F8961B7B887B007FDC81 /* waterShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = waterShader.fsh; sourceTree = "<group>"; };
+		B5F7F8981B7BFB6D007FDC81 /* waterTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = waterTile.png; sourceTree = "<group>"; };
+		B5F7F89A1B7BFBBB007FDC81 /* waterDUDV.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = waterDUDV.png; sourceTree = "<group>"; };
+		B5F7F89C1B7BFBED007FDC81 /* todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo.txt; sourceTree = "<group>"; };
+		B5F7F89E1B7C3352007FDC81 /* LightControlRail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightControlRail.h; sourceTree = "<group>"; };
+		B5F7F89F1B7C3352007FDC81 /* LightControlRail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightControlRail.m; sourceTree = "<group>"; };
+		B5F7F8A11B7C3AA9007FDC81 /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
+		B5F7F8A21B7C3AA9007FDC81 /* blackTrack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackTrack.png; sourceTree = "<group>"; };
+		B5F7F8A51B7D9962007FDC81 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
+		B5F7F8A61B7D9962007FDC81 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,12 +152,17 @@
 		B500DEBA1B7971610028D315 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B5F7F8A11B7C3AA9007FDC81 /* ball.png */,
+				B5F7F8A21B7C3AA9007FDC81 /* blackTrack.png */,
+				B5F7F89A1B7BFBBB007FDC81 /* waterDUDV.png */,
+				B5F7F8981B7BFB6D007FDC81 /* waterTile.png */,
 				B500DF021B79C1FE0028D315 /* beam.png */,
 				B500DF001B79BCAF0028D315 /* lighthouse.png */,
 				B500DEF81B79A9E40028D315 /* water.png */,
 				B500DEE81B7977050028D315 /* ship.png */,
 				B500DEBB1B7971610028D315 /* Info.plist */,
 				B500DEBC1B7971610028D315 /* main.m */,
+				B5F7F89C1B7BFBED007FDC81 /* todo.txt */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -167,16 +187,19 @@
 		B500DEF01B799B2E0028D315 /* modal */ = {
 			isa = PBXGroup;
 			children = (
+				B5F7F8A51B7D9962007FDC81 /* Level.h */,
+				B5F7F8A61B7D9962007FDC81 /* Level.m */,
 				B500DEE51B7975CA0028D315 /* Ship.h */,
 				B500DEE61B7975CA0028D315 /* Ship.m */,
 				B500DEF51B79A8210028D315 /* SpotLight.h */,
 				B500DEF61B79A8210028D315 /* SpotLight.m */,
 				B500DF041B79C2B60028D315 /* Lighthouse.h */,
 				B500DF051B79C2B60028D315 /* Lighthouse.m */,
+				B5F7F89E1B7C3352007FDC81 /* LightControlRail.h */,
+				B5F7F89F1B7C3352007FDC81 /* LightControlRail.m */,
 				B500DEFD1B79B9DC0028D315 /* Background.h */,
 				B500DEFE1B79B9DC0028D315 /* Background.m */,
-				B500DF071B79C4E00028D315 /* TouchBox.h */,
-				B500DF081B79C4E00028D315 /* TouchBox.m */,
+				B5F7F8961B7B887B007FDC81 /* waterShader.fsh */,
 			);
 			name = modal;
 			sourceTree = "<group>";
@@ -270,12 +293,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5F7F8971B7B887B007FDC81 /* waterShader.fsh in Resources */,
 				B500DF031B79C1FE0028D315 /* beam.png in Resources */,
 				B500DED01B7971610028D315 /* LaunchScreen.xib in Resources */,
+				B5F7F8991B7BFB6D007FDC81 /* waterTile.png in Resources */,
+				B5F7F89D1B7BFBED007FDC81 /* todo.txt in Resources */,
 				B500DF011B79BCAF0028D315 /* lighthouse.png in Resources */,
+				B5F7F8A31B7C3AA9007FDC81 /* ball.png in Resources */,
 				B500DEE91B7977050028D315 /* ship.png in Resources */,
 				B500DECD1B7971610028D315 /* Images.xcassets in Resources */,
 				B500DEC51B7971610028D315 /* GameScene.sks in Resources */,
+				B5F7F89B1B7BFBBB007FDC81 /* waterDUDV.png in Resources */,
+				B5F7F8A41B7C3AA9007FDC81 /* blackTrack.png in Resources */,
 				B500DECB1B7971610028D315 /* Main.storyboard in Resources */,
 				B500DEF91B79A9E40028D315 /* water.png in Resources */,
 			);
@@ -295,7 +324,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B500DF091B79C4E00028D315 /* TouchBox.m in Sources */,
 				B500DEE71B7975CA0028D315 /* Ship.m in Sources */,
 				B500DEF41B799B4C0028D315 /* ShipManager.m in Sources */,
 				B500DEC81B7971610028D315 /* GameViewController.m in Sources */,
@@ -305,6 +333,8 @@
 				B500DEF71B79A8210028D315 /* SpotLight.m in Sources */,
 				B500DEC01B7971610028D315 /* AppDelegate.m in Sources */,
 				B500DEC31B7971610028D315 /* GameScene.m in Sources */,
+				B5F7F8A01B7C3352007FDC81 /* LightControlRail.m in Sources */,
+				B5F7F8A71B7D9962007FDC81 /* Level.m in Sources */,
 				B500DEBD1B7971610028D315 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,7 +463,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Mar/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -443,7 +475,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Mar/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
