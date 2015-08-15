@@ -13,6 +13,7 @@
 
 - (id)initWithImageNamed:(NSString *)name {
     if (self = [super initWithImageNamed:name]) {
+        [self setName:@"background"];
         [self setLightingBitMask:1];
         [self setNormalTexture:[SKTexture textureWithImage:[UIImage imageNamed:name]]];
         
@@ -30,7 +31,7 @@
    
     shader = [SKShader shaderWithFileNamed:@"waterShader.fsh"];
     [self loadUniforms];
-    self.shader = shader;
+   // self.shader = shader;
 
 }
 
@@ -44,10 +45,10 @@
 
 
 - (void)update:(NSTimeInterval)currentTime {
-    float WAVE_SPEED = .00000001f;
-    moveFactor += WAVE_SPEED * currentTime;
-    moveFactor = fmodf(moveFactor, 1.0f);
-   [self loadUniforms];
+//    float WAVE_SPEED = .00000001f;
+//    moveFactor += WAVE_SPEED * currentTime;
+//    moveFactor = fmodf(moveFactor, 1.0f);
+//   [self loadUniforms];
 }
 
 @end

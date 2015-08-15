@@ -12,10 +12,15 @@
 @interface Ship : SKSpriteNode {
     CGVector direction;
     BOOL hasTurnedAround;
+
 }
 
 - (void)turnAround;
 - (void)destroy;
+- (void)explode;
 - (BOOL)isOffScreen;
+- (void)hault;
+
+
 
 @end

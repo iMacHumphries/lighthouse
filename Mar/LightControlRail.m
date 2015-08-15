@@ -16,19 +16,17 @@
     if (self = [super init]) {
         lighthouse = lh;
         track = [SKSpriteNode spriteNodeWithImageNamed:@"blackTrack.png"];
-        [track setScale:3];
         
         ball = [SKSpriteNode spriteNodeWithImageNamed:@"ball.png"];
-        [ball setScale:1];
        
         [self addChild:track];
         [track addChild:ball];
   
-        radius = convertToScreenSpace(track.size.width/2)/2 -5;
+        radius = convertToScreenSpace(track.size.width/2);
         minRadius = radius - 1;
         NSLog(@"radius %f",radius);
         
-        [self setPosition:CGPointMake(WIDTH/2, 0)];
+       // [self setPosition:CGPointMake(WIDTH/2, 0)];
     
     }
     return self;
@@ -44,9 +42,7 @@
             float x = location.x * radius / distance + 0;
             float y = location.y * radius / distance + 0;
             newLocation = CGPointMake(x, y);
-        }
-        
-        if (distance < minRadius) {
+        } else if (distance < minRadius) {
             float x = location.x * minRadius / distance + 0;
             float y = location.y * minRadius / distance + 0;
             newLocation = CGPointMake(x, y);

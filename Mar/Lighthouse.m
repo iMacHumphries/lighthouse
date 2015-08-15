@@ -10,11 +10,12 @@
 #import "GameScene.h"
 
 @implementation Lighthouse
-@synthesize spotLight;
+@synthesize spotLight, touchEnabled;
 
 - (id)initWithImageNamed:(NSString *)name {
     if (self = [super initWithImageNamed:name]) {
-        [self setPosition:CGPointMake(WIDTH/2, self.size.height/3)];
+        [self setScale:0.5f * SCALER];
+        [self setPosition:CGPointMake(WIDTH/2, self.size.height/2)];
         
         spotLight = [[SpotLight alloc] initWithImageNamed:@"beam.png"];
         [spotLight setPosition:CGPointMake(0, self.size.height/2)];
@@ -27,6 +28,19 @@
     return self;
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (touchEnabled)
+        [lightSlider touchesBegan:touches withEvent:event];
+}
 
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (touchEnabled)
+        [lightSlider touchesMoved:touches withEvent:event];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (touchEnabled)
+        [lightSlider touchesEnded:touches withEvent:event];
+}
 
 @end

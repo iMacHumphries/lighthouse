@@ -1,0 +1,19 @@
+//
+//  PrefixHeader.pch
+//  Mar
+//
+//  Created by Benjamin Humphries on 8/14/15.
+//  Copyright (c) 2015 Marz Software. All rights reserved.
+//
+
+#ifndef Mar_PrefixHeader_pch
+#define Mar_PrefixHeader_pch
+
+#define WIDTH [[UIScreen mainScreen] bounds].size.width
+#define HEIGHT [[UIScreen mainScreen] bounds].size.height
+
+#define SCALER (WIDTH / 568)
+
+#define convertToScreenSpace(f) ((f / WIDTH * [[UIScreen mainScreen] bounds].size.width))
+
+#endif

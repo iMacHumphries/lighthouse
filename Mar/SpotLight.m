@@ -5,7 +5,6 @@
 //  Created by Benjamin Humphries on 8/10/15.
 //  Copyright (c) 2015 Marz Software. All rights reserved.
 //
-#warning change this anchor to 0.5 when you fix the lighthouse image
 /** Degrees to Radian **/
 #define degreesToRadians( degrees ) ( ( degrees ) / 180.0 * M_PI )
 
@@ -19,8 +18,10 @@
 
 - (id)initWithImageNamed:(NSString *)name {
     if (self = [super initWithImageNamed:name]) {
-        [self setSize:CGSizeMake(self.size.width, HEIGHT/2)];
-        
+        [self setName:@"spotlight"];
+
+        [self setSize:CGSizeMake(self.size.width, WIDTH/2)];
+        [self setScale:SCALER];
         light = [[SKLightNode alloc] init];
         light.categoryBitMask = 1;
         light.falloff = 1;
@@ -41,7 +42,7 @@
         [self.physicsBody setContactTestBitMask:SHIP];    //we test for contact with ships
         [self setZPosition:1];
         
-        [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[[SKAction scaleYTo:1.5 duration:1],[SKAction waitForDuration:1],[SKAction scaleYTo:0.1 duration:1]]]]];
+        [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[[SKAction scaleYTo:1.5 duration:2],[SKAction waitForDuration:1],[SKAction scaleYTo:0.1 duration:2]]]]];
         
     }
     return self;

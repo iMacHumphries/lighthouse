@@ -10,10 +10,12 @@
 #import "SpotLight.h"
 #import "LightControlRail.h"
 
+@class LightControlRail;
 @interface Lighthouse : SKSpriteNode {
     SpotLight *spotLight;
     LightControlRail *lightSlider;
 }
 
 @property (nonatomic, retain) SpotLight *spotLight;
+@property (nonatomic, assign) BOOL touchEnabled;
 @end

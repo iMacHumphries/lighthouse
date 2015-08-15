@@ -9,6 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "Lighthouse.h"
 
+@class Lighthouse;
 @interface LightControlRail : SKSpriteNode {
     Lighthouse *lighthouse;
     SKSpriteNode *ball;

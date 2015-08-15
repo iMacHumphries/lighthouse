@@ -12,6 +12,8 @@
 
 - (id)init {
     if (self = [super initWithImageNamed:@"ship.png"]) {
+        [self setName:@"ship normal"];
+        [self setScale:0.7f * SCALER];
         self.lightingBitMask = 1;
         //self.shadowedBitMask = 1;
         //self.shadowCastBitMask = 1;
@@ -25,7 +27,7 @@
                
         [self.physicsBody setCategoryBitMask:SHIP]; // This is a ship
         [self.physicsBody setCollisionBitMask:0];
-        [self.physicsBody setContactTestBitMask:SPOT_LIGHT];    //we test for contact with spotlights
+        [self.physicsBody setContactTestBitMask:SPOT_LIGHT | ROCKS];    //we test for contact with spotlights and rocks
        
         
         [self move];
@@ -41,6 +43,10 @@
 - (void)move {
     direction = CGVectorMake(0, -HEIGHT*2);
     [self runAction:[SKAction moveBy:direction duration:10]];
+}
+
+- (void)hault {
+    [self removeAllActions];
 }
 
 - (void)turnAround {
@@ -63,6 +69,15 @@
 - (void)destroy {
     [self removeAllActions];
     [self removeFromParent];
+}
+
+- (void)explode {
+    NSString *emitterPath = [[NSBundle mainBundle] pathForResource:@"explosion" ofType:@"sks"];
+    SKEmitterNode *explode = [NSKeyedUnarchiver unarchiveObjectWithFile:emitterPath];
+    explode.position = CGPointMake(self.position.x ,self.position.y);
+    [self.parent addChild:explode];
+    SKAction *rem = [SKAction removeFromParent];
+    [self runAction:rem];
 }
 
 @end

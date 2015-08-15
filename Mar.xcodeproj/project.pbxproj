@@ -23,9 +23,12 @@
 		B500DEF71B79A8210028D315 /* SpotLight.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DEF61B79A8210028D315 /* SpotLight.m */; };
 		B500DEF91B79A9E40028D315 /* water.png in Resources */ = {isa = PBXBuildFile; fileRef = B500DEF81B79A9E40028D315 /* water.png */; };
 		B500DEFF1B79B9DC0028D315 /* Background.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DEFE1B79B9DC0028D315 /* Background.m */; };
-		B500DF011B79BCAF0028D315 /* lighthouse.png in Resources */ = {isa = PBXBuildFile; fileRef = B500DF001B79BCAF0028D315 /* lighthouse.png */; };
 		B500DF031B79C1FE0028D315 /* beam.png in Resources */ = {isa = PBXBuildFile; fileRef = B500DF021B79C1FE0028D315 /* beam.png */; };
 		B500DF061B79C2B60028D315 /* Lighthouse.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DF051B79C2B60028D315 /* Lighthouse.m */; };
+		B5E3B6641B7EF19300A2A123 /* selectionMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E3B6631B7EF19300A2A123 /* selectionMenu.png */; };
+		B5E3B6671B7F9F6600A2A123 /* LevelData.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E3B6661B7F9F6600A2A123 /* LevelData.m */; };
+		B5E3B7811B7FBF9500A2A123 /* EditorScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E3B77E1B7FBF9500A2A123 /* EditorScene.m */; };
+		B5E3B7821B7FBF9500A2A123 /* EDSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E3B7801B7FBF9500A2A123 /* EDSelection.m */; };
 		B5F7F8971B7B887B007FDC81 /* waterShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B5F7F8961B7B887B007FDC81 /* waterShader.fsh */; };
 		B5F7F8991B7BFB6D007FDC81 /* waterTile.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F7F8981B7BFB6D007FDC81 /* waterTile.png */; };
 		B5F7F89B1B7BFBBB007FDC81 /* waterDUDV.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F7F89A1B7BFBBB007FDC81 /* waterDUDV.png */; };
@@ -34,6 +37,18 @@
 		B5F7F8A31B7C3AA9007FDC81 /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F7F8A11B7C3AA9007FDC81 /* ball.png */; };
 		B5F7F8A41B7C3AA9007FDC81 /* blackTrack.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F7F8A21B7C3AA9007FDC81 /* blackTrack.png */; };
 		B5F7F8A71B7D9962007FDC81 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F7F8A61B7D9962007FDC81 /* Level.m */; };
+		B5F7F8A91B7EC5CE007FDC81 /* rocks.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F7F8A81B7EC5CE007FDC81 /* rocks.png */; };
+		B5F7F8AC1B7ECE49007FDC81 /* explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = B5F7F8AA1B7ECE49007FDC81 /* explosion.sks */; };
+		B5F7F8AD1B7ECE49007FDC81 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F7F8AB1B7ECE49007FDC81 /* spark.png */; };
+		B5F7F8B01B7ED190007FDC81 /* smoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = B5F7F8AF1B7ED190007FDC81 /* smoke.sks */; };
+		B5F7F8B31B7ED1CD007FDC81 /* BrokenShip.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F7F8B21B7ED1CD007FDC81 /* BrokenShip.m */; };
+		B5F7F8B51B7ED2D1007FDC81 /* brokenShip.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F7F8B41B7ED2D1007FDC81 /* brokenShip.png */; };
+		B5F7F8B81B7ED72A007FDC81 /* StartController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F7F8B71B7ED72A007FDC81 /* StartController.m */; };
+		B5F7F8BB1B7ED910007FDC81 /* starFrame.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F7F8B91B7ED910007FDC81 /* starFrame.png */; };
+		B5F7F8BC1B7ED910007FDC81 /* starFill.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F7F8BA1B7ED910007FDC81 /* starFill.png */; };
+		B5F7F8BE1B7EDE08007FDC81 /* lighthouse.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F7F8BD1B7EDE08007FDC81 /* lighthouse.png */; };
+		B5F7F8C11B7EE721007FDC81 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F7F8C01B7EE721007FDC81 /* MenuScene.m */; };
+		B5F7F8C61B7EE8E6007FDC81 /* tempButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F7F8C51B7EE8E6007FDC81 /* tempButton.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,10 +90,16 @@
 		B500DEF81B79A9E40028D315 /* water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water.png; sourceTree = "<group>"; };
 		B500DEFD1B79B9DC0028D315 /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
 		B500DEFE1B79B9DC0028D315 /* Background.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Background.m; sourceTree = "<group>"; };
-		B500DF001B79BCAF0028D315 /* lighthouse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lighthouse.png; sourceTree = "<group>"; };
 		B500DF021B79C1FE0028D315 /* beam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beam.png; sourceTree = "<group>"; };
 		B500DF041B79C2B60028D315 /* Lighthouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lighthouse.h; sourceTree = "<group>"; };
 		B500DF051B79C2B60028D315 /* Lighthouse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lighthouse.m; sourceTree = "<group>"; };
+		B5E3B6631B7EF19300A2A123 /* selectionMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selectionMenu.png; sourceTree = "<group>"; };
+		B5E3B6651B7F9F6600A2A123 /* LevelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelData.h; sourceTree = "<group>"; };
+		B5E3B6661B7F9F6600A2A123 /* LevelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelData.m; sourceTree = "<group>"; };
+		B5E3B77D1B7FBF9500A2A123 /* EditorScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorScene.h; sourceTree = "<group>"; };
+		B5E3B77E1B7FBF9500A2A123 /* EditorScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorScene.m; sourceTree = "<group>"; };
+		B5E3B77F1B7FBF9500A2A123 /* EDSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSelection.h; sourceTree = "<group>"; };
+		B5E3B7801B7FBF9500A2A123 /* EDSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDSelection.m; sourceTree = "<group>"; };
 		B5F7F8961B7B887B007FDC81 /* waterShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = waterShader.fsh; sourceTree = "<group>"; };
 		B5F7F8981B7BFB6D007FDC81 /* waterTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = waterTile.png; sourceTree = "<group>"; };
 		B5F7F89A1B7BFBBB007FDC81 /* waterDUDV.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = waterDUDV.png; sourceTree = "<group>"; };
@@ -89,6 +110,22 @@
 		B5F7F8A21B7C3AA9007FDC81 /* blackTrack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackTrack.png; sourceTree = "<group>"; };
 		B5F7F8A51B7D9962007FDC81 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
 		B5F7F8A61B7D9962007FDC81 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
+		B5F7F8A81B7EC5CE007FDC81 /* rocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rocks.png; sourceTree = "<group>"; };
+		B5F7F8AA1B7ECE49007FDC81 /* explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = explosion.sks; sourceTree = "<group>"; };
+		B5F7F8AB1B7ECE49007FDC81 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		B5F7F8AF1B7ED190007FDC81 /* smoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = smoke.sks; sourceTree = "<group>"; };
+		B5F7F8B11B7ED1CD007FDC81 /* BrokenShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrokenShip.h; sourceTree = "<group>"; };
+		B5F7F8B21B7ED1CD007FDC81 /* BrokenShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrokenShip.m; sourceTree = "<group>"; };
+		B5F7F8B41B7ED2D1007FDC81 /* brokenShip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brokenShip.png; sourceTree = "<group>"; };
+		B5F7F8B61B7ED72A007FDC81 /* StartController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartController.h; sourceTree = "<group>"; };
+		B5F7F8B71B7ED72A007FDC81 /* StartController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartController.m; sourceTree = "<group>"; };
+		B5F7F8B91B7ED910007FDC81 /* starFrame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starFrame.png; sourceTree = "<group>"; };
+		B5F7F8BA1B7ED910007FDC81 /* starFill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starFill.png; sourceTree = "<group>"; };
+		B5F7F8BD1B7EDE08007FDC81 /* lighthouse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lighthouse.png; sourceTree = "<group>"; };
+		B5F7F8BF1B7EE721007FDC81 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
+		B5F7F8C01B7EE721007FDC81 /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
+		B5F7F8C51B7EE8E6007FDC81 /* tempButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tempButton.png; sourceTree = "<group>"; };
+		B5F7F8C81B7EE985007FDC81 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,15 +167,19 @@
 		B500DEB91B7971610028D315 /* Mar */ = {
 			isa = PBXGroup;
 			children = (
+				B5F7F8C81B7EE985007FDC81 /* PrefixHeader.pch */,
 				B500DEBE1B7971610028D315 /* AppDelegate.h */,
 				B500DEBF1B7971610028D315 /* AppDelegate.m */,
-				B500DEC11B7971610028D315 /* GameScene.h */,
-				B500DEC21B7971610028D315 /* GameScene.m */,
 				B500DEC41B7971610028D315 /* GameScene.sks */,
 				B500DEED1B79992B0028D315 /* Spawner.h */,
 				B500DEEE1B79992B0028D315 /* Spawner.m */,
 				B500DEC61B7971610028D315 /* GameViewController.h */,
 				B500DEC71B7971610028D315 /* GameViewController.m */,
+				B500DEC11B7971610028D315 /* GameScene.h */,
+				B500DEC21B7971610028D315 /* GameScene.m */,
+				B5F7F8BF1B7EE721007FDC81 /* MenuScene.h */,
+				B5F7F8C01B7EE721007FDC81 /* MenuScene.m */,
+				B5E3B65F1B7EF06400A2A123 /* Editor */,
 				B500DEF11B799B3B0028D315 /* controllers */,
 				B500DEF01B799B2E0028D315 /* modal */,
 				B500DEC91B7971610028D315 /* Main.storyboard */,
@@ -152,14 +193,21 @@
 		B500DEBA1B7971610028D315 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B5E3B6631B7EF19300A2A123 /* selectionMenu.png */,
+				B5F7F8C51B7EE8E6007FDC81 /* tempButton.png */,
+				B5F7F8B91B7ED910007FDC81 /* starFrame.png */,
+				B5F7F8BA1B7ED910007FDC81 /* starFill.png */,
+				B5F7F8AE1B7ED172007FDC81 /* effects */,
+				B5F7F8A81B7EC5CE007FDC81 /* rocks.png */,
+				B5F7F8BD1B7EDE08007FDC81 /* lighthouse.png */,
 				B5F7F8A11B7C3AA9007FDC81 /* ball.png */,
 				B5F7F8A21B7C3AA9007FDC81 /* blackTrack.png */,
 				B5F7F89A1B7BFBBB007FDC81 /* waterDUDV.png */,
 				B5F7F8981B7BFB6D007FDC81 /* waterTile.png */,
 				B500DF021B79C1FE0028D315 /* beam.png */,
-				B500DF001B79BCAF0028D315 /* lighthouse.png */,
 				B500DEF81B79A9E40028D315 /* water.png */,
 				B500DEE81B7977050028D315 /* ship.png */,
+				B5F7F8B41B7ED2D1007FDC81 /* brokenShip.png */,
 				B500DEBB1B7971610028D315 /* Info.plist */,
 				B500DEBC1B7971610028D315 /* main.m */,
 				B5F7F89C1B7BFBED007FDC81 /* todo.txt */,
@@ -191,6 +239,8 @@
 				B5F7F8A61B7D9962007FDC81 /* Level.m */,
 				B500DEE51B7975CA0028D315 /* Ship.h */,
 				B500DEE61B7975CA0028D315 /* Ship.m */,
+				B5F7F8B11B7ED1CD007FDC81 /* BrokenShip.h */,
+				B5F7F8B21B7ED1CD007FDC81 /* BrokenShip.m */,
 				B500DEF51B79A8210028D315 /* SpotLight.h */,
 				B500DEF61B79A8210028D315 /* SpotLight.m */,
 				B500DF041B79C2B60028D315 /* Lighthouse.h */,
@@ -209,8 +259,33 @@
 			children = (
 				B500DEF21B799B4C0028D315 /* ShipManager.h */,
 				B500DEF31B799B4C0028D315 /* ShipManager.m */,
+				B5F7F8B61B7ED72A007FDC81 /* StartController.h */,
+				B5F7F8B71B7ED72A007FDC81 /* StartController.m */,
 			);
 			name = controllers;
+			sourceTree = "<group>";
+		};
+		B5E3B65F1B7EF06400A2A123 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				B5E3B77D1B7FBF9500A2A123 /* EditorScene.h */,
+				B5E3B77E1B7FBF9500A2A123 /* EditorScene.m */,
+				B5E3B77F1B7FBF9500A2A123 /* EDSelection.h */,
+				B5E3B7801B7FBF9500A2A123 /* EDSelection.m */,
+				B5E3B6651B7F9F6600A2A123 /* LevelData.h */,
+				B5E3B6661B7F9F6600A2A123 /* LevelData.m */,
+			);
+			name = Editor;
+			sourceTree = "<group>";
+		};
+		B5F7F8AE1B7ED172007FDC81 /* effects */ = {
+			isa = PBXGroup;
+			children = (
+				B5F7F8AB1B7ECE49007FDC81 /* spark.png */,
+				B5F7F8AA1B7ECE49007FDC81 /* explosion.sks */,
+				B5F7F8AF1B7ED190007FDC81 /* smoke.sks */,
+			);
+			name = effects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,19 +369,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5F7F8971B7B887B007FDC81 /* waterShader.fsh in Resources */,
+				B5F7F8B01B7ED190007FDC81 /* smoke.sks in Resources */,
+				B5F7F8BC1B7ED910007FDC81 /* starFill.png in Resources */,
+				B5F7F8B51B7ED2D1007FDC81 /* brokenShip.png in Resources */,
 				B500DF031B79C1FE0028D315 /* beam.png in Resources */,
+				B5F7F8C61B7EE8E6007FDC81 /* tempButton.png in Resources */,
 				B500DED01B7971610028D315 /* LaunchScreen.xib in Resources */,
 				B5F7F8991B7BFB6D007FDC81 /* waterTile.png in Resources */,
 				B5F7F89D1B7BFBED007FDC81 /* todo.txt in Resources */,
-				B500DF011B79BCAF0028D315 /* lighthouse.png in Resources */,
 				B5F7F8A31B7C3AA9007FDC81 /* ball.png in Resources */,
+				B5E3B6641B7EF19300A2A123 /* selectionMenu.png in Resources */,
 				B500DEE91B7977050028D315 /* ship.png in Resources */,
 				B500DECD1B7971610028D315 /* Images.xcassets in Resources */,
 				B500DEC51B7971610028D315 /* GameScene.sks in Resources */,
 				B5F7F89B1B7BFBBB007FDC81 /* waterDUDV.png in Resources */,
+				B5F7F8BB1B7ED910007FDC81 /* starFrame.png in Resources */,
 				B5F7F8A41B7C3AA9007FDC81 /* blackTrack.png in Resources */,
+				B5F7F8BE1B7EDE08007FDC81 /* lighthouse.png in Resources */,
+				B5F7F8A91B7EC5CE007FDC81 /* rocks.png in Resources */,
+				B5F7F8AC1B7ECE49007FDC81 /* explosion.sks in Resources */,
 				B500DECB1B7971610028D315 /* Main.storyboard in Resources */,
 				B500DEF91B79A9E40028D315 /* water.png in Resources */,
+				B5F7F8AD1B7ECE49007FDC81 /* spark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,15 +408,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5E3B6671B7F9F6600A2A123 /* LevelData.m in Sources */,
 				B500DEE71B7975CA0028D315 /* Ship.m in Sources */,
 				B500DEF41B799B4C0028D315 /* ShipManager.m in Sources */,
 				B500DEC81B7971610028D315 /* GameViewController.m in Sources */,
+				B5E3B7811B7FBF9500A2A123 /* EditorScene.m in Sources */,
+				B5E3B7821B7FBF9500A2A123 /* EDSelection.m in Sources */,
 				B500DF061B79C2B60028D315 /* Lighthouse.m in Sources */,
+				B5F7F8B81B7ED72A007FDC81 /* StartController.m in Sources */,
 				B500DEEF1B79992B0028D315 /* Spawner.m in Sources */,
+				B5F7F8C11B7EE721007FDC81 /* MenuScene.m in Sources */,
 				B500DEFF1B79B9DC0028D315 /* Background.m in Sources */,
 				B500DEF71B79A8210028D315 /* SpotLight.m in Sources */,
 				B500DEC01B7971610028D315 /* AppDelegate.m in Sources */,
 				B500DEC31B7971610028D315 /* GameScene.m in Sources */,
+				B5F7F8B31B7ED1CD007FDC81 /* BrokenShip.m in Sources */,
 				B5F7F8A01B7C3352007FDC81 /* LightControlRail.m in Sources */,
 				B5F7F8A71B7D9962007FDC81 /* Level.m in Sources */,
 				B500DEBD1B7971610028D315 /* main.m in Sources */,
@@ -468,6 +558,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -480,6 +571,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
