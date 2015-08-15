@@ -27,11 +27,12 @@
     lighthouse = [[Lighthouse alloc] initWithImageNamed:@"lighthouse.png"];
     [self addChild:lighthouse];
     
-    touchBox = [[TouchBox alloc] initWithLighthouse:lighthouse];
-    [self addChild:touchBox];
+    lightSlider = [[LightControlRail alloc] initWithLightHouse:lighthouse];
+    [self addChild:lightSlider];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [lightSlider touchesBegan:touches withEvent:event];
     [touchBox touchesBegan:touches withEvent:event];
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:background];
@@ -40,6 +41,7 @@
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+    [lightSlider touchesMoved:touches withEvent:event];
     [touchBox touchesMoved:touches withEvent:event];
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:background];
@@ -47,8 +49,13 @@
     }
 }
 
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [lightSlider touchesEnded:touches withEvent:event];
+}
+
 - (void)update:(CFTimeInterval)currentTime {
     [shipManager update:currentTime];
+    [background update:currentTime];
     
 }
 
@@ -87,10 +94,8 @@
         secondBody = contact.bodyA;
     }
     
-     NSLog(@"contact!");
     if ((firstBody.categoryBitMask & SPOT_LIGHT) != 0)
     {
-        NSLog(@"got one!");
         ship = (Ship*)secondBody.node;
         [ship turnAround];
     }

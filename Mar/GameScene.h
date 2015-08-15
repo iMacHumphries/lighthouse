@@ -12,11 +12,11 @@
 #import "Background.h"
 #import "Lighthouse.h"
 #import "TouchBox.h"
+#import "LightControlRail.h"
 
-//#define WIDTH ((([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait) || ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)) ? [[UIScreen mainScreen] bounds].size.width : [[UIScreen mainScreen] bounds].size.height)
-//#define HEIGHT ((([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait) || ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)) ? [[UIScreen mainScreen] bounds].size.height : [[UIScreen mainScreen] bounds].size.width)
 #define WIDTH 1024
 #define HEIGHT 768
+#define convertToScreenSpace(f) ((f / WIDTH * [[UIScreen mainScreen] bounds].size.width))
 
 const uint32_t SPOT_LIGHT = 0x1<<0;
 const uint32_t SHIP       = 0x1<<1;
@@ -33,6 +33,7 @@ const uint32_t SHIP       = 0x1<<1;
     Background *background;
     Lighthouse *lighthouse;
     TouchBox *touchBox;
+    LightControlRail *lightSlider;
 }
 
 
