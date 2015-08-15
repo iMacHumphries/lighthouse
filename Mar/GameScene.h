@@ -33,7 +33,7 @@ const uint32_t SHIP       = 0x1<<1;
     Background *background;
     Lighthouse *lighthouse;
     TouchBox *touchBox;
-    LightControlRail *lightSlider;
+
 }
 
 

@@ -8,9 +8,11 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "SpotLight.h"
+#import "LightControlRail.h"
 
 @interface Lighthouse : SKSpriteNode {
     SpotLight *spotLight;
+    LightControlRail *lightSlider;
 }
 
 @property (nonatomic, retain) SpotLight *spotLight;

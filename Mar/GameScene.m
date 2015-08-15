@@ -27,8 +27,6 @@
     lighthouse = [[Lighthouse alloc] initWithImageNamed:@"lighthouse.png"];
     [self addChild:lighthouse];
     
-    lightSlider = [[LightControlRail alloc] initWithLightHouse:lighthouse];
-    [self addChild:lightSlider];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
