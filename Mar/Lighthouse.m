@@ -20,7 +20,7 @@
         [spotLight setPosition:CGPointMake(0, self.size.height/2)];
         [self addChild:spotLight];
         
-        lightSlider = [[LightControlRail alloc] initWithLightHouse:lighthouse];
+        lightSlider = [[LightControlRail alloc] initWithLightHouse:self];
         [self addChild:lightSlider];
         
     }
