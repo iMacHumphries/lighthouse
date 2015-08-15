@@ -19,7 +19,7 @@
 
 - (id)initWithImageNamed:(NSString *)name {
     if (self = [super initWithImageNamed:name]) {
-        [self setSize:CGSizeMake(self.size.width, HEIGHT)];
+        [self setSize:CGSizeMake(self.size.width, HEIGHT/2)];
         
         light = [[SKLightNode alloc] init];
         light.categoryBitMask = 1;
@@ -41,12 +41,14 @@
         [self.physicsBody setContactTestBitMask:SHIP];    //we test for contact with ships
         [self setZPosition:1];
         
+        [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[[SKAction scaleYTo:1.5 duration:1],[SKAction waitForDuration:1],[SKAction scaleYTo:0.1 duration:1]]]]];
+        
     }
     return self;
 }
 
 - (void)rotateToAngle:(float)angle {
-    angle = degreesToRadians(angle-90);
+    angle = degreesToRadians(angle);
     
     [self runAction:[SKAction rotateToAngle:angle duration:0.1f]];
 }
