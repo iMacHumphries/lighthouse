@@ -13,7 +13,7 @@
 - (id)init {
     if (self = [super init]){
         timeInterval = 1.0f;
-        mainTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(timerFinished:) userInfo:[NSString stringWithFormat:@"%i",[self randomType]] repeats:YES];
+        mainTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(timerFinished:) userInfo:[NSString stringWithFormat:@"%lu",(unsigned long)[self randomType]] repeats:YES];
     }
     return self;
 }
