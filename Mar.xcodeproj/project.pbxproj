@@ -10,7 +10,6 @@
 		B500DEBD1B7971610028D315 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DEBC1B7971610028D315 /* main.m */; };
 		B500DEC01B7971610028D315 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DEBF1B7971610028D315 /* AppDelegate.m */; };
 		B500DEC31B7971610028D315 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DEC21B7971610028D315 /* GameScene.m */; };
-		B500DEC51B7971610028D315 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B500DEC41B7971610028D315 /* GameScene.sks */; };
 		B500DEC81B7971610028D315 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DEC71B7971610028D315 /* GameViewController.m */; };
 		B500DECB1B7971610028D315 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B500DEC91B7971610028D315 /* Main.storyboard */; };
 		B500DECD1B7971610028D315 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B500DECC1B7971610028D315 /* Images.xcassets */; };
@@ -72,7 +71,6 @@
 		B500DEBF1B7971610028D315 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B500DEC11B7971610028D315 /* GameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		B500DEC21B7971610028D315 /* GameScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
-		B500DEC41B7971610028D315 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		B500DEC61B7971610028D315 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		B500DEC71B7971610028D315 /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		B500DECA1B7971610028D315 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -179,9 +177,6 @@
 				B5F7F8C81B7EE985007FDC81 /* PrefixHeader.pch */,
 				B500DEBE1B7971610028D315 /* AppDelegate.h */,
 				B500DEBF1B7971610028D315 /* AppDelegate.m */,
-				B500DEC41B7971610028D315 /* GameScene.sks */,
-				B500DEED1B79992B0028D315 /* Spawner.h */,
-				B500DEEE1B79992B0028D315 /* Spawner.m */,
 				B500DEC61B7971610028D315 /* GameViewController.h */,
 				B500DEC71B7971610028D315 /* GameViewController.m */,
 				B500DEC11B7971610028D315 /* GameScene.h */,
@@ -257,6 +252,8 @@
 		B500DEF11B799B3B0028D315 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B500DEED1B79992B0028D315 /* Spawner.h */,
+				B500DEEE1B79992B0028D315 /* Spawner.m */,
 				B500DEF21B799B4C0028D315 /* ShipManager.h */,
 				B500DEF31B799B4C0028D315 /* ShipManager.m */,
 				B5F7F8B61B7ED72A007FDC81 /* StartController.h */,
@@ -409,7 +406,6 @@
 				B5E3B6641B7EF19300A2A123 /* selectionMenu.png in Resources */,
 				B500DEE91B7977050028D315 /* ship.png in Resources */,
 				B500DECD1B7971610028D315 /* Images.xcassets in Resources */,
-				B500DEC51B7971610028D315 /* GameScene.sks in Resources */,
 				B5F7F89B1B7BFBBB007FDC81 /* waterDUDV.png in Resources */,
 				B5F7F8BB1B7ED910007FDC81 /* starFrame.png in Resources */,
 				B5F7F8A41B7C3AA9007FDC81 /* blackTrack.png in Resources */,
