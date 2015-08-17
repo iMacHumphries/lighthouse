@@ -228,6 +228,8 @@
 		B500DEF01B799B2E0028D315 /* modal */ = {
 			isa = PBXGroup;
 			children = (
+				B5E3B6651B7F9F6600A2A123 /* LevelData.h */,
+				B5E3B6661B7F9F6600A2A123 /* LevelData.m */,
 				B5F7F8A51B7D9962007FDC81 /* Level.h */,
 				B5F7F8A61B7D9962007FDC81 /* Level.m */,
 				B500DEE51B7975CA0028D315 /* Ship.h */,
@@ -240,8 +242,6 @@
 				B500DEF61B79A8210028D315 /* SpotLight.m */,
 				B500DF041B79C2B60028D315 /* Lighthouse.h */,
 				B500DF051B79C2B60028D315 /* Lighthouse.m */,
-				B5F7F89E1B7C3352007FDC81 /* LightControlRail.h */,
-				B5F7F89F1B7C3352007FDC81 /* LightControlRail.m */,
 				B500DEFD1B79B9DC0028D315 /* Background.h */,
 				B500DEFE1B79B9DC0028D315 /* Background.m */,
 				B5F7F8961B7B887B007FDC81 /* waterShader.fsh */,
@@ -258,6 +258,8 @@
 				B500DEF31B799B4C0028D315 /* ShipManager.m */,
 				B5F7F8B61B7ED72A007FDC81 /* StartController.h */,
 				B5F7F8B71B7ED72A007FDC81 /* StartController.m */,
+				B5F7F89E1B7C3352007FDC81 /* LightControlRail.h */,
+				B5F7F89F1B7C3352007FDC81 /* LightControlRail.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -297,8 +299,6 @@
 				B5E3B77E1B7FBF9500A2A123 /* EditorScene.m */,
 				B5E3B77F1B7FBF9500A2A123 /* EDSelection.h */,
 				B5E3B7801B7FBF9500A2A123 /* EDSelection.m */,
-				B5E3B6651B7F9F6600A2A123 /* LevelData.h */,
-				B5E3B6661B7F9F6600A2A123 /* LevelData.m */,
 			);
 			name = Editor;
 			sourceTree = "<group>";
