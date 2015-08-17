@@ -27,7 +27,6 @@ static NSString* const Z_ROTATION_KEY = @"rotation";
         //self.shadowCastBitMask = 1;
         
         [self setPosition:[self randomTopPosition]];
-        //self.zPosition = 1;
         
         [self setPhysicsBody:[SKPhysicsBody bodyWithTexture:self.texture alphaThreshold:0.5 size:self.size]];
         [self.physicsBody setAffectedByGravity:NO];

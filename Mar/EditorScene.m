@@ -240,6 +240,7 @@ NSString * const SCENE = @"scene";
 }
 
 - (void)loadContent:(NSString *)content {
+    [self removeAllNonUI];
     NSError *jsonError;
     NSData *objectData = [content dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:objectData
@@ -255,6 +256,13 @@ NSString * const SCENE = @"scene";
         [self addChild:ship];
     }
     
+}
+
+- (void)removeAllNonUI {
+    for (SKNode *node in self.children) {
+        if (![self isMainUI:node])
+            [node removeFromParent];
+    }
 }
 
 - (BOOL)isMainUI:(SKNode *)node {
