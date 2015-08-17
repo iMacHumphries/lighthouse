@@ -7,12 +7,13 @@
 //
 
 #import "BrokenShip.h"
-#import "GameScene.h"
+#import "PrefixHeader.pch"
 
 @implementation BrokenShip
 
 - (id)initWithImageNamed:(NSString *)name {
     if (self = [super initWithImageNamed:name]) {
+        [self setZPosition:10];
         [self setScale:0.7 * SCALER];
         [self addSmoke];
     }

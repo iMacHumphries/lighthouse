@@ -7,6 +7,8 @@
 //
 
 #import "EditorScene.h"
+#import "Ship.h"
+
 
 @implementation EditorScene
 
@@ -15,7 +17,9 @@ NSString * const CONFIRM = @"confirm";
 NSString * const EDIT = @"edit";
 NSString * const DELETE = @"delete";
 NSString * const SAVE = @"save";
+NSString * const LOAD = @"load";
 NSString * const SCENE = @"scene";
+
 
 - (void)didMoveToView:(SKView *)view {
     [self setName:SCENE];
@@ -76,7 +80,18 @@ NSString * const SCENE = @"scene";
     [saveL setName:SAVE];
     [saveButton addChild:saveL];
     [self addChild:saveButton];
-
+    
+    loadButton = [SKSpriteNode spriteNodeWithImageNamed:@"tempButton.png"];
+    [loadButton setPosition:CGPointMake(saveButton.position.x + 10 + loadButton.size.width, saveButton.position.y)];
+    [loadButton setColorBlendFactor:0.8f];
+    [loadButton setColor:[UIColor greenColor]];
+    [loadButton setName:LOAD];
+    [loadButton setZPosition:11];
+    SKLabelNode *loadL = [SKLabelNode labelNodeWithText:@"Load"];
+    [loadL setName:LOAD];
+    [loadButton addChild:loadL];
+    [self addChild:loadButton];
+    
     
     UIRotationGestureRecognizer *rotateGesture = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotation:)];
     [self.view addGestureRecognizer:rotateGesture];
@@ -194,9 +209,57 @@ NSString * const SCENE = @"scene";
     [self saveGame];
 }
 
+- (void)loadPressed {
+    NSError *error = nil;
+    NSString *folderPath = [[[NSBundle mainBundle] resourcePath]
+                                stringByAppendingPathComponent:@"levels"];
+    
+    NSArray  *contents = [[NSFileManager defaultManager]
+                                    contentsOfDirectoryAtPath:folderPath error:&error];
+   
+    UIActionSheet *action = [[UIActionSheet alloc]initWithTitle:@"levels" delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:nil otherButtonTitles:nil, nil];
+    
+    for (NSString *title in contents) {
+        [action addButtonWithTitle:title];
+    }
+    
+    [action showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) return;
+    NSError *error = nil;
+    NSString *folderPath = [[[NSBundle mainBundle] resourcePath]
+                            stringByAppendingPathComponent:@"levels"];
+    
+    NSArray  *contents = [[NSFileManager defaultManager]
+                          contentsOfDirectoryAtPath:folderPath error:&error];
+    NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"levels/%@",[contents objectAtIndex:buttonIndex-1]] ofType:@""];
+    NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    [self loadContent:content];
+}
+
+- (void)loadContent:(NSString *)content {
+    NSError *jsonError;
+    NSData *objectData = [content dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:objectData
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:&jsonError];
+    if (jsonError)
+        NSLog(@"error %@",[jsonError localizedDescription]);
+    
+    
+    levelData = [[LevelData alloc] initWithDictionary:json];
+    
+    for (Ship *ship in levelData.ships) {
+        [self addChild:ship];
+    }
+    
+}
+
 - (BOOL)isMainUI:(SKNode *)node {
     if (!node) return false;
-    return ([node.name isEqualToString:ADD] || [node.name isEqualToString:CONFIRM] || [node.name isEqualToString:@"background"] || [node.name isEqualToString:SCENE] || [node.name isEqualToString:EDIT] || [node.name isEqualToString:@"edSelection"] || [node.name isEqualToString:DELETE] || [node.name isEqualToString:SAVE]);
+    return ([node.name isEqualToString:ADD] || [node.name isEqualToString:CONFIRM] || [node.name isEqualToString:@"background"] || [node.name isEqualToString:SCENE] || [node.name isEqualToString:EDIT] || [node.name isEqualToString:@"edSelection"] || [node.name isEqualToString:DELETE] || [node.name isEqualToString:SAVE] || [node.name isEqualToString:LOAD]);
 }
 
 - (void) selectNode:(SKNode *)node {
@@ -267,6 +330,8 @@ NSString * const SCENE = @"scene";
             [self deletePressed];
         } else if ([node.name isEqualToString:SAVE]) {
             [self savePressed];
+        } else if ([node.name isEqualToString:LOAD]) {
+            [self loadPressed];
         } else if (currentSelectedNode) {
             [self moveWithSelectedNode:location];
         } else if (![self isMainUI:node]) {
@@ -294,19 +359,21 @@ NSString * const SCENE = @"scene";
 
 - (void)saveGame {
     NSLog(@"saving game...");
-    LevelData *levelData = [LevelData sharedLevelData];
+    levelData = [[LevelData alloc] init];
     [levelData setLevel:1];
     [levelData setShips:[self ships]];
     [levelData setRocks:[self rocks]];
     [levelData setLighthouses:[self lighthouses]];
-    [levelData save];
+    
+    [self emailToMe];
     
 }
 
 - (NSMutableArray *)ships {
     NSMutableArray *result = [[NSMutableArray alloc] init];
     for (Ship *s in self.children) {
-        [result addObject:s];
+        if ([s isKindOfClass:[Ship class]])
+            [result addObject:s];
     }
     return result;
 }
@@ -319,6 +386,51 @@ NSString * const SCENE = @"scene";
 }
 - (NSMutableArray *)rocks {
     return NULL;
+}
+
+- (void)emailToMe {
+    
+    NSString *emailTitle = [NSString stringWithFormat:@"level %i", levelData.level];
+    NSString *messageBody = @"Here is the file buddy: ";
+    NSArray *toRecipents = [NSArray arrayWithObject:@"imachumphries@me.com"];
+    
+    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+    mc.mailComposeDelegate = self;
+    [mc setSubject:emailTitle];
+    [mc setMessageBody:messageBody isHTML:NO];
+    [mc setToRecipients:toRecipents];
+    
+    NSString* dataString =[levelData encodeJSON];
+    [mc addAttachmentData:[dataString dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"txt" fileName:emailTitle];
+    
+    UIViewController *vc = self.view.window.rootViewController;
+    [vc presentViewController:mc animated:YES completion:NULL];
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    
+    UIViewController *vc = self.view.window.rootViewController;
+    [vc dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    
 }
 
 @end

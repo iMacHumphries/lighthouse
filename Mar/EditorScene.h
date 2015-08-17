@@ -7,13 +7,15 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
-#import "GameScene.h"
+#import "PrefixHeader.pch"
 #import "Background.h"
 #import "Lighthouse.h"
 #import "EDSelection.h"
 #import "LevelData.h"
+#import <MessageUI/MessageUI.h>
 
-@interface EditorScene : SKScene<EDSelectionDelegate, UIGestureRecognizerDelegate> {
+@interface EditorScene : SKScene<EDSelectionDelegate, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate, UIActionSheetDelegate> {
+    LevelData *levelData;
     Background *background;
     Lighthouse *lighthouse;
     
@@ -36,7 +38,8 @@
     BOOL isShowingDelete;
     
     SKSpriteNode *saveButton;
-    
+    SKSpriteNode *loadButton;
+        
 }
 - (void)toggleAddMenu;
 @end

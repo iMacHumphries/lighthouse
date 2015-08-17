@@ -8,9 +8,9 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-const float STAR_SPACING = 5.0f;
-const float X_OFFSET = 15.0f;
-const float Y_OFFSET = 5.0f;
+static float STAR_SPACING = 5.0f;
+static float X_OFFSET = 15.0f;
+static float Y_OFFSET = 5.0f;
 
 @interface StartController : SKSpriteNode {
     SKSpriteNode *star;

@@ -25,24 +25,15 @@
     background = [[Background alloc] initWithImageNamed:@"water.png"];
     [self addChild:background];
     
-    rocks = [SKSpriteNode spriteNodeWithImageNamed:@"rocks.png"];
-    [rocks setName:@"rocks"];
-    [rocks setSize:CGSizeMake(WIDTH, 50*WIDTH/568)];
-    [rocks setPhysicsBody:[SKPhysicsBody bodyWithTexture:rocks.texture alphaThreshold:0.5 size:rocks.size]];
-    [rocks.physicsBody setUsesPreciseCollisionDetection:YES];
-    [rocks.physicsBody setAffectedByGravity:NO];
-    [rocks.physicsBody setCategoryBitMask:ROCKS];
-    [rocks.physicsBody setCollisionBitMask:0];
-    [rocks.physicsBody setContactTestBitMask:SHIP];
-    [rocks setPosition:CGPointMake(WIDTH/2, rocks.size.height/2)];
+    rocks = [[Rock alloc] initWithImageNamed:@"rocks.png"];
     [self addChild:rocks];
 
     lighthouse = [[Lighthouse alloc] initWithImageNamed:@"lighthouse.png"];
+    [lighthouse setTouchEnabled:YES];
     [self addChild:lighthouse];
     
     starController = [[StartController alloc] init];
     [self addChild:starController];
-    
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

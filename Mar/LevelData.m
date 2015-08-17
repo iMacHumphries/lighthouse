@@ -7,6 +7,7 @@
 //
 
 #import "LevelData.h"
+#import "Ship.h"
 
 @implementation LevelData
 @synthesize level,ships,rocks,lighthouses;
@@ -15,75 +16,62 @@ static NSString* const LEVEL_KEY = @"level";
 static NSString* const SHIPS_KEY = @"ships";
 static NSString* const ROCKS_KEY = @"rocks";
 static NSString* const LIGHTHOUSES_KEY = @"lighthouses";
-// encode
-- (void)encodeWithCoder:(NSCoder *)encoder {
-    [encoder encodeInt:level forKey:LEVEL_KEY];
-    [encoder encodeObject:ships forKey:SHIPS_KEY];
-    [encoder encodeObject:rocks forKey:ROCKS_KEY];
-    [encoder encodeObject:lighthouses forKey:LIGHTHOUSES_KEY];
-    
-}
 
-// decode
-- (instancetype)initWithCoder:(NSCoder *)decoder {
-    if (self = [self init]) {
-        level = [decoder decodeIntForKey:LEVEL_KEY];
-        ships = [decoder decodeObjectForKey:SHIPS_KEY];
-        rocks = [decoder decodeObjectForKey:ROCKS_KEY];
-        lighthouses = [decoder decodeObjectForKey:LIGHTHOUSES_KEY];
+
+- (id)initWithLevel:(int)lvl ships:(NSMutableArray *)shipArray rocks:(NSMutableArray *)rocksArray lighthouses:(NSMutableArray *)lightHouseArray {
+    if (self =[super init]) {
+        self.level = lvl;
+        self.ships = shipArray;
+        self.rocks = rocksArray;
+        self.lighthouses = lightHouseArray;
     }
     return self;
-    
 }
 
-//save
--(void)save {
+- (id)initWithDictionary:(NSDictionary *)dictionary {
+    if (self = [super init]) {
+        self.ships = [[NSMutableArray alloc]init];
+        self.rocks= [[NSMutableArray alloc] init];
+        self.lighthouses = [[NSMutableArray alloc] init];
+        
+        if ([dictionary objectForKey:LEVEL_KEY])
+            self.level = [[dictionary objectForKey:LEVEL_KEY] intValue];
+        if ([dictionary objectForKey:SHIPS_KEY]) {
+            NSMutableArray *arrayOfShipData = [dictionary objectForKey:SHIPS_KEY];
+            NSLog(@"here is the array of ship data %@",arrayOfShipData);
+            for (int i=0; i<arrayOfShipData.count;i++) {
+                NSLog(@"creating new ship");
+                Ship *ship = [[Ship alloc] initWithDictionary:[arrayOfShipData objectAtIndex:i]];
+                [ship hault];
+                [self.ships addObject:ship];
+            }
+                
+        }
+    }
+    return self;
+}
+
+- (NSString *)encodeJSON {
     NSError *error;
-    NSData* encodedData = [NSKeyedArchiver archivedDataWithRootObject: self];
-    [encodedData writeToFile:[LevelData filePath] atomically:YES];
-    [encodedData writeToFile:[LevelData filePath] options:0 error:&error];
+    NSMutableDictionary *jsonDictionary = [[NSMutableDictionary alloc] init];
+    [jsonDictionary setObject:[NSNumber numberWithInt:level] forKey:LEVEL_KEY];
     
-    if (error){
-        NSLog(@"error : %@", [error localizedDescription]);
+    NSMutableArray *shipsArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < ships.count; i++) {
+        [shipsArray addObject:[[ships objectAtIndex:i] encodeJSON]];
     }
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager createFileAtPath:@"/Users/Ben/Desktop/Level1.txt" contents:encodedData attributes:nil];
-    
-}
+    [jsonDictionary setObject:shipsArray forKey:SHIPS_KEY];
 
-// load
-+ (instancetype)sharedLevelData {
-    static id sharedInstance = nil;
     
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [self loadInstance];
-    });
     
-    return sharedInstance;
-}
-
-+(instancetype)loadInstance {
-    NSData* decodedData = [NSData dataWithContentsOfFile: [LevelData filePath]];
-    if (decodedData) {
-        LevelData* gameData = [NSKeyedUnarchiver unarchiveObjectWithData:decodedData];
-        return gameData;
-    }
+    NSData *jsonData2 = [NSJSONSerialization dataWithJSONObject:jsonDictionary options:NSJSONWritingPrettyPrinted error:&error];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData2 encoding:NSUTF8StringEncoding];
     
-    return [[LevelData alloc] init];
+    if (error)
+        NSLog(@"Error : %@",[error localizedDescription]);
     
-}
-
-// location
-+(NSString*)filePath {
-    static NSString* filePath = nil;
-    if (!filePath) {
-        filePath =
-        [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]
-         stringByAppendingPathComponent:@"level"];
-    }
-    return filePath;
+    NSLog(@"jsonData as string:\n%@", jsonString);
+    return jsonString;
 }
 
 @end

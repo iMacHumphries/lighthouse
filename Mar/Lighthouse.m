@@ -7,7 +7,7 @@
 //
 
 #import "Lighthouse.h"
-#import "GameScene.h"
+#import "PrefixHeader.pch"
 
 @implementation Lighthouse
 @synthesize spotLight, touchEnabled;

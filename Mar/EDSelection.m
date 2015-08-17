@@ -7,6 +7,7 @@
 //
 
 #import "EDSelection.h"
+#import "Ship.h"
 
 @implementation EDSelection
 @synthesize selectedNode, delegate;

@@ -7,7 +7,7 @@
 //
 
 #import "Background.h"
-#import "GameScene.h"
+#import "PrefixHeader.pch"
 
 @implementation Background
 

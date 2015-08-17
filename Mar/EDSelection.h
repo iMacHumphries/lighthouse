@@ -7,7 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
-#import "GameScene.h"
+#import "PrefixHeader.pch"
 
 @protocol EDSelectionDelegate
 

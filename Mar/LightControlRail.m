@@ -7,10 +7,9 @@
 //
 
 #import "LightControlRail.h"
-#import "GameScene.h"
+
 
 @implementation LightControlRail
-
 
 - (id)initWithLightHouse:(Lighthouse *)lh {
     if (self = [super init]) {
@@ -22,7 +21,7 @@
         [self addChild:track];
         [track addChild:ball];
   
-        radius = convertToScreenSpace(track.size.width/2);
+        radius = track.size.width/2;
         minRadius = radius - 1;
         NSLog(@"radius %f",radius);
         

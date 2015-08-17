@@ -8,16 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LevelData : NSObject<NSCoding> {
+@interface LevelData : NSObject {
     int level;
     NSMutableArray *ships;
     NSMutableArray *rocks;
     NSMutableArray *lighthouses;
 }
 
-+ (instancetype)sharedLevelData;
-- (void)save;
-+ (NSString*)filePath;
+- (NSString *)encodeJSON;
+- (id)initWithDictionary:(NSDictionary *)dictionary;
 
 @property(nonatomic, assign) int level;
 @property (nonatomic, retain)  NSMutableArray *ships;

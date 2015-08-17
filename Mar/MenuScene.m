@@ -7,6 +7,7 @@
 //
 
 #import "MenuScene.h"
+#import "GameScene.h"
 
 @implementation MenuScene
 

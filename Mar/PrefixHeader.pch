@@ -14,6 +14,10 @@
 
 #define SCALER (WIDTH / 568)
 
-#define convertToScreenSpace(f) ((f / WIDTH * [[UIScreen mainScreen] bounds].size.width))
+//#define convertToScreenSpace(f) ((f / WIDTH * [[UIScreen mainScreen] bounds].size.width))
+
+#define SPOT_LIGHT 0x1<<0
+#define ROCKS 0x1<<1
+#define SHIP 0x1<<2
 
 #endif

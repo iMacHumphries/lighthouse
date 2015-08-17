@@ -25,6 +25,9 @@
 		B500DEFF1B79B9DC0028D315 /* Background.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DEFE1B79B9DC0028D315 /* Background.m */; };
 		B500DF031B79C1FE0028D315 /* beam.png in Resources */ = {isa = PBXBuildFile; fileRef = B500DF021B79C1FE0028D315 /* beam.png */; };
 		B500DF061B79C2B60028D315 /* Lighthouse.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DF051B79C2B60028D315 /* Lighthouse.m */; };
+		B5364C5E1B8035A0005DF532 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5364C5D1B8035A0005DF532 /* MessageUI.framework */; };
+		B5364C641B825B6C005DF532 /* Rock.m in Sources */ = {isa = PBXBuildFile; fileRef = B5364C631B825B6C005DF532 /* Rock.m */; };
+		B5364C6A1B826CA0005DF532 /* levels in Resources */ = {isa = PBXBuildFile; fileRef = B5364C691B826CA0005DF532 /* levels */; };
 		B5E3B6641B7EF19300A2A123 /* selectionMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E3B6631B7EF19300A2A123 /* selectionMenu.png */; };
 		B5E3B6671B7F9F6600A2A123 /* LevelData.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E3B6661B7F9F6600A2A123 /* LevelData.m */; };
 		B5E3B7811B7FBF9500A2A123 /* EditorScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E3B77E1B7FBF9500A2A123 /* EditorScene.m */; };
@@ -93,6 +96,10 @@
 		B500DF021B79C1FE0028D315 /* beam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beam.png; sourceTree = "<group>"; };
 		B500DF041B79C2B60028D315 /* Lighthouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lighthouse.h; sourceTree = "<group>"; };
 		B500DF051B79C2B60028D315 /* Lighthouse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lighthouse.m; sourceTree = "<group>"; };
+		B5364C5D1B8035A0005DF532 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		B5364C621B825B6C005DF532 /* Rock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rock.h; sourceTree = "<group>"; };
+		B5364C631B825B6C005DF532 /* Rock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rock.m; sourceTree = "<group>"; };
+		B5364C691B826CA0005DF532 /* levels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = levels; sourceTree = "<group>"; };
 		B5E3B6631B7EF19300A2A123 /* selectionMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selectionMenu.png; sourceTree = "<group>"; };
 		B5E3B6651B7F9F6600A2A123 /* LevelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelData.h; sourceTree = "<group>"; };
 		B5E3B6661B7F9F6600A2A123 /* LevelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelData.m; sourceTree = "<group>"; };
@@ -133,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5364C5E1B8035A0005DF532 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +157,7 @@
 		B500DEAE1B7971610028D315 = {
 			isa = PBXGroup;
 			children = (
+				B5364C5D1B8035A0005DF532 /* MessageUI.framework */,
 				B500DEB91B7971610028D315 /* Mar */,
 				B500DED81B7971610028D315 /* MarTests */,
 				B500DEB81B7971610028D315 /* Products */,
@@ -193,11 +202,12 @@
 		B500DEBA1B7971610028D315 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B5364C691B826CA0005DF532 /* levels */,
+				B5F7F8AE1B7ED172007FDC81 /* effects */,
 				B5E3B6631B7EF19300A2A123 /* selectionMenu.png */,
 				B5F7F8C51B7EE8E6007FDC81 /* tempButton.png */,
 				B5F7F8B91B7ED910007FDC81 /* starFrame.png */,
 				B5F7F8BA1B7ED910007FDC81 /* starFill.png */,
-				B5F7F8AE1B7ED172007FDC81 /* effects */,
 				B5F7F8A81B7EC5CE007FDC81 /* rocks.png */,
 				B5F7F8BD1B7EDE08007FDC81 /* lighthouse.png */,
 				B5F7F8A11B7C3AA9007FDC81 /* ball.png */,
@@ -241,6 +251,8 @@
 				B500DEE61B7975CA0028D315 /* Ship.m */,
 				B5F7F8B11B7ED1CD007FDC81 /* BrokenShip.h */,
 				B5F7F8B21B7ED1CD007FDC81 /* BrokenShip.m */,
+				B5364C621B825B6C005DF532 /* Rock.h */,
+				B5364C631B825B6C005DF532 /* Rock.m */,
 				B500DEF51B79A8210028D315 /* SpotLight.h */,
 				B500DEF61B79A8210028D315 /* SpotLight.m */,
 				B500DF041B79C2B60028D315 /* Lighthouse.h */,
@@ -385,6 +397,7 @@
 				B5F7F89B1B7BFBBB007FDC81 /* waterDUDV.png in Resources */,
 				B5F7F8BB1B7ED910007FDC81 /* starFrame.png in Resources */,
 				B5F7F8A41B7C3AA9007FDC81 /* blackTrack.png in Resources */,
+				B5364C6A1B826CA0005DF532 /* levels in Resources */,
 				B5F7F8BE1B7EDE08007FDC81 /* lighthouse.png in Resources */,
 				B5F7F8A91B7EC5CE007FDC81 /* rocks.png in Resources */,
 				B5F7F8AC1B7ECE49007FDC81 /* explosion.sks in Resources */,
@@ -409,6 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5E3B6671B7F9F6600A2A123 /* LevelData.m in Sources */,
+				B5364C641B825B6C005DF532 /* Rock.m in Sources */,
 				B500DEE71B7975CA0028D315 /* Ship.m in Sources */,
 				B500DEF41B799B4C0028D315 /* ShipManager.m in Sources */,
 				B500DEC81B7971610028D315 /* GameViewController.m in Sources */,
