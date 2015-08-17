@@ -191,8 +191,9 @@
 				B5E3B65F1B7EF06400A2A123 /* Editor */,
 				B500DEF11B799B3B0028D315 /* controllers */,
 				B500DEF01B799B2E0028D315 /* modal */,
-				B500DEC91B7971610028D315 /* Main.storyboard */,
+				B5364C6C1B82705A005DF532 /* tools */,
 				B500DECC1B7971610028D315 /* Images.xcassets */,
+				B500DEC91B7971610028D315 /* Main.storyboard */,
 				B500DECE1B7971610028D315 /* LaunchScreen.xib */,
 				B500DEBA1B7971610028D315 /* Supporting Files */,
 			);
@@ -204,20 +205,7 @@
 			children = (
 				B5364C691B826CA0005DF532 /* levels */,
 				B5F7F8AE1B7ED172007FDC81 /* effects */,
-				B5E3B6631B7EF19300A2A123 /* selectionMenu.png */,
-				B5F7F8C51B7EE8E6007FDC81 /* tempButton.png */,
-				B5F7F8B91B7ED910007FDC81 /* starFrame.png */,
-				B5F7F8BA1B7ED910007FDC81 /* starFill.png */,
-				B5F7F8A81B7EC5CE007FDC81 /* rocks.png */,
-				B5F7F8BD1B7EDE08007FDC81 /* lighthouse.png */,
-				B5F7F8A11B7C3AA9007FDC81 /* ball.png */,
-				B5F7F8A21B7C3AA9007FDC81 /* blackTrack.png */,
-				B5F7F89A1B7BFBBB007FDC81 /* waterDUDV.png */,
-				B5F7F8981B7BFB6D007FDC81 /* waterTile.png */,
-				B500DF021B79C1FE0028D315 /* beam.png */,
-				B500DEF81B79A9E40028D315 /* water.png */,
-				B500DEE81B7977050028D315 /* ship.png */,
-				B5F7F8B41B7ED2D1007FDC81 /* brokenShip.png */,
+				B5364C6D1B827074005DF532 /* res */,
 				B500DEBB1B7971610028D315 /* Info.plist */,
 				B500DEBC1B7971610028D315 /* main.m */,
 				B5F7F89C1B7BFBED007FDC81 /* todo.txt */,
@@ -275,6 +263,34 @@
 				B5F7F8B71B7ED72A007FDC81 /* StartController.m */,
 			);
 			name = controllers;
+			sourceTree = "<group>";
+		};
+		B5364C6C1B82705A005DF532 /* tools */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = tools;
+			sourceTree = "<group>";
+		};
+		B5364C6D1B827074005DF532 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				B5F7F8C51B7EE8E6007FDC81 /* tempButton.png */,
+				B5F7F8B91B7ED910007FDC81 /* starFrame.png */,
+				B5F7F8BA1B7ED910007FDC81 /* starFill.png */,
+				B5F7F8A81B7EC5CE007FDC81 /* rocks.png */,
+				B5F7F8BD1B7EDE08007FDC81 /* lighthouse.png */,
+				B5F7F8A11B7C3AA9007FDC81 /* ball.png */,
+				B5F7F8A21B7C3AA9007FDC81 /* blackTrack.png */,
+				B5F7F89A1B7BFBBB007FDC81 /* waterDUDV.png */,
+				B5F7F8981B7BFB6D007FDC81 /* waterTile.png */,
+				B500DF021B79C1FE0028D315 /* beam.png */,
+				B500DEF81B79A9E40028D315 /* water.png */,
+				B500DEE81B7977050028D315 /* ship.png */,
+				B5F7F8B41B7ED2D1007FDC81 /* brokenShip.png */,
+				B5E3B6631B7EF19300A2A123 /* selectionMenu.png */,
+			);
+			name = res;
 			sourceTree = "<group>";
 		};
 		B5E3B65F1B7EF06400A2A123 /* Editor */ = {
