@@ -38,14 +38,23 @@ static NSString* const LIGHTHOUSES_KEY = @"lighthouses";
             self.level = [[dictionary objectForKey:LEVEL_KEY] intValue];
         if ([dictionary objectForKey:SHIPS_KEY]) {
             NSMutableArray *arrayOfShipData = [dictionary objectForKey:SHIPS_KEY];
-            NSLog(@"here is the array of ship data %@",arrayOfShipData);
             for (int i=0; i<arrayOfShipData.count;i++) {
-                NSLog(@"creating new ship");
                 Ship *ship = [[Ship alloc] initWithDictionary:[arrayOfShipData objectAtIndex:i]];
                 [ship hault];
                 [self.ships addObject:ship];
             }
                 
+        }
+        if ([dictionary objectForKey:LIGHTHOUSES_KEY]) {
+            NSMutableArray *arrayOfLightData = [dictionary objectForKey:LIGHTHOUSES_KEY];
+            NSLog(@"here is the array of lighthouse data %@",arrayOfLightData);
+            for (int i=0; i<arrayOfLightData.count;i++) {
+                NSLog(@"creating new lh");
+                Lighthouse *lighthouse = [[Lighthouse alloc] initWithDictionary:[arrayOfLightData objectAtIndex:i]];
+                 NSLog(@"adding new lh");
+                [self.lighthouses addObject:lighthouse];
+            }
+            
         }
     }
     return self;
@@ -61,6 +70,12 @@ static NSString* const LIGHTHOUSES_KEY = @"lighthouses";
         [shipsArray addObject:[[ships objectAtIndex:i] encodeJSON]];
     }
     [jsonDictionary setObject:shipsArray forKey:SHIPS_KEY];
+    
+    NSMutableArray *lightsArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < lighthouses.count; i++) {
+        [lightsArray addObject:[[lighthouses objectAtIndex:i] encodeJSON]];
+    }
+    [jsonDictionary setObject:lightsArray forKey:LIGHTHOUSES_KEY];
 
     
     

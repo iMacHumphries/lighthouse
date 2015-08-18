@@ -11,10 +11,11 @@
 #import "Background.h"
 #import "Lighthouse.h"
 #import "EDSelection.h"
+#import "EDTimeLine.h"
 #import "LevelData.h"
 #import <MessageUI/MessageUI.h>
 
-@interface EditorScene : SKScene<EDSelectionDelegate, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate, UIActionSheetDelegate> {
+@interface EditorScene : SKScene<EDSelectionDelegate, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate, UIActionSheetDelegate, UIAlertViewDelegate> {
     LevelData *levelData;
     Background *background;
     Lighthouse *lighthouse;
@@ -22,6 +23,8 @@
     
     EDSelection *edSelection;
     SKNode *currentSelectedNode;
+    
+    EDTimeLine *timeLine;
     
     SKSpriteNode *addButton;
     BOOL isAddMenu;
@@ -37,9 +40,14 @@
     BOOL isDeleteMode;
     BOOL isShowingDelete;
     
-    SKSpriteNode *saveButton;
-    SKSpriteNode *loadButton;
-        
+    SKSpriteNode *showHideButton;
+    SKLabelNode *showHideLabel;
+    NSMutableArray *showHideButtons;
+    BOOL isShow;
+
 }
 - (void)toggleAddMenu;
+- (int)shipsCount;
+
+
 @end

@@ -12,17 +12,24 @@
 
 @implementation EditorScene
 
+NSString * const UI = @"ui";
 NSString * const ADD = @"add";
 NSString * const CONFIRM = @"confirm";
 NSString * const EDIT = @"edit";
 NSString * const DELETE = @"delete";
-NSString * const SAVE = @"save";
-NSString * const LOAD = @"load";
+NSString * const SHOW_HIDE = @"show/hide";
+    NSString * const EMAIL = @"Email";
+    NSString * const LOAD = @"Load";
+    NSString * const NEW = @"New";
 NSString * const SCENE = @"scene";
+
+NSString * const RESET = @"Shut up Ben, I know what I am doing...";
 
 
 - (void)didMoveToView:(SKView *)view {
+    currentSelectedNode = NULL;
     [self setName:SCENE];
+    
     background = [[Background alloc] initWithImageNamed:@"water.png"];
     [background setSize:CGSizeMake(WIDTH - 100, HEIGHT - 100)];
     [self addChild:background];
@@ -39,7 +46,8 @@ NSString * const SCENE = @"scene";
     edSelection = [[EDSelection alloc] initWithImageNamed:@"selectionMenu.png"];
     [edSelection setDelegate:self];
     
-    currentSelectedNode = NULL;
+    timeLine = [[EDTimeLine alloc] initWithImageNamed:@"timeLine.png"];
+    [self addChild:timeLine];
     
     confirm = [SKSpriteNode spriteNodeWithImageNamed:@"tempButton.png"];
     [confirm setPosition:CGPointMake(WIDTH - confirm.size.width - 5, addButton.position.y)];
@@ -70,28 +78,19 @@ NSString * const SCENE = @"scene";
     [delLA setName:DELETE];
     [deleteButton addChild:delLA];
     
-    saveButton = [SKSpriteNode spriteNodeWithImageNamed:@"tempButton.png"];
-    [saveButton setPosition:CGPointMake(addButton.position.x, HEIGHT - saveButton.size.height - 20)];
-    [saveButton setColorBlendFactor:0.8f];
-    [saveButton setColor:[UIColor greenColor]];
-    [saveButton setName:SAVE];
-    [saveButton setZPosition:11];
-    SKLabelNode *saveL = [SKLabelNode labelNodeWithText:@"Save"];
-    [saveL setName:SAVE];
-    [saveButton addChild:saveL];
-    [self addChild:saveButton];
+    showHideButton = [SKSpriteNode spriteNodeWithImageNamed:@"tempButton.png"];
+    [showHideButton setPosition:CGPointMake(addButton.position.x, HEIGHT - showHideButton.size.height - 20)];
+    [showHideButton setColorBlendFactor:0.8f];
+    [showHideButton setColor:[UIColor greenColor]];
+    [showHideButton setName:SHOW_HIDE];
+    [showHideButton setZPosition:11];
+    showHideLabel = [SKLabelNode labelNodeWithText:@">"];
+    [showHideLabel setName:SHOW_HIDE];
+    [showHideButton addChild:showHideLabel];
+    [self addChild:showHideButton];
+    showHideButtons= [[NSMutableArray alloc] init];
     
-    loadButton = [SKSpriteNode spriteNodeWithImageNamed:@"tempButton.png"];
-    [loadButton setPosition:CGPointMake(saveButton.position.x + 10 + loadButton.size.width, saveButton.position.y)];
-    [loadButton setColorBlendFactor:0.8f];
-    [loadButton setColor:[UIColor greenColor]];
-    [loadButton setName:LOAD];
-    [loadButton setZPosition:11];
-    SKLabelNode *loadL = [SKLabelNode labelNodeWithText:@"Load"];
-    [loadL setName:LOAD];
-    [loadButton addChild:loadL];
-    [self addChild:loadButton];
-    
+    [self addButtonsToShowHideMenuWithTitles:[NSArray arrayWithObjects:EMAIL, LOAD, NEW, nil]];
     
     UIRotationGestureRecognizer *rotateGesture = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotation:)];
     [self.view addGestureRecognizer:rotateGesture];
@@ -99,14 +98,10 @@ NSString * const SCENE = @"scene";
     UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
     [self.view addGestureRecognizer:pinch];
     
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-    longPress.delegate      =   self;
-    longPress.minimumPressDuration = 0.7;
-    [self.view addGestureRecognizer:longPress];
 }
 
 - (void)handleRotation:(UIRotationGestureRecognizer *)recognizer {
-    if (isEditing && currentSelectedNode) {
+    if ( currentSelectedNode) {
         [currentSelectedNode runAction:[SKAction rotateByAngle:-[recognizer rotation] duration:0.0f]];
         [recognizer setRotation:0.0];
     }
@@ -114,7 +109,7 @@ NSString * const SCENE = @"scene";
 
 - (void)handlePinch:(UIPinchGestureRecognizer *)sender {
 
-    if (isEditing && currentSelectedNode) {
+    if ( currentSelectedNode) {
         if (sender.state == UIGestureRecognizerStateChanged) {
            [currentSelectedNode runAction:[SKAction scaleBy:[sender scale] duration:0.0f]];
             sender.scale =1;
@@ -125,10 +120,62 @@ NSString * const SCENE = @"scene";
     }
 }
 
-- (void)handleLongPress:(UILongPressGestureRecognizer *)recognicer{
-     if (isEditing && currentSelectedNode) {
-          [self toggleDeleteMode];
-     }
+
+- (void)removeAllNonUI {
+    for (SKNode *node in self.children) {
+        if (![self isMainUI:node])
+            [node removeFromParent];
+    }
+}
+
+- (BOOL)isMainUI:(SKNode *)node {
+    if (!node) return false;
+    return ([node.name isEqualToString:ADD] || [node.name isEqualToString:CONFIRM] || [node.name isEqualToString:@"background"] || [node.name isEqualToString:SCENE] || [node.name isEqualToString:EDIT] || [node.name isEqualToString:@"edSelection"] || [node.name isEqualToString:DELETE] || [node.name isEqualToString:EMAIL] || [node.name isEqualToString:LOAD] || [node.name isEqualToString:SHOW_HIDE] || [node.name isEqualToString:NEW] || [node.name isEqualToString:UI]);
+}
+
+- (void)addButtonsToShowHideMenuWithTitles:(NSArray *)titles {
+    int buttonCount = titles.count;
+    
+    for (int i =0; i < buttonCount; i++) {
+        SKSpriteNode *newButton = [SKSpriteNode spriteNodeWithImageNamed:@"tempButton.png"];
+        [newButton setPosition:CGPointMake(showHideButton.position.x + (10 *(i+1)) + (newButton.size.width *(i+1)), showHideButton.position.y)];
+        [newButton setColorBlendFactor:0.65f];
+        [newButton setColor:[UIColor greenColor]];
+        [newButton setName:titles[i]];
+        [newButton setZPosition:11];
+        [newButton setScale:0.5];
+        SKLabelNode *label = [SKLabelNode labelNodeWithText:titles[i]];
+        [label setName:titles[i]];
+        [newButton addChild:label];
+        [showHideButtons addObject:newButton];
+    }
+}
+
+- (void)toggleShowHideMenu {
+    if (isShow) {
+        [showHideLabel setText:@">"];
+        for (int i =0;i<showHideButtons.count;i++) {
+            SKSpriteNode *node = [showHideButtons objectAtIndex:i];
+            [node runAction:[SKAction sequence:@[ [SKAction scaleTo:0.5 duration:0.1+(i *0.1)],
+                                                  [SKAction moveTo:showHideButton.position duration:0.1+(i *0.1)],
+                                                  [SKAction removeFromParent]
+                                                  ]]];
+        }
+    } else {
+        [showHideLabel setText:@"<"];
+        for (int i =0;i<showHideButtons.count;i++) {
+            SKSpriteNode *node = [showHideButtons objectAtIndex:i];
+            CGPoint pos = CGPointMake(showHideButton.position.x + (10 *(i+1)) + (node.size.width *(i+1))*2, showHideButton.position.y);
+           
+            [node setScale:0.5];
+            [node setPosition:showHideButton.position];
+            [self addChild:node];
+            [node runAction:[SKAction sequence:@[ [SKAction moveTo:pos duration:0.1 +(i *0.1)],
+                                                  [SKAction scaleTo:1 duration:0.1 +(i *0.1)]
+                                                  ]]];
+        }
+    }
+    isShow = !isShow;
 }
 
 
@@ -205,8 +252,13 @@ NSString * const SCENE = @"scene";
     [self singleSelectionEnded];
 }
 
-- (void)savePressed {
+- (void)showHidePressed {
+    [self toggleShowHideMenu];
+}
+
+- (void)emailPressed {
     [self saveGame];
+    [self emailToMe];
 }
 
 - (void)loadPressed {
@@ -216,6 +268,8 @@ NSString * const SCENE = @"scene";
     
     NSArray  *contents = [[NSFileManager defaultManager]
                                     contentsOfDirectoryAtPath:folderPath error:&error];
+    if (error)
+        NSLog(@"ERROR :%@",[error localizedDescription]);
    
     UIActionSheet *action = [[UIActionSheet alloc]initWithTitle:@"levels" delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:nil otherButtonTitles:nil, nil];
     
@@ -223,7 +277,19 @@ NSString * const SCENE = @"scene";
         [action addButtonWithTitle:title];
     }
     
-    [action showInView:self.view];
+    [action showInView:self.view.window.rootViewController.view];
+}
+
+- (void)newPressed {
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Are you sure Mariah?" message:@"This will erase this current level" delegate:self cancelButtonTitle:@"NO WAIT!" otherButtonTitles:RESET, nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:RESET]) {
+        [self removeAllNonUI];
+        [self singleSelectionEnded];
+    }
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -255,22 +321,15 @@ NSString * const SCENE = @"scene";
     for (Ship *ship in levelData.ships) {
         [self addChild:ship];
     }
+    for (Lighthouse *lh in levelData.lighthouses) {
+        [self addChild:lh];
+    }
+   
     
 }
 
-- (void)removeAllNonUI {
-    for (SKNode *node in self.children) {
-        if (![self isMainUI:node])
-            [node removeFromParent];
-    }
-}
-
-- (BOOL)isMainUI:(SKNode *)node {
-    if (!node) return false;
-    return ([node.name isEqualToString:ADD] || [node.name isEqualToString:CONFIRM] || [node.name isEqualToString:@"background"] || [node.name isEqualToString:SCENE] || [node.name isEqualToString:EDIT] || [node.name isEqualToString:@"edSelection"] || [node.name isEqualToString:DELETE] || [node.name isEqualToString:SAVE] || [node.name isEqualToString:LOAD]);
-}
-
 - (void) selectNode:(SKNode *)node {
+    [self singleSelectionEnded];
     currentSelectedNode = node;
     if (!node) return;
     
@@ -306,6 +365,7 @@ NSString * const SCENE = @"scene";
 }
 
 - (void)selectionEndedWithNode:(SKNode *)node {
+    [self handleNewNode:node];
     [self toggleAddMenu];
     currentSelectedNode = node;
     if (node) {
@@ -314,6 +374,13 @@ NSString * const SCENE = @"scene";
         [self selectNode:node];
     }
    
+}
+
+- (void)handleNewNode:(SKNode *)node {
+    if ([node isKindOfClass:[Ship class]]) {
+        [node addChild:[SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"ship%i",[self shipsCount]]]];
+        [timeLine addNodeOnTimeLine:node];
+    }
 }
 
 - (void)moveWithSelectedNode:(CGPoint)location {
@@ -325,6 +392,7 @@ NSString * const SCENE = @"scene";
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [edSelection touchesBegan:touches withEvent:event];
     for (UITouch *touch in touches) {
+        if ([touch tapCount] > 1) return;
         CGPoint location = [touch locationInNode:self];
         SKNode *node = [self nodeAtPoint:location];
         
@@ -336,14 +404,18 @@ NSString * const SCENE = @"scene";
             [self editPressed];
         } else if ([node.name isEqualToString:DELETE]) {
             [self deletePressed];
-        } else if ([node.name isEqualToString:SAVE]) {
-            [self savePressed];
+        } else if ([node.name isEqualToString:EMAIL]) {
+            [self emailPressed];
         } else if ([node.name isEqualToString:LOAD]) {
             [self loadPressed];
-        } else if (currentSelectedNode) {
-            [self moveWithSelectedNode:location];
+        } else if ([node.name isEqualToString:NEW]) {
+            [self newPressed];
+        } else if ([node.name isEqualToString:SHOW_HIDE]) {
+            [self showHidePressed];
         } else if (![self isMainUI:node]) {
             [self selectNode:node];
+        } else if (currentSelectedNode) {
+            [self moveWithSelectedNode:location];
         }
     }
 }
@@ -351,7 +423,7 @@ NSString * const SCENE = @"scene";
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
-        if (currentSelectedNode) {
+        if (currentSelectedNode && [touch tapCount] <= 1) {
             [self moveWithSelectedNode:location];
         }
     }
@@ -381,19 +453,37 @@ NSString * const SCENE = @"scene";
     NSMutableArray *result = [[NSMutableArray alloc] init];
     for (Ship *s in self.children) {
         if ([s isKindOfClass:[Ship class]])
-            [result addObject:s];
+            if (![s.parent isKindOfClass:[EDTimeLine class]]) // not on timeline
+                [result addObject:s];
     }
     return result;
 }
 - (NSMutableArray *)lighthouses {
     NSMutableArray *result = [[NSMutableArray alloc] init];
     for (Lighthouse *lh in self.children) {
-        [result addObject:lh];
+        if ([lh isKindOfClass:[Lighthouse class]])
+            [result addObject:lh];
     }
     return result;
 }
 - (NSMutableArray *)rocks {
     return NULL;
+}
+
+- (int)shipsCount {
+    NSMutableArray *ships = [self ships];
+    if (ships == NULL) return 0;
+    return [ships count];
+}
+
+- (int)lighthousesCount {
+    NSMutableArray *lighthouses = [self lighthouses];
+    if (lighthouses == NULL) return 0;
+    return [lighthouses count];
+}
+
+- (int)rocksCount {
+    return [[self rocks] count];
 }
 
 - (void)emailToMe {
@@ -434,8 +524,7 @@ NSString * const SCENE = @"scene";
             break;
     }
     
-    UIViewController *vc = self.view.window.rootViewController;
-    [vc dismissViewControllerAnimated:YES completion:^{
+    [self.view.window.rootViewController dismissViewControllerAnimated:NO completion:^{
         
     }];
     

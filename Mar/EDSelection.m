@@ -18,7 +18,7 @@ NSString * const  LIGHTHOUSE = @"lighthouse";
 - (id)initWithImageNamed:(NSString *)name {
     if (self = [super initWithImageNamed:name]) {
         [self setName:@"edSelection"];
-        [self setZPosition:10];
+        [self setZPosition:20];
         [self setPosition:CGPointMake(WIDTH/2, HEIGHT/2)];
         [self addSelections];
         

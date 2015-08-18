@@ -7,6 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "SKSpriteNode+JSONEncodable.h"
 
 @interface SpotLight : SKSpriteNode {
     SKLightNode *light;

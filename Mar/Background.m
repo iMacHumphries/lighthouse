@@ -19,7 +19,7 @@
         
         [self setSize:CGSizeMake(WIDTH, HEIGHT)];
         [self setPosition:CGPointMake(WIDTH/2, HEIGHT/2)];
-        [self setZPosition:0];
+        [self setZPosition:-11];
         
         [self addWaterShader];
     

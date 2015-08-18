@@ -9,6 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "SpotLight.h"
 #import "LightControlRail.h"
+#import "SKSpriteNode+JSONEncodable.h"
 
 @class LightControlRail;
 @interface Lighthouse : SKSpriteNode {

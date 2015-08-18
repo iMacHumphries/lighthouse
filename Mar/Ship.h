@@ -7,9 +7,10 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "SKSpriteNode+JSONEncodable.h"
 #import "GameScene.h"
 
-@interface Ship : SKSpriteNode<NSCoding> {
+@interface Ship : SKSpriteNode {
     CGVector direction;
     BOOL hasTurnedAround;
     NSString *imageName;
@@ -21,7 +22,7 @@
 - (void)explode;
 - (BOOL)isOffScreen;
 - (void)hault;
-- (NSDictionary *)encodeJSON;
-- (id)initWithDictionary:(NSDictionary *)dictionary;
+//- (NSDictionary *)encodeJSON;
+//- (id)initWithDictionary:(NSDictionary *)dictionary;
 
 @end
