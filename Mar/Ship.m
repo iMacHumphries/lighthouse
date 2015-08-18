@@ -33,7 +33,7 @@
         [self.physicsBody setCollisionBitMask:0];
         [self.physicsBody setContactTestBitMask:SPOT_LIGHT | ROCKS];    //we test for contact with spotlights and rocks
        
-        [self move];
+        //[self move];
     }
     return self;
 }
@@ -44,6 +44,7 @@
 }
 
 - (void)move {
+    NSLog(@"move!");
     direction = CGVectorMake(0, -HEIGHT*2);
     SKAction *move = [SKAction moveBy:direction duration:10];
     SKAction *wait = [SKAction waitForDuration:waitTime];
@@ -51,6 +52,8 @@
 }
 
 - (void)hault {
+    NSLog(@"hault!");
+
     [self removeAllActions];
 }
 
@@ -95,10 +98,10 @@
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
     if (self = [super initWithDictionary:dictionary]) {
-        [self hault];
+        
         if ([dictionary objectForKey:WAIT_TIME_KEY])
             self.waitTime = [[dictionary objectForKey:WAIT_TIME_KEY] floatValue];
-        [self move];
+      
     }
     return self;
 }

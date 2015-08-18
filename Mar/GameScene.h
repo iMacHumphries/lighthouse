@@ -15,6 +15,7 @@
 #import "StartController.h"
 #import "Rock.h"
 #import "PrefixHeader.pch"
+#import "LevelData.h"
 
 //#define WIDTH 1024
 //#define HEIGHT 768

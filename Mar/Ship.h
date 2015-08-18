@@ -19,6 +19,7 @@
 
 @property (nonatomic, assign) float waitTime;
 
+- (void)move;
 - (void)turnAround;
 - (void)destroy;
 - (void)explode;

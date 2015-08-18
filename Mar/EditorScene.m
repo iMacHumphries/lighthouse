@@ -13,6 +13,7 @@
 @implementation EditorScene
 
 static NSString * const UI = @"ui";
+static NSString * const LABEL = @"label";
 static NSString * const ON_TIME_LINE = @"onTimeLine";
 static NSString * const ADD = @"add";
 static NSString * const CONFIRM = @"confirm";
@@ -318,9 +319,15 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
     
     
     levelData = [[LevelData alloc] initWithDictionary:json];
-    
+    int i = 0;
     for (Ship *ship in levelData.ships) {
         [self addChild:ship];
+        SKLabelNode *label = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"ship%i",[self shipsCount]]];
+        [label setName:LABEL];
+        [label setUserInteractionEnabled:NO];
+        [ship addChild:label];
+        [timeLine addNodeOnTimeLine:ship withTime:ship.waitTime];
+        i++;
     }
     for (Lighthouse *lh in levelData.lighthouses) {
         [self addChild:lh];
@@ -368,6 +375,7 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
 - (void)selectionEndedWithNode:(SKNode *)node {
     if ([node isKindOfClass:[Ship class]]) {
         SKLabelNode *label = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"ship%i",[self shipsCount]]];
+        [label setName:LABEL];
         [label setUserInteractionEnabled:NO];
         [node addChild:label];
         [timeLine addNodeOnTimeLine:node];
@@ -385,11 +393,9 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
 - (void)moveWithSelectedNode:(CGPoint)location {
     if (!isEditing) {
         if (isLockY) {
-            NSLog(@"y lock");
             [currentSelectedNode setPosition:CGPointMake(location.x, currentSelectedNode.position.y)];
         }
         else {
-            NSLog(@"NOT locked");
             [currentSelectedNode setPosition:location];
         }
     }
@@ -454,22 +460,31 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
 
 - (void)saveGame {
     NSLog(@"saving game...");
+    [self saveShipTimes];
     levelData = [[LevelData alloc] init];
     [levelData setLevel:1];
     [levelData setShips:[self ships]];
     [levelData setRocks:[self rocks]];
     [levelData setLighthouses:[self lighthouses]];
+   
     
     [self emailToMe];
     
+}
+
+- (void)saveShipTimes {
+    for (Ship *ship in [self ships]) {
+         [ship setWaitTime:[timeLine getTimeForNode:ship]];
+    }
 }
 
 - (NSMutableArray *)ships {
     NSMutableArray *result = [[NSMutableArray alloc] init];
     for (Ship *s in self.children) {
         if ([s isKindOfClass:[Ship class]])
-            if (![s.name isEqualToString:ON_TIME_LINE]) // not on timeline
+            if (![s.name isEqualToString:ON_TIME_LINE]) { // not on timeline
                 [result addObject:s];
+            }
     }
     return result;
 }

@@ -12,7 +12,7 @@
 @implementation EDSelection
 @synthesize selectedNode, delegate;
 
- NSString * const  NORMAL_SHIP = @"normal_ship";
+ NSString * const  NORMAL_SHIP = @"ship";
 NSString * const  LIGHTHOUSE = @"lighthouse";
 
 - (id)initWithImageNamed:(NSString *)name {

@@ -8,8 +8,11 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface EDTimeLine : SKSpriteNode
+@interface EDTimeLine : SKSpriteNode {
+    NSMutableArray *timeNodes;
+}
 
 - (void)addNodeOnTimeLine:(SKNode *)node;
+- (void)addNodeOnTimeLine:(SKNode *)node withTime:(float)time;
 - (float)getTimeForNode:(SKNode *)node;
 @end

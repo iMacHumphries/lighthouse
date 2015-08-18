@@ -10,15 +10,35 @@
 #import "Ship.h"
 #import "BrokenShip.h"
 
+
 @implementation GameScene
 
 - (void)didMoveToView:(SKView *)view {
     self.physicsWorld.gravity = CGVectorMake(0,0);
     self.physicsWorld.contactDelegate = self;
     
-    spawner = [[Spawner alloc] init];
-    [spawner setDelegate:self];
-    [spawner start];
+    //spawner = [[Spawner alloc] init];
+    //[spawner setDelegate:self];
+    //[spawner start];
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"levels/level 3" ofType:@""];
+    NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    NSError *jsonError;
+    NSData *objectData = [content dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:objectData
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:&jsonError];
+    if (jsonError)
+        NSLog(@"error %@",[jsonError localizedDescription]);
+    
+    
+    LevelData *levelData = [[LevelData alloc] initWithDictionary:json];
+    
+    for (Ship *ship in levelData.ships) {
+        [self addChild:ship];
+        [ship move];
+    }
+
     
     shipManager = [[ShipManager alloc] init];
     
@@ -34,6 +54,8 @@
     
     starController = [[StartController alloc] init];
     [self addChild:starController];
+    
+    
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

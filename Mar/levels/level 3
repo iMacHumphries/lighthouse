@@ -1,0 +1,89 @@
+{
+  "level" : 1,
+  "lighthouses" : [
+
+  ],
+  "ships" : [
+    {
+      "scale" : 1.261972,
+      "x" : 954,
+      "y" : 712.0001,
+      "waitTime" : 111.7969,
+      "z" : 10,
+      "rotation" : 0,
+      "image" : "ship.png"
+    },
+    {
+      "scale" : 1.261972,
+      "x" : 858.0001,
+      "y" : 723,
+      "waitTime" : 100.5469,
+      "z" : 10,
+      "rotation" : 0,
+      "image" : "ship.png"
+    },
+    {
+      "scale" : 1.261972,
+      "x" : 752,
+      "y" : 712.0001,
+      "waitTime" : 88.125,
+      "z" : 10,
+      "rotation" : 0,
+      "image" : "ship.png"
+    },
+    {
+      "scale" : 1.261972,
+      "x" : 650,
+      "y" : 708.0001,
+      "waitTime" : 76.17188,
+      "z" : 10,
+      "rotation" : 0,
+      "image" : "ship.png"
+    },
+    {
+      "scale" : 1.261972,
+      "x" : 565,
+      "y" : 709.0001,
+      "waitTime" : 66.21094,
+      "z" : 10,
+      "rotation" : 0,
+      "image" : "ship.png"
+    },
+    {
+      "scale" : 1.261972,
+      "x" : 480,
+      "y" : 708.0001,
+      "waitTime" : 56.25,
+      "z" : 10,
+      "rotation" : 0,
+      "image" : "ship.png"
+    },
+    {
+      "scale" : 1.261972,
+      "x" : 376,
+      "y" : 706.0001,
+      "waitTime" : 44.0625,
+      "z" : 10,
+      "rotation" : 0,
+      "image" : "ship.png"
+    },
+    {
+      "scale" : 1.261972,
+      "x" : 282,
+      "y" : 702.0001,
+      "waitTime" : 33.04688,
+      "z" : 10,
+      "rotation" : 0,
+      "image" : "ship.png"
+    },
+    {
+      "scale" : 1.261972,
+      "x" : 214,
+      "y" : 715.0001,
+      "waitTime" : 25.07813,
+      "z" : 10,
+      "rotation" : 0,
+      "image" : "ship.png"
+    }
+  ]
+}

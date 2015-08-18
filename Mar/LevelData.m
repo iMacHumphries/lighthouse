@@ -40,7 +40,6 @@ static NSString* const LIGHTHOUSES_KEY = @"lighthouses";
             NSMutableArray *arrayOfShipData = [dictionary objectForKey:SHIPS_KEY];
             for (int i=0; i<arrayOfShipData.count;i++) {
                 Ship *ship = [[Ship alloc] initWithDictionary:[arrayOfShipData objectAtIndex:i]];
-                [ship hault];
                 [self.ships addObject:ship];
             }
                 
