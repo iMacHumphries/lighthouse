@@ -17,12 +17,12 @@
 
 }
 
+@property (nonatomic, assign) float waitTime;
+
 - (void)turnAround;
 - (void)destroy;
 - (void)explode;
 - (BOOL)isOffScreen;
 - (void)hault;
-//- (NSDictionary *)encodeJSON;
-//- (id)initWithDictionary:(NSDictionary *)dictionary;
 
 @end

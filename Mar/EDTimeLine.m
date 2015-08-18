@@ -37,16 +37,17 @@ const float MAX_TIME = 120;
 
 - (void)addNodeOnTimeLine:(SKNode *)node {
     SKNode *copy = [node copy];
-    [copy setPosition:CGPointMake(0, 0)];
-    [copy setName:@"copy"];
-    [self addChild:copy];
+    [copy setPosition:self.position];
+    [copy setName:@"onTimeLine"];
+    [self.parent addChild:copy];
     if ([copy isKindOfClass:[Ship class]]) {
         Ship *ship = (Ship *)copy;
         [ship hault];
     }
-   
-    
 }
 
+- (float)getTimeForNode:(SKNode *)node {
+    return node.position.x*(1/WIDTH) * MAX_TIME;
+}
 
 @end

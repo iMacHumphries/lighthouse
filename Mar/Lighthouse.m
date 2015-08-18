@@ -57,9 +57,7 @@
 
 - (NSDictionary*)encodeJSON {
     NSDictionary *lighthouseJSON = [super encodeJSON];
-    
-    
-    
+
     return lighthouseJSON;
 }
 

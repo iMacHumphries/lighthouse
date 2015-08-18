@@ -9,6 +9,9 @@
 #import "Ship.h"
 
 @implementation Ship
+@synthesize waitTime;
+
+ static NSString* const WAIT_TIME_KEY = @"waitTime";
 
 - (id)init {
     if (self = [super initWithImageNamed:@"ship.png"]) {
@@ -42,7 +45,9 @@
 
 - (void)move {
     direction = CGVectorMake(0, -HEIGHT*2);
-    [self runAction:[SKAction moveBy:direction duration:10]];
+    SKAction *move = [SKAction moveBy:direction duration:10];
+    SKAction *wait = [SKAction waitForDuration:waitTime];
+    [self runAction:[SKAction sequence:@[wait, move]]];
 }
 
 - (void)hault {
@@ -80,6 +85,22 @@
     [self.parent addChild:explode];
     SKAction *rem = [SKAction removeFromParent];
     [self runAction:rem];
+}
+
+- (NSDictionary *)encodeJSON {
+    NSDictionary * dictionary = [super encodeJSON];
+    [dictionary setValue:[NSNumber numberWithFloat:self.waitTime] forKey:WAIT_TIME_KEY];
+    return dictionary;
+}
+
+- (id)initWithDictionary:(NSDictionary *)dictionary {
+    if (self = [super initWithDictionary:dictionary]) {
+        [self hault];
+        if ([dictionary objectForKey:WAIT_TIME_KEY])
+            self.waitTime = [[dictionary objectForKey:WAIT_TIME_KEY] floatValue];
+        [self move];
+    }
+    return self;
 }
 
 @end

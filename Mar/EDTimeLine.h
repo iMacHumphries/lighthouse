@@ -11,4 +11,5 @@
 @interface EDTimeLine : SKSpriteNode
 
 - (void)addNodeOnTimeLine:(SKNode *)node;
+- (float)getTimeForNode:(SKNode *)node;
 @end

@@ -12,18 +12,19 @@
 
 @implementation EditorScene
 
-NSString * const UI = @"ui";
-NSString * const ADD = @"add";
-NSString * const CONFIRM = @"confirm";
-NSString * const EDIT = @"edit";
-NSString * const DELETE = @"delete";
-NSString * const SHOW_HIDE = @"show/hide";
-    NSString * const EMAIL = @"Email";
-    NSString * const LOAD = @"Load";
-    NSString * const NEW = @"New";
-NSString * const SCENE = @"scene";
+static NSString * const UI = @"ui";
+static NSString * const ON_TIME_LINE = @"onTimeLine";
+static NSString * const ADD = @"add";
+static NSString * const CONFIRM = @"confirm";
+static NSString * const EDIT = @"edit";
+static NSString * const DELETE = @"delete";
+static NSString * const SHOW_HIDE = @"show/hide";
+    static NSString * const EMAIL = @"Email";
+    static NSString * const LOAD = @"Load";
+    static NSString * const NEW = @"New";
+static NSString * const SCENE = @"scene";
 
-NSString * const RESET = @"Shut up Ben, I know what I am doing...";
+static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
 
 
 - (void)didMoveToView:(SKView *)view {
@@ -365,7 +366,12 @@ NSString * const RESET = @"Shut up Ben, I know what I am doing...";
 }
 
 - (void)selectionEndedWithNode:(SKNode *)node {
-    [self handleNewNode:node];
+    if ([node isKindOfClass:[Ship class]]) {
+        SKLabelNode *label = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"ship%i",[self shipsCount]]];
+        [label setUserInteractionEnabled:NO];
+        [node addChild:label];
+        [timeLine addNodeOnTimeLine:node];
+    }
     [self toggleAddMenu];
     currentSelectedNode = node;
     if (node) {
@@ -376,16 +382,16 @@ NSString * const RESET = @"Shut up Ben, I know what I am doing...";
    
 }
 
-- (void)handleNewNode:(SKNode *)node {
-    if ([node isKindOfClass:[Ship class]]) {
-        [node addChild:[SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"ship%i",[self shipsCount]]]];
-        [timeLine addNodeOnTimeLine:node];
-    }
-}
-
 - (void)moveWithSelectedNode:(CGPoint)location {
     if (!isEditing) {
-        [currentSelectedNode setPosition:location];
+        if (isLockY) {
+            NSLog(@"y lock");
+            [currentSelectedNode setPosition:CGPointMake(location.x, currentSelectedNode.position.y)];
+        }
+        else {
+            NSLog(@"NOT locked");
+            [currentSelectedNode setPosition:location];
+        }
     }
 }
 
@@ -396,6 +402,11 @@ NSString * const RESET = @"Shut up Ben, I know what I am doing...";
         CGPoint location = [touch locationInNode:self];
         SKNode *node = [self nodeAtPoint:location];
         
+        while (node.parent != NULL && ![self isMainUI:node.parent])
+            node = node.parent;
+        
+        isLockY = false;
+       
         if ([node.name isEqualToString:ADD]) {
             [self addPressed];
         } else if ([node.name isEqualToString:CONFIRM]) {
@@ -412,11 +423,15 @@ NSString * const RESET = @"Shut up Ben, I know what I am doing...";
             [self newPressed];
         } else if ([node.name isEqualToString:SHOW_HIDE]) {
             [self showHidePressed];
+        } else if ([node.name isEqualToString:ON_TIME_LINE]) {
+            [self selectNode:node];
+            isLockY = true;
         } else if (![self isMainUI:node]) {
             [self selectNode:node];
         } else if (currentSelectedNode) {
             [self moveWithSelectedNode:location];
         }
+        
     }
 }
 
@@ -453,7 +468,7 @@ NSString * const RESET = @"Shut up Ben, I know what I am doing...";
     NSMutableArray *result = [[NSMutableArray alloc] init];
     for (Ship *s in self.children) {
         if ([s isKindOfClass:[Ship class]])
-            if (![s.parent isKindOfClass:[EDTimeLine class]]) // not on timeline
+            if (![s.name isEqualToString:ON_TIME_LINE]) // not on timeline
                 [result addObject:s];
     }
     return result;

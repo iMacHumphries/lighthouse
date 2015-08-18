@@ -44,6 +44,8 @@
     SKLabelNode *showHideLabel;
     NSMutableArray *showHideButtons;
     BOOL isShow;
+    
+    BOOL isLockY;
 
 }
 - (void)toggleAddMenu;
