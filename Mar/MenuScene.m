@@ -8,6 +8,7 @@
 
 #import "MenuScene.h"
 #import "GameScene.h"
+#import "LevelSelectScene.h"
 
 @implementation MenuScene
 
@@ -36,9 +37,9 @@ NSString * const EDITOR = @"editor";
         SKNode *node = [self nodeAtPoint:location];
         
         if ([node.name isEqualToString:PLAY]) {
-            GameScene *gameScene = [[GameScene alloc]initWithSize:self.size];
+            LevelSelectScene *scene = [[LevelSelectScene alloc] initWithSize:self.size];
             SKTransition *doors = [SKTransition doorsOpenVerticalWithDuration:0.5];
-            [self.view presentScene:gameScene transition:doors];
+            [self.view presentScene:scene transition:doors];
         } else if ([node.name isEqualToString:EDITOR]) {
             EditorScene *edit = [[EditorScene alloc] initWithSize:self.size];
             SKTransition *doors = [SKTransition doorsOpenVerticalWithDuration:0.5];

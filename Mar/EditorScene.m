@@ -8,11 +8,13 @@
 
 #import "EditorScene.h"
 #import "Ship.h"
+#import "MenuScene.h"
 
 
 @implementation EditorScene
 
 static NSString * const UI = @"ui";
+static NSString * const DETAIL = @"detail";
 static NSString * const LABEL = @"label";
 static NSString * const ON_TIME_LINE = @"onTimeLine";
 static NSString * const ADD = @"add";
@@ -23,6 +25,7 @@ static NSString * const SHOW_HIDE = @"show/hide";
     static NSString * const EMAIL = @"Email";
     static NSString * const LOAD = @"Load";
     static NSString * const NEW = @"New";
+    static NSString * const EXIT = @"Exit";
 static NSString * const SCENE = @"scene";
 
 static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
@@ -92,7 +95,7 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
     [self addChild:showHideButton];
     showHideButtons= [[NSMutableArray alloc] init];
     
-    [self addButtonsToShowHideMenuWithTitles:[NSArray arrayWithObjects:EMAIL, LOAD, NEW, nil]];
+    [self addButtonsToShowHideMenuWithTitles:[NSArray arrayWithObjects:EMAIL, LOAD, NEW, EXIT, nil]];
     
     UIRotationGestureRecognizer *rotateGesture = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotation:)];
     [self.view addGestureRecognizer:rotateGesture];
@@ -131,8 +134,9 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
 }
 
 - (BOOL)isMainUI:(SKNode *)node {
+    //fix this...
     if (!node) return false;
-    return ([node.name isEqualToString:ADD] || [node.name isEqualToString:CONFIRM] || [node.name isEqualToString:@"background"] || [node.name isEqualToString:SCENE] || [node.name isEqualToString:EDIT] || [node.name isEqualToString:@"edSelection"] || [node.name isEqualToString:DELETE] || [node.name isEqualToString:EMAIL] || [node.name isEqualToString:LOAD] || [node.name isEqualToString:SHOW_HIDE] || [node.name isEqualToString:NEW] || [node.name isEqualToString:UI]);
+    return ([node.name isEqualToString:ADD] || [node.name isEqualToString:CONFIRM] || [node.name isEqualToString:@"background"] || [node.name isEqualToString:SCENE] || [node.name isEqualToString:EDIT] || [node.name isEqualToString:@"edSelection"] || [node.name isEqualToString:DELETE] || [node.name isEqualToString:EMAIL] || [node.name isEqualToString:LOAD] || [node.name isEqualToString:SHOW_HIDE] || [node.name isEqualToString:NEW] || [node.name isEqualToString:UI] || [node.name isEqualToString:EXIT]);
 }
 
 - (void)addButtonsToShowHideMenuWithTitles:(NSArray *)titles {
@@ -158,8 +162,8 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
         [showHideLabel setText:@">"];
         for (int i =0;i<showHideButtons.count;i++) {
             SKSpriteNode *node = [showHideButtons objectAtIndex:i];
-            [node runAction:[SKAction sequence:@[ [SKAction scaleTo:0.5 duration:0.1+(i *0.1)],
-                                                  [SKAction moveTo:showHideButton.position duration:0.1+(i *0.1)],
+            [node runAction:[SKAction sequence:@[ [SKAction scaleTo:0.5 duration:0.1+(i *0.05)],
+                                                  [SKAction moveTo:showHideButton.position duration:0.1+(i *0.05)],
                                                   [SKAction removeFromParent]
                                                   ]]];
         }
@@ -172,8 +176,8 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
             [node setScale:0.5];
             [node setPosition:showHideButton.position];
             [self addChild:node];
-            [node runAction:[SKAction sequence:@[ [SKAction moveTo:pos duration:0.1 +(i *0.1)],
-                                                  [SKAction scaleTo:1 duration:0.1 +(i *0.1)]
+            [node runAction:[SKAction sequence:@[ [SKAction moveTo:pos duration:0.1 +(i *0.05)],
+                                                  [SKAction scaleTo:1 duration:0.1 +(i *0.05)]
                                                   ]]];
         }
     }
@@ -197,6 +201,10 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
     }
     else {
         [self addChild:edSelection];
+        [edSelection setScale:0.3];
+        [edSelection runAction:[SKAction scaleTo:1 duration:0.3]];
+
+        
         if (isConfirmMenu)
             [self toggleConfirm];
     }
@@ -287,10 +295,19 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
     [alert show];
 }
 
+- (void)exitPressed {
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Are you sure you want to exit?" message:@"This will erase this current level, so make sure you have emailed it" delegate:self cancelButtonTitle:@"NO WAIT!" otherButtonTitles:EXIT, nil];
+    [alert show];
+}
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:RESET]) {
         [self removeAllNonUI];
         [self singleSelectionEnded];
+    } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:EXIT]) {
+        MenuScene *scene = [MenuScene sceneWithSize:self.view.frame.size];
+        SKTransition *tran = [SKTransition doorwayWithDuration:1];
+        [self.view presentScene:scene transition:tran];
     }
 }
 
@@ -371,7 +388,7 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
         }
     }
 }
-
+#warning here
 - (void)selectionEndedWithNode:(SKNode *)node {
     if ([node isKindOfClass:[Ship class]]) {
         SKLabelNode *label = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"ship%i",[self shipsCount]]];
@@ -391,17 +408,26 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
 }
 
 - (void)moveWithSelectedNode:(CGPoint)location {
+    if ([currentSelectedNode.name isEqualToString:ON_TIME_LINE])
+        isLockY = true;
+    else
+        isLockY = false;
+    
     if (!isEditing) {
         if (isLockY) {
             [currentSelectedNode setPosition:CGPointMake(location.x, currentSelectedNode.position.y)];
+             [timeLine updateTextForNode:currentSelectedNode];
         }
         else {
             [currentSelectedNode setPosition:location];
         }
     }
+    
+    
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [timeLine updateTextForNode:NULL];
     [edSelection touchesBegan:touches withEvent:event];
     for (UITouch *touch in touches) {
         if ([touch tapCount] > 1) return;
@@ -411,8 +437,7 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
         while (node.parent != NULL && ![self isMainUI:node.parent])
             node = node.parent;
         
-        isLockY = false;
-       
+        
         if ([node.name isEqualToString:ADD]) {
             [self addPressed];
         } else if ([node.name isEqualToString:CONFIRM]) {
@@ -427,17 +452,16 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
             [self loadPressed];
         } else if ([node.name isEqualToString:NEW]) {
             [self newPressed];
+        } else if ([node.name isEqualToString:EXIT]) {
+            [self exitPressed];
         } else if ([node.name isEqualToString:SHOW_HIDE]) {
             [self showHidePressed];
-        } else if ([node.name isEqualToString:ON_TIME_LINE]) {
-            [self selectNode:node];
-            isLockY = true;
         } else if (![self isMainUI:node]) {
             [self selectNode:node];
         } else if (currentSelectedNode) {
             [self moveWithSelectedNode:location];
         }
-        
+
     }
 }
 
@@ -474,7 +498,9 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
 
 - (void)saveShipTimes {
     for (Ship *ship in [self ships]) {
-         [ship setWaitTime:[timeLine getTimeForNode:ship]];
+        float wait = [timeLine getTimeForNode:ship];
+        NSLog(@"saving wait %f", wait);
+        [ship setWaitTime:wait];
     }
 }
 

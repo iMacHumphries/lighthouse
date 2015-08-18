@@ -1,0 +1,78 @@
+{
+  "level" : 1,
+  "lighthouses" : [
+    {
+      "y" : 177,
+      "scale" : 0.9014084,
+      "z" : 10,
+      "x" : 498,
+      "rotation" : 0,
+      "image" : "lighthouse.png"
+    }
+  ],
+  "ships" : [
+    {
+      "scale" : 1.261972,
+      "x" : 951,
+      "y" : 666,
+      "waitTime" : 2.636719,
+      "z" : 10,
+      "rotation" : 0,
+      "image" : "ship.png"
+    },
+    {
+      "scale" : 1.261972,
+      "x" : 879,
+      "y" : 662,
+      "waitTime" : 8.320312,
+      "z" : 10,
+      "rotation" : 0,
+      "image" : "ship.png"
+    },
+    {
+      "scale" : 1.261972,
+      "x" : 817,
+      "y" : 665,
+      "waitTime" : 6.796876,
+      "z" : 10,
+      "rotation" : 0,
+      "image" : "ship.png"
+    },
+    {
+      "scale" : 1.261972,
+      "x" : 746,
+      "y" : 663,
+      "waitTime" : 5.507812,
+      "z" : 10,
+      "rotation" : 0,
+      "image" : "ship.png"
+    },
+    {
+      "scale" : 1.261972,
+      "x" : 684,
+      "y" : 665,
+      "waitTime" : 3.925781,
+      "z" : 10,
+      "rotation" : 0,
+      "image" : "ship.png"
+    },
+    {
+      "scale" : 1.261972,
+      "x" : 633.0001,
+      "y" : 665,
+      "waitTime" : 2.460938,
+      "z" : 10,
+      "rotation" : 0,
+      "image" : "ship.png"
+    },
+    {
+      "scale" : 1.261972,
+      "x" : 189,
+      "y" : 661,
+      "waitTime" : 0.8203125,
+      "z" : 10,
+      "rotation" : 0,
+      "image" : "ship.png"
+    }
+  ]
+}

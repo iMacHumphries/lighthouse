@@ -18,7 +18,6 @@
 		B500DEE71B7975CA0028D315 /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DEE61B7975CA0028D315 /* Ship.m */; };
 		B500DEE91B7977050028D315 /* ship.png in Resources */ = {isa = PBXBuildFile; fileRef = B500DEE81B7977050028D315 /* ship.png */; };
 		B500DEEF1B79992B0028D315 /* Spawner.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DEEE1B79992B0028D315 /* Spawner.m */; };
-		B500DEF41B799B4C0028D315 /* ShipManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DEF31B799B4C0028D315 /* ShipManager.m */; };
 		B500DEF71B79A8210028D315 /* SpotLight.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DEF61B79A8210028D315 /* SpotLight.m */; };
 		B500DEF91B79A9E40028D315 /* water.png in Resources */ = {isa = PBXBuildFile; fileRef = B500DEF81B79A9E40028D315 /* water.png */; };
 		B500DEFF1B79B9DC0028D315 /* Background.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DEFE1B79B9DC0028D315 /* Background.m */; };
@@ -30,6 +29,13 @@
 		B5364C701B82719B005DF532 /* SKSpriteNode+JSONEncodable.m in Sources */ = {isa = PBXBuildFile; fileRef = B5364C6F1B82719B005DF532 /* SKSpriteNode+JSONEncodable.m */; };
 		B5364C731B82DD97005DF532 /* EDTimeLine.m in Sources */ = {isa = PBXBuildFile; fileRef = B5364C721B82DD97005DF532 /* EDTimeLine.m */; };
 		B5364C751B82DF37005DF532 /* timeLine.png in Resources */ = {isa = PBXBuildFile; fileRef = B5364C741B82DF37005DF532 /* timeLine.png */; };
+		B5CD98821B83CEC20066A2F2 /* LevelSelectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CD98811B83CEC20066A2F2 /* LevelSelectScene.m */; };
+		B5CD98881B83E7A80066A2F2 /* NodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CD98871B83E7A80066A2F2 /* NodeManager.m */; };
+		B5CD988E1B83E89F0066A2F2 /* SKNode+OffScreenAwareness.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CD988D1B83E89F0066A2F2 /* SKNode+OffScreenAwareness.m */; };
+		B5CD98901B83EDED0066A2F2 /* popUpDetail.png in Resources */ = {isa = PBXBuildFile; fileRef = B5CD988F1B83EDED0066A2F2 /* popUpDetail.png */; };
+		B5CD98931B83EE040066A2F2 /* EDPopUpDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CD98921B83EE040066A2F2 /* EDPopUpDetail.m */; };
+		B5CD98961B83EEAF0066A2F2 /* Slider.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CD98951B83EEAF0066A2F2 /* Slider.m */; };
+		B5CD98981B83F9320066A2F2 /* spawner.png in Resources */ = {isa = PBXBuildFile; fileRef = B5CD98971B83F9320066A2F2 /* spawner.png */; };
 		B5E3B6641B7EF19300A2A123 /* selectionMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E3B6631B7EF19300A2A123 /* selectionMenu.png */; };
 		B5E3B6671B7F9F6600A2A123 /* LevelData.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E3B6661B7F9F6600A2A123 /* LevelData.m */; };
 		B5E3B7811B7FBF9500A2A123 /* EditorScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E3B77E1B7FBF9500A2A123 /* EditorScene.m */; };
@@ -87,8 +93,6 @@
 		B500DEE81B7977050028D315 /* ship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ship.png; sourceTree = "<group>"; };
 		B500DEED1B79992B0028D315 /* Spawner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spawner.h; sourceTree = "<group>"; };
 		B500DEEE1B79992B0028D315 /* Spawner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spawner.m; sourceTree = "<group>"; };
-		B500DEF21B799B4C0028D315 /* ShipManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipManager.h; sourceTree = "<group>"; };
-		B500DEF31B799B4C0028D315 /* ShipManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShipManager.m; sourceTree = "<group>"; };
 		B500DEF51B79A8210028D315 /* SpotLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotLight.h; sourceTree = "<group>"; };
 		B500DEF61B79A8210028D315 /* SpotLight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotLight.m; sourceTree = "<group>"; };
 		B500DEF81B79A9E40028D315 /* water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water.png; sourceTree = "<group>"; };
@@ -106,6 +110,18 @@
 		B5364C711B82DD97005DF532 /* EDTimeLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDTimeLine.h; sourceTree = "<group>"; };
 		B5364C721B82DD97005DF532 /* EDTimeLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDTimeLine.m; sourceTree = "<group>"; };
 		B5364C741B82DF37005DF532 /* timeLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timeLine.png; sourceTree = "<group>"; };
+		B5CD98801B83CEC20066A2F2 /* LevelSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelSelectScene.h; sourceTree = "<group>"; };
+		B5CD98811B83CEC20066A2F2 /* LevelSelectScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelSelectScene.m; sourceTree = "<group>"; };
+		B5CD98861B83E7A80066A2F2 /* NodeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeManager.h; sourceTree = "<group>"; };
+		B5CD98871B83E7A80066A2F2 /* NodeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeManager.m; sourceTree = "<group>"; };
+		B5CD988C1B83E89F0066A2F2 /* SKNode+OffScreenAwareness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKNode+OffScreenAwareness.h"; sourceTree = "<group>"; };
+		B5CD988D1B83E89F0066A2F2 /* SKNode+OffScreenAwareness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKNode+OffScreenAwareness.m"; sourceTree = "<group>"; };
+		B5CD988F1B83EDED0066A2F2 /* popUpDetail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popUpDetail.png; sourceTree = "<group>"; };
+		B5CD98911B83EE040066A2F2 /* EDPopUpDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDPopUpDetail.h; sourceTree = "<group>"; };
+		B5CD98921B83EE040066A2F2 /* EDPopUpDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDPopUpDetail.m; sourceTree = "<group>"; };
+		B5CD98941B83EEAF0066A2F2 /* Slider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Slider.h; sourceTree = "<group>"; };
+		B5CD98951B83EEAF0066A2F2 /* Slider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Slider.m; sourceTree = "<group>"; };
+		B5CD98971B83F9320066A2F2 /* spawner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spawner.png; sourceTree = "<group>"; };
 		B5E3B6631B7EF19300A2A123 /* selectionMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selectionMenu.png; sourceTree = "<group>"; };
 		B5E3B6651B7F9F6600A2A123 /* LevelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelData.h; sourceTree = "<group>"; };
 		B5E3B6661B7F9F6600A2A123 /* LevelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelData.m; sourceTree = "<group>"; };
@@ -191,6 +207,8 @@
 				B500DEC21B7971610028D315 /* GameScene.m */,
 				B5F7F8BF1B7EE721007FDC81 /* MenuScene.h */,
 				B5F7F8C01B7EE721007FDC81 /* MenuScene.m */,
+				B5CD98801B83CEC20066A2F2 /* LevelSelectScene.h */,
+				B5CD98811B83CEC20066A2F2 /* LevelSelectScene.m */,
 				B5E3B65F1B7EF06400A2A123 /* Editor */,
 				B500DEF11B799B3B0028D315 /* controllers */,
 				B500DEF01B799B2E0028D315 /* modal */,
@@ -262,8 +280,8 @@
 			children = (
 				B500DEED1B79992B0028D315 /* Spawner.h */,
 				B500DEEE1B79992B0028D315 /* Spawner.m */,
-				B500DEF21B799B4C0028D315 /* ShipManager.h */,
-				B500DEF31B799B4C0028D315 /* ShipManager.m */,
+				B5CD98861B83E7A80066A2F2 /* NodeManager.h */,
+				B5CD98871B83E7A80066A2F2 /* NodeManager.m */,
 				B5F7F8B61B7ED72A007FDC81 /* StartController.h */,
 				B5F7F8B71B7ED72A007FDC81 /* StartController.m */,
 				B5F7F89E1B7C3352007FDC81 /* LightControlRail.h */,
@@ -277,6 +295,10 @@
 			children = (
 				B5364C6E1B82719B005DF532 /* SKSpriteNode+JSONEncodable.h */,
 				B5364C6F1B82719B005DF532 /* SKSpriteNode+JSONEncodable.m */,
+				B5CD988C1B83E89F0066A2F2 /* SKNode+OffScreenAwareness.h */,
+				B5CD988D1B83E89F0066A2F2 /* SKNode+OffScreenAwareness.m */,
+				B5CD98941B83EEAF0066A2F2 /* Slider.h */,
+				B5CD98951B83EEAF0066A2F2 /* Slider.m */,
 			);
 			name = tools;
 			sourceTree = "<group>";
@@ -284,6 +306,8 @@
 		B5364C6D1B827074005DF532 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				B5CD98971B83F9320066A2F2 /* spawner.png */,
+				B5CD988F1B83EDED0066A2F2 /* popUpDetail.png */,
 				B5F7F8A11B7C3AA9007FDC81 /* ball.png */,
 				B500DF021B79C1FE0028D315 /* beam.png */,
 				B5F7F8A21B7C3AA9007FDC81 /* blackTrack.png */,
@@ -312,6 +336,8 @@
 				B5E3B7801B7FBF9500A2A123 /* EDSelection.m */,
 				B5364C711B82DD97005DF532 /* EDTimeLine.h */,
 				B5364C721B82DD97005DF532 /* EDTimeLine.m */,
+				B5CD98911B83EE040066A2F2 /* EDPopUpDetail.h */,
+				B5CD98921B83EE040066A2F2 /* EDPopUpDetail.m */,
 			);
 			name = Editor;
 			sourceTree = "<group>";
@@ -407,8 +433,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5F7F8971B7B887B007FDC81 /* waterShader.fsh in Resources */,
+				B5CD98901B83EDED0066A2F2 /* popUpDetail.png in Resources */,
 				B5F7F8B01B7ED190007FDC81 /* smoke.sks in Resources */,
 				B5F7F8BC1B7ED910007FDC81 /* starFill.png in Resources */,
+				B5CD98981B83F9320066A2F2 /* spawner.png in Resources */,
 				B5F7F8B51B7ED2D1007FDC81 /* brokenShip.png in Resources */,
 				B500DF031B79C1FE0028D315 /* beam.png in Resources */,
 				B5F7F8C61B7EE8E6007FDC81 /* tempButton.png in Resources */,
@@ -448,18 +476,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5E3B6671B7F9F6600A2A123 /* LevelData.m in Sources */,
+				B5CD98821B83CEC20066A2F2 /* LevelSelectScene.m in Sources */,
 				B5364C731B82DD97005DF532 /* EDTimeLine.m in Sources */,
 				B5364C641B825B6C005DF532 /* Rock.m in Sources */,
 				B500DEE71B7975CA0028D315 /* Ship.m in Sources */,
-				B500DEF41B799B4C0028D315 /* ShipManager.m in Sources */,
 				B500DEC81B7971610028D315 /* GameViewController.m in Sources */,
 				B5E3B7811B7FBF9500A2A123 /* EditorScene.m in Sources */,
 				B5E3B7821B7FBF9500A2A123 /* EDSelection.m in Sources */,
+				B5CD98881B83E7A80066A2F2 /* NodeManager.m in Sources */,
 				B500DF061B79C2B60028D315 /* Lighthouse.m in Sources */,
 				B5F7F8B81B7ED72A007FDC81 /* StartController.m in Sources */,
 				B500DEEF1B79992B0028D315 /* Spawner.m in Sources */,
+				B5CD988E1B83E89F0066A2F2 /* SKNode+OffScreenAwareness.m in Sources */,
 				B5F7F8C11B7EE721007FDC81 /* MenuScene.m in Sources */,
+				B5CD98961B83EEAF0066A2F2 /* Slider.m in Sources */,
 				B500DEFF1B79B9DC0028D315 /* Background.m in Sources */,
+				B5CD98931B83EE040066A2F2 /* EDPopUpDetail.m in Sources */,
 				B500DEF71B79A8210028D315 /* SpotLight.m in Sources */,
 				B500DEC01B7971610028D315 /* AppDelegate.m in Sources */,
 				B500DEC31B7971610028D315 /* GameScene.m in Sources */,

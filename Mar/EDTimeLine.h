@@ -10,8 +10,10 @@
 
 @interface EDTimeLine : SKSpriteNode {
     NSMutableArray *timeNodes;
+    SKLabelNode *timeLabel;
 }
 
+- (void)updateTextForNode:(SKNode *)node;
 - (void)addNodeOnTimeLine:(SKNode *)node;
 - (void)addNodeOnTimeLine:(SKNode *)node withTime:(float)time;
 - (float)getTimeForNode:(SKNode *)node;

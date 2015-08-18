@@ -13,15 +13,35 @@
 
 @implementation GameScene
 
+
+- (id)initWithSize:(CGSize)size andFile:(NSString *)file {
+    if (self = [super initWithSize:size]) {
+        [self loadLevelFromFile:file];
+    }
+    return self;
+}
+
 - (void)didMoveToView:(SKView *)view {
+
+}
+
+- (void)loadLevelFromFile:(NSString *)fileName {
     self.physicsWorld.gravity = CGVectorMake(0,0);
     self.physicsWorld.contactDelegate = self;
     
-    //spawner = [[Spawner alloc] init];
-    //[spawner setDelegate:self];
-    //[spawner start];
+    shipManager = [[NodeManager alloc] init];
+    lighthouseManager = [[NodeManager alloc] init];
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"levels/level 3" ofType:@""];
+    background = [[Background alloc] initWithImageNamed:@"water.png"];
+    [self addChild:background];
+    
+    rocks = [[Rock alloc] initWithImageNamed:@"rocks.png"];
+    [self addChild:rocks];
+
+    starController = [[StartController alloc] init];
+    [self addChild:starController];
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:@""];
     NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     NSError *jsonError;
     NSData *objectData = [content dataUsingEncoding:NSUTF8StringEncoding];
@@ -35,48 +55,36 @@
     LevelData *levelData = [[LevelData alloc] initWithDictionary:json];
     
     for (Ship *ship in levelData.ships) {
+        [shipManager addNode:ship];
         [self addChild:ship];
         [ship move];
     }
-
     
-    shipManager = [[ShipManager alloc] init];
-    
-    background = [[Background alloc] initWithImageNamed:@"water.png"];
-    [self addChild:background];
-    
-    rocks = [[Rock alloc] initWithImageNamed:@"rocks.png"];
-    [self addChild:rocks];
-
-    lighthouse = [[Lighthouse alloc] initWithImageNamed:@"lighthouse.png"];
-    [lighthouse setTouchEnabled:YES];
-    [self addChild:lighthouse];
-    
-    starController = [[StartController alloc] init];
-    [self addChild:starController];
-    
+    for (Lighthouse *light in levelData.lighthouses) {
+        [lighthouseManager addNode:light];
+        [light setTouchEnabled:YES];
+        [self addChild:light];
+    }
     
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [lighthouse touchesBegan:touches withEvent:event];
+    [lighthouseManager touchesBegan:touches withEvent:event];
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:background];
-}
+    }
    
 }
 
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-    [lighthouse touchesMoved:touches withEvent:event];
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    [lighthouseManager touchesMoved:touches withEvent:event];
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
-       // [rocks setPosition:location];
-       // NSLog(@"%f,%f",location.x, location.y);
     }
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    [lighthouse touchesEnded:touches withEvent:event];
+    [lighthouseManager touchesEnded:touches withEvent:event];
 }
 
 - (void)update:(CFTimeInterval)currentTime {
@@ -96,7 +104,7 @@
             break;
     }
     if (ship != NULL) {
-        [shipManager addShip:ship];
+        [shipManager addNode:ship];
         [self addChild:ship];
     }
 }

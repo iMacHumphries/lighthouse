@@ -46,11 +46,8 @@ static NSString* const LIGHTHOUSES_KEY = @"lighthouses";
         }
         if ([dictionary objectForKey:LIGHTHOUSES_KEY]) {
             NSMutableArray *arrayOfLightData = [dictionary objectForKey:LIGHTHOUSES_KEY];
-            NSLog(@"here is the array of lighthouse data %@",arrayOfLightData);
             for (int i=0; i<arrayOfLightData.count;i++) {
-                NSLog(@"creating new lh");
                 Lighthouse *lighthouse = [[Lighthouse alloc] initWithDictionary:[arrayOfLightData objectAtIndex:i]];
-                 NSLog(@"adding new lh");
                 [self.lighthouses addObject:lighthouse];
             }
             

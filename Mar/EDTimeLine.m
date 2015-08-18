@@ -33,8 +33,21 @@ const float MAX_TIME = 60;
         
         timeNodes = [[NSMutableArray alloc] init];
         
+        timeLabel = [SKLabelNode labelNodeWithText:@""];
+        [timeLabel setPosition:CGPointMake(0, self.size.height/2)];
+        [self addChild:timeLabel];
+        
     }
     return self;
+}
+
+- (void)updateTextForNode:(SKNode *)node {
+    if (node) {
+        [timeLabel setText:[NSString stringWithFormat:@"%f", [self timeForNode:node onTimeLine:YES]]];
+        [timeLabel setPosition:CGPointMake(node.position.x - self.size.width/2, timeLabel.position.y)];
+    }
+    else
+        [timeLabel setText:@""];
 }
 
 - (void)addNodeOnTimeLine:(SKNode *)node {
@@ -51,23 +64,40 @@ const float MAX_TIME = 60;
         Ship *ship = (Ship *)copy;
         [ship hault];
     }
-    [timeNodes addObject:node];
+    [timeNodes addObject:copy];
 }
 
 - (float)getTimeForNode:(SKNode *)node {
-    SKNode *timeNode = [self getTwinNodeOnTimeLine:node];
-    if (!timeNode) return -1;
-    return timeNode.position.x*(1/WIDTH) * MAX_TIME;
+    return [self timeForNode:node onTimeLine:NO];
+}
+
+- (float)timeForNode:(SKNode *)node onTimeLine:(BOOL)onTimeLine {
+    float x = -1.0f;
+    if (!onTimeLine) {
+        SKNode *timeNode = [self getTwinNodeOnTimeLine:node];
+        if (timeNode)
+            x =timeNode.position.x;
+    } else {
+        x = node.position.x;
+    }
+    return x*(1/WIDTH) * MAX_TIME;
 }
 
 - (SKNode *)getTwinNodeOnTimeLine:(SKNode *)node {
-    SKLabelNode *nodeLabel = (SKLabelNode *)[node.children objectAtIndex:0];
+    SKLabelNode *nodeLabel;
+    for (SKNode *child in node.children) {
+        if ([child isKindOfClass:[SKLabelNode class]]) {
+            nodeLabel = (SKLabelNode *)child;
+        }
+    }
     
     for (SKNode *timeNode in timeNodes) {
         for (SKNode *child in timeNode.children) {
             if ([child isKindOfClass:[SKLabelNode class]]) {
                 SKLabelNode *timeLabel = (SKLabelNode *)child;
-                if ([nodeLabel.text isEqualToString:timeLabel.text]) {
+                NSString *nodeText = nodeLabel.text;
+                NSString *timeNodeText = timeLabel.text;
+                if ([nodeText isEqualToString:timeNodeText]) {
                     return timeNode;
                 }
             }
