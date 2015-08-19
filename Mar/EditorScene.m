@@ -27,6 +27,7 @@ static NSString * const SHOW_HIDE = @"show/hide";
     static NSString * const NEW = @"New";
     static NSString * const EXIT = @"Exit";
 static NSString * const SCENE = @"scene";
+static NSString * const SPAWNER = @"spawner.png";
 
 static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
 
@@ -94,6 +95,8 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
     [showHideButton addChild:showHideLabel];
     [self addChild:showHideButton];
     showHideButtons= [[NSMutableArray alloc] init];
+    
+    popUp = [[EDPopUpDetail alloc] init];
     
     [self addButtonsToShowHideMenuWithTitles:[NSArray arrayWithObjects:EMAIL, LOAD, NEW, EXIT, nil]];
     
@@ -202,9 +205,7 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
     else {
         [self addChild:edSelection];
         [edSelection setScale:0.3];
-        [edSelection runAction:[SKAction scaleTo:1 duration:0.3]];
-
-        
+        [edSelection runAction:[SKAction scaleTo:1 duration:0.2]];
         if (isConfirmMenu)
             [self toggleConfirm];
     }
@@ -212,27 +213,31 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
     isAddMenu = !isAddMenu;
 }
 
+- (void)togglePopUpDetail {
+    if (isPopUpDetail) {
+        [popUp removeFromParent];
+    } else {
+        if ([currentSelectedNode isKindOfClass:[Spawner class]])
+             [currentSelectedNode addChild:popUp];
+    }
+    isPopUpDetail = !isPopUpDetail;
+}
+
 - (void)toggleEdit {
-    if (showingEditButton) {
+    if (showingEditButton)
         [edit removeFromParent];
-        NSLog(@"not editing anymore");
-    }
-    else {
+    else
         [self addChild:edit];
-         NSLog(@"starting to edit");
-    }
     
     showingEditButton = !showingEditButton;
     isEditing = !showingEditButton;
 }
 
 - (void)toggleDeleteMode {
-    if (isShowingDelete) {
+    if (isShowingDelete)
         [deleteButton removeFromParent];
-    }
-    else {
+    else
         [self addChild:deleteButton];
-    }
     
     isShowingDelete = !isShowingDelete;
     isDeleteMode = !isShowingDelete;
@@ -252,7 +257,7 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
 
 - (void)editPressed {
     [self toggleEdit];
-    
+    [self togglePopUpDetail];
 }
 
 - (void)deletePressed {
@@ -334,7 +339,6 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
     if (jsonError)
         NSLog(@"error %@",[jsonError localizedDescription]);
     
-    
     levelData = [[LevelData alloc] initWithDictionary:json];
     int i = 0;
     for (Ship *ship in levelData.ships) {
@@ -350,7 +354,6 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
         [self addChild:lh];
     }
    
-    
 }
 
 - (void) selectNode:(SKNode *)node {
@@ -358,14 +361,15 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
     currentSelectedNode = node;
     if (!node) return;
     
-    if (!showingEditButton)
-        [self toggleEdit];
-    
     if (!isShowingDelete)
         [self toggleDeleteMode];
     
     if (!isConfirmMenu)
         [self toggleConfirm];
+    
+    if (!showingEditButton)
+        [self toggleEdit];
+    
     if ([node isKindOfClass:[SKSpriteNode class]]) {
         SKSpriteNode *sprite = (SKSpriteNode *)node;
         [sprite setColorBlendFactor:0.7f];
@@ -374,12 +378,12 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
 }
 
 - (void)singleSelectionEnded {
-    if (showingEditButton)
-        [self toggleEdit];
     if (isShowingDelete)
         [self toggleDeleteMode];
     if (isConfirmMenu)
         [self toggleConfirm];
+    if (showingEditButton)
+        [self toggleEdit];
     
     if (currentSelectedNode) {
         if ([currentSelectedNode isKindOfClass:[SKSpriteNode class]]){
@@ -388,8 +392,9 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
         }
     }
 }
-#warning here
+
 - (void)selectionEndedWithNode:(SKNode *)node {
+    [self toggleAddMenu];
     if ([node isKindOfClass:[Ship class]]) {
         SKLabelNode *label = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"ship%i",[self shipsCount]]];
         [label setName:LABEL];
@@ -397,14 +402,19 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
         [node addChild:label];
         [timeLine addNodeOnTimeLine:node];
     }
-    [self toggleAddMenu];
-    currentSelectedNode = node;
-    if (node) {
+   
+    if (![node.name isEqualToString:SPAWNER]) {
+        currentSelectedNode = node;
         [currentSelectedNode setZPosition:10];
         [self addChild:currentSelectedNode];
         [self selectNode:node];
+    } else {
+         SKLabelNode *label = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"spawner%i",spawnerCount]];
+        [label setFontSize:0.0f];
+        [node addChild:label];
+        [timeLine addNodeOnTimeLine:node];
+        spawnerCount++;
     }
-   
 }
 
 - (void)moveWithSelectedNode:(CGPoint)location {
@@ -422,12 +432,11 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
             [currentSelectedNode setPosition:location];
         }
     }
-    
-    
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [timeLine updateTextForNode:NULL];
+    [popUp touchesBegan:touches withEvent:event];
     [edSelection touchesBegan:touches withEvent:event];
     for (UITouch *touch in touches) {
         if ([touch tapCount] > 1) return;
@@ -466,6 +475,7 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    [popUp touchesMoved:touches withEvent:event];
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         if (currentSelectedNode && [touch tapCount] <= 1) {
@@ -485,15 +495,22 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
 - (void)saveGame {
     NSLog(@"saving game...");
     [self saveShipTimes];
+    [self saveSpawners];
+    
     levelData = [[LevelData alloc] init];
     [levelData setLevel:1];
     [levelData setShips:[self ships]];
     [levelData setRocks:[self rocks]];
     [levelData setLighthouses:[self lighthouses]];
+    [levelData setSpawners:[self spawners]];
    
-    
     [self emailToMe];
-    
+}
+
+- (void)saveSpawners {
+    for (Spawner *spawner in [self spawners]) {
+        [spawner setWaitTime:[timeLine getTimeForNode:spawner]];
+    }
 }
 
 - (void)saveShipTimes {
@@ -504,38 +521,39 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
     }
 }
 
-- (NSMutableArray *)ships {
+- (NSMutableArray*)querySceneForClass:(Class)c notEqualTo:(NSString *)name {
     NSMutableArray *result = [[NSMutableArray alloc] init];
-    for (Ship *s in self.children) {
-        if ([s isKindOfClass:[Ship class]])
-            if (![s.name isEqualToString:ON_TIME_LINE]) { // not on timeline
+    for (SKNode *s in self.children) {
+        if ([s isKindOfClass:c])
+            if (![s.name isEqualToString:name]) {
                 [result addObject:s];
             }
     }
     return result;
 }
-- (NSMutableArray *)lighthouses {
-    NSMutableArray *result = [[NSMutableArray alloc] init];
-    for (Lighthouse *lh in self.children) {
-        if ([lh isKindOfClass:[Lighthouse class]])
-            [result addObject:lh];
-    }
-    return result;
+
+- (NSMutableArray *)ships {
+    return [self querySceneForClass:[Ship class] notEqualTo:ON_TIME_LINE];
+    
 }
+- (NSMutableArray *)lighthouses {
+    return [self querySceneForClass:[Lighthouse class] notEqualTo:@"null"];
+}
+
+- (NSMutableArray *)spawners {
+     return [self querySceneForClass:[Spawner class] notEqualTo:@"null"];
+}
+
 - (NSMutableArray *)rocks {
-    return NULL;
+    return [self querySceneForClass:[Rock class] notEqualTo:@"null"];
 }
 
 - (int)shipsCount {
-    NSMutableArray *ships = [self ships];
-    if (ships == NULL) return 0;
-    return [ships count];
+    return [[self ships] count];
 }
 
 - (int)lighthousesCount {
-    NSMutableArray *lighthouses = [self lighthouses];
-    if (lighthouses == NULL) return 0;
-    return [lighthouses count];
+    return [[self lighthouses] count];
 }
 
 - (int)rocksCount {

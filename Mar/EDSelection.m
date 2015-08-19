@@ -44,7 +44,9 @@ static NSString * const  SPAWNER = @"spawner.png";
         [button setZPosition:11];
         SKSpriteNode *image = [SKSpriteNode spriteNodeWithImageNamed:name];
         [image setName:name];
-        [image setScale:0.4f];
+        [image setScale:0.3f];
+        if ([name isEqualToString:SPAWNER])
+            [image setScale:0.7f];
         [button addChild:image];
         [button setPosition:CGPointMake(x + (SPACING * i) + (button.size.width *i), y)];
         [self addChild:button];
@@ -72,7 +74,9 @@ static NSString * const  SPAWNER = @"spawner.png";
             selectedNode = light;
             [selectedNode setName:node.name];
         } else if ([node.name isEqualToString:SPAWNER]) {
-            selectedNode = [node copy];
+            Spawner *spawner = [[Spawner alloc] init];
+            [spawner setName:SPAWNER];
+            selectedNode = spawner;
         } else {
             foundOne = false;
         }

@@ -7,8 +7,10 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "Slider.h"
 
 @interface EDPopUpDetail : SKSpriteNode {
+    Slider *nodesSlider;
 }
 
 @end

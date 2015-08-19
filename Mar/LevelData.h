@@ -9,18 +9,16 @@
 #import <Foundation/Foundation.h>
 
 @interface LevelData : NSObject {
-    int level;
-    NSMutableArray *ships;
-    NSMutableArray *rocks;
-    NSMutableArray *lighthouses;
+    
 }
 
 - (NSString *)encodeJSON;
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
 @property(nonatomic, assign) int level;
-@property (nonatomic, retain)  NSMutableArray *ships;
-@property (nonatomic, retain)  NSMutableArray *rocks;
-@property (nonatomic, retain)  NSMutableArray *lighthouses;
+@property (nonatomic, retain) NSMutableArray *ships;
+@property (nonatomic, retain) NSMutableArray *rocks;
+@property (nonatomic, retain) NSMutableArray *lighthouses;
+@property (nonatomic, retain) NSMutableArray *spawners;
 
 @end

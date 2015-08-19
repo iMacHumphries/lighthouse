@@ -6,7 +6,9 @@
 //  Copyright (c) 2015 Marz Software. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <SpriteKit/SpriteKit.h>
+#import "SKSpriteNode+JSONEncodable.h"
+
 @protocol SpawnerDelegate
 - (void)spawnType:(NSUInteger)type;
 @end
@@ -17,16 +19,16 @@ typedef enum : NSUInteger {
     shipTypeCount
 } ShipType;
 
-@interface Spawner : NSObject {
-    NSTimer *mainTimer;
-    id delegate;
-    float timeInterval;
+@interface Spawner : SKSpriteNode {
+
 }
 
 - (void)start;
 - (void)stop;
 
 @property (nonatomic, retain) id delegate;
-@property (nonatomic, assign) float timeInterval;
+@property (nonatomic, assign) int nodesToSpawn;
+@property (nonatomic, assign) float timeRange;
+@property (nonatomic, assign) float waitTime;
 
 @end

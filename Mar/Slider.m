@@ -13,11 +13,13 @@
 
 - (id)initWithSize:(CGSize)size minValue:(float)min maxValue:(float)max {
     if  (self = [super initWithImageNamed:@"timeLine.png"]) {
+        [self setName:@"ui"];
         [self setSize:size];
         minValue = min;
         maxValue = max;
         
         ball = [SKSpriteNode spriteNodeWithImageNamed:@"ball.png"];
+        [ball setName:@"ui"];
         [self addChild:ball];
         
     }
@@ -33,8 +35,11 @@
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         if (isMoving) {
-            [ball setPosition:CGPointMake(location.x, ball.position.y)];
-            [self calculateValue];
+            float x =location.x;
+            if (x >= -self.size.width/2 && x <= self.size.width/2) {
+                [ball setPosition:CGPointMake(location.x, ball.position.y)];
+                [self calculateValue];
+            }
         }
     }
 }

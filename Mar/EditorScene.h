@@ -14,6 +14,7 @@
 #import "EDTimeLine.h"
 #import "LevelData.h"
 #import <MessageUI/MessageUI.h>
+#import "EDPopUpDetail.h"
 
 @interface EditorScene : SKScene<EDSelectionDelegate, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate, UIActionSheetDelegate, UIAlertViewDelegate> {
     LevelData *levelData;
@@ -46,6 +47,12 @@
     BOOL isShow;
     
     BOOL isLockY;
+    
+    int spawnerCount;
+    
+    EDPopUpDetail *popUp;
+    BOOL isPopUpDetail;
+    
 
 }
 - (void)toggleAddMenu;
