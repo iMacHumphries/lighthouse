@@ -12,7 +12,7 @@
 #import "Background.h"
 #import "Lighthouse.h"
 #import "LightControlRail.h"
-#import "StartController.h"
+#import "StarController.h"
 #import "Rock.h"
 #import "PrefixHeader.pch"
 #import "LevelData.h"
@@ -20,16 +20,14 @@
 @class ShipManager;
 @interface GameScene : SKScene<SpawnerDelegate, SKPhysicsContactDelegate> {
     
-    //Spawner *spawner;
     NodeManager *shipManager;
     NodeManager *lighthouseManager;
+    StarController *starController;
     
     Background *background;
-    
     Rock *rocks;
+    SKSpriteNode *pause;
     
-    StartController *starController;
-
 }
 
 - (id)initWithSize:(CGSize)size andFile:(NSString *)file;

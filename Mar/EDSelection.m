@@ -12,9 +12,9 @@
 @implementation EDSelection
 @synthesize selectedNode, delegate;
 
-static NSString * const  NORMAL_SHIP = @"ship.png";
-static NSString * const  LIGHTHOUSE = @"lighthouse.png";
-static NSString * const  SPAWNER = @"spawner.png";
+static NSString * const  NORMAL_SHIP = @"ship";
+static NSString * const  LIGHTHOUSE = @"lighthouse";
+static NSString * const  SPAWNER = @"spawner";
 
 - (id)initWithImageNamed:(NSString *)name {
     if (self = [super initWithImageNamed:name]) {

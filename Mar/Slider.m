@@ -15,6 +15,9 @@
     if  (self = [super initWithImageNamed:@"timeLine.png"]) {
         [self setName:@"ui"];
         [self setSize:size];
+        self.color = [SKColor blackColor];
+        self.colorBlendFactor = 1.0;
+    
         minValue = min;
         maxValue = max;
         
@@ -23,12 +26,12 @@
         [self addChild:ball];
         
     }
+
     return self;
 }
 
 - (void)calculateValue {
     value = ( (ball.position.x + self.size.width/2) * (1/self.size.width) ) * (maxValue - minValue) + minValue;
-    NSLog(@"value = %f",value);
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {

@@ -14,7 +14,7 @@
 #import "EDTimeLine.h"
 #import "LevelData.h"
 #import <MessageUI/MessageUI.h>
-#import "EDPopUpDetail.h"
+#import "EDSpawnerPopUp.h"
 
 @interface EditorScene : SKScene<EDSelectionDelegate, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate, UIActionSheetDelegate, UIAlertViewDelegate> {
     LevelData *levelData;
@@ -50,7 +50,7 @@
     
     int spawnerCount;
     
-    EDPopUpDetail *popUp;
+    EDSpawnerPopUp *popUp;
     BOOL isPopUpDetail;
     
 

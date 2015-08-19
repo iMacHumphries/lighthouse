@@ -19,7 +19,8 @@ NSString * const EDITOR = @"editor";
     playButton = [SKSpriteNode spriteNodeWithImageNamed:@"tempButton.png"];
     [playButton setName:PLAY];
     [playButton setPosition:CGPointMake(WIDTH/2, HEIGHT/2)];
-    [playButton addChild:[SKLabelNode labelNodeWithText:@"Play"]];
+    SKLabelNode *play =[SKLabelNode labelNodeWithText:@"Play"];
+    [playButton addChild:play];
     [self addChild:playButton];
     
     editorButton = [SKSpriteNode spriteNodeWithImageNamed:@"tempButton.png"];

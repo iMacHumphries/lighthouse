@@ -96,7 +96,7 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
     [self addChild:showHideButton];
     showHideButtons= [[NSMutableArray alloc] init];
     
-    popUp = [[EDPopUpDetail alloc] init];
+    popUp = [[EDSpawnerPopUp alloc] init];
     
     [self addButtonsToShowHideMenuWithTitles:[NSArray arrayWithObjects:EMAIL, LOAD, NEW, EXIT, nil]];
     
@@ -215,6 +215,9 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
 
 - (void)togglePopUpDetail {
     if (isPopUpDetail) {
+        Spawner *spawn = (Spawner *) currentSelectedNode;
+        [spawn setNodesToSpawn:[popUp nodes]];
+        [spawn setTimeRange:[popUp time]];
         [popUp removeFromParent];
     } else {
         if ([currentSelectedNode isKindOfClass:[Spawner class]])
@@ -340,6 +343,7 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
         NSLog(@"error %@",[jsonError localizedDescription]);
     
     levelData = [[LevelData alloc] initWithDictionary:json];
+    
     int i = 0;
     for (Ship *ship in levelData.ships) {
         [self addChild:ship];
@@ -352,6 +356,14 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
     }
     for (Lighthouse *lh in levelData.lighthouses) {
         [self addChild:lh];
+    }
+    
+    for (Spawner *spawner in levelData.spawners) {
+        SKLabelNode *label = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"spawner%i",spawnerCount]];
+        [label setFontSize:0.0f];
+        [spawner addChild:label];
+        [timeLine addNodeOnTimeLine:spawner withTime:spawner.waitTime];
+        spawnerCount++;
     }
    
 }
@@ -384,7 +396,8 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
         [self toggleConfirm];
     if (showingEditButton)
         [self toggleEdit];
-    
+    if (isPopUpDetail)
+        [self togglePopUpDetail];
     if (currentSelectedNode) {
         if ([currentSelectedNode isKindOfClass:[SKSpriteNode class]]){
             SKSpriteNode*node =(SKSpriteNode *)currentSelectedNode;
@@ -403,7 +416,7 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
         [timeLine addNodeOnTimeLine:node];
     }
    
-    if (![node.name isEqualToString:SPAWNER]) {
+    if (![node isKindOfClass:[Spawner class]]) {
         currentSelectedNode = node;
         [currentSelectedNode setZPosition:10];
         [self addChild:currentSelectedNode];
@@ -418,7 +431,7 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
 }
 
 - (void)moveWithSelectedNode:(CGPoint)location {
-    if ([currentSelectedNode.name isEqualToString:ON_TIME_LINE])
+    if ([currentSelectedNode isKindOfClass:[Spawner class]] || [currentSelectedNode.name isEqualToString:ON_TIME_LINE])
         isLockY = true;
     else
         isLockY = false;

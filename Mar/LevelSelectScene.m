@@ -38,6 +38,8 @@ static NSString *const LEVEL = @"level";
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         SKNode *node = [self nodeAtPoint:location];
+        while (node.parent != NULL && node.parent != self)
+            node = node.parent;
         
         if ([node.name isEqualToString:LEVEL]) {
             NSString *fileName =[NSString stringWithFormat:@"levels/%@",[self getLevelNameFromNode:node]];

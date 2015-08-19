@@ -38,7 +38,7 @@
     rocks = [[Rock alloc] initWithImageNamed:@"rocks.png"];
     [self addChild:rocks];
 
-    starController = [[StartController alloc] init];
+    starController = [[StarController alloc] init];
     [self addChild:starController];
     
     NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:@""];
@@ -66,12 +66,34 @@
         [self addChild:light];
     }
     
+    for (Spawner *spawner in levelData.spawners){
+        [spawner setDelegate:self];
+        [spawner setScale:0];
+        [self addChild:spawner];
+        [spawner start];
+    }
+    
+    pause = [SKSpriteNode spriteNodeWithImageNamed:@"pause.png"];
+    [pause setName:@"pause"];
+    [pause setPosition:CGPointMake(WIDTH - pause.size.width - 10, HEIGHT - pause.size.width -10)];
+    [pause setZPosition:20];
+    [self addChild:pause];
+    
+}
+
+- (void)togglePause {
+    NSLog(@"pause");
+    self.scene.view.paused = !self.scene.view.paused;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [lighthouseManager touchesBegan:touches withEvent:event];
     for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:background];
+        CGPoint location = [touch locationInNode:self];
+        SKNode *node = [self nodeAtPoint:location];
+        if (node == pause) {
+            [self togglePause];
+        }
     }
    
 }
@@ -97,15 +119,19 @@
     Ship *ship = NULL;
     switch (type) {
         case NORMAL:
-            ship = [[Ship alloc]init];
+            ship = [[Ship alloc] init];
             break;
             
         default:
+            ship = [[Ship alloc] init];
             break;
     }
     if (ship != NULL) {
         [shipManager addNode:ship];
         [self addChild:ship];
+        [ship move];
+    } else {
+        NSLog(@"null ship");
     }
 }
 

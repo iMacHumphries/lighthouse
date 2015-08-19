@@ -57,7 +57,8 @@ const float MAX_TIME = 60;
 - (void)addNodeOnTimeLine:(SKNode *)node withTime:(float)time {
     SKNode *copy = [node copy];
     [copy setPosition:[self getPositionForTime:time]];
-    [copy setName:@"onTimeLine"];
+    if (![node isKindOfClass:[Spawner class]])
+        [copy setName:@"onTimeLine"];
     [copy setScale:0.5];
     [self.parent addChild:copy];
     if ([copy isKindOfClass:[Ship class]]) {

@@ -23,7 +23,7 @@
         //self.shadowCastBitMask = 1;
         
         [self setPosition:[self randomTopPosition]];
-        [self setZPosition:2];
+        [self setZPosition:10];
         
         [self setPhysicsBody:[SKPhysicsBody bodyWithTexture:self.texture alphaThreshold:0.5 size:self.size]];
         [self.physicsBody setAffectedByGravity:NO];

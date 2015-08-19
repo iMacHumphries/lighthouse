@@ -7,6 +7,7 @@
 //
 
 #import "Spawner.h"
+#import "PrefixHeader.pch"
 
 @implementation Spawner
 @synthesize delegate,waitTime,timeRange,nodesToSpawn;
@@ -17,20 +18,23 @@ static NSString *const NODES_TO_SPAWN_KEY = @"nodesToSpawn";
 
 - (id)init {
     if (self = [super initWithImageNamed:@"tempButton.png"]){
+        [self setName:@"spawner"];
         [self setZPosition:11];
-        SKSpriteNode *label = [SKSpriteNode spriteNodeWithImageNamed:@"spawner.png"];
-        [label setScale:0.7f];
-        [self addChild:label];
+        SKSpriteNode *spawn = [SKSpriteNode spriteNodeWithImageNamed:@"spawner.png"];
+        [spawn setScale:0.7f];
+        [self addChild:spawn];
     }
     return self;
 }
 
 - (void)start {
+    NSLog(@"start %f",waitTime);
     SKAction *wait = [SKAction waitForDuration:waitTime];
-    SKAction *startSpawning = [SKAction runBlock:^{
+    [self runAction:wait completion:^{
+         NSLog(@"called1");
         [self startSpawning];
+        NSLog(@"called");
     }];
-    [self runAction:[SKAction sequence:@[wait, startSpawning]]];
 }
 
 - (void)startSpawning {

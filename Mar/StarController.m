@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 Marz Software. All rights reserved.
 //
 
-#import "StartController.h"
+#import "StarController.h"
 #import "GameScene.h"
 
-@implementation StartController
+@implementation StarController
 
 - (id)init {
     if (self = [super init]) {
