@@ -1,25 +1,25 @@
 //
-//  BrokenShip.m
+//  BrokenFloatingNode.m
 //  Mar
 //
-//  Created by Benjamin Humphries on 8/14/15.
+//  Created by Benjamin Humphries on 8/20/15.
 //  Copyright (c) 2015 Marz Software. All rights reserved.
 //
 
-#import "BrokenShip.h"
-#import "PrefixHeader.pch"
+#import "BrokenFloatingNode.h"
+#import "Ship.h"
 
-@implementation BrokenShip
+@implementation BrokenFloatingNode
 
-- (id)initWithImageNamed:(NSString *)name {
-    if (self = [super initWithImageNamed:name]) {
+- (id)initWithNode:(FloatingNode *)node {
+    if (self = [super initWithImageNamed:node.brokenImageName]) {
         [self setZPosition:10];
-        [self setScale:0.7 * SCALER];
+        [self setScale:node.xScale];
+        [self setZRotation:node.zRotation];
         [self addSmoke];
     }
     return self;
 }
-
 
 - (void)addSmoke {
     NSString *emitterPath = [[NSBundle mainBundle] pathForResource:@"smoke" ofType:@"sks"];
@@ -27,4 +27,5 @@
     smoke.position = CGPointMake(self.position.x ,self.position.y);
     [self addChild:smoke];
 }
+
 @end

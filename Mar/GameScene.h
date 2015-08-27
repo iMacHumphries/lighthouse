@@ -16,6 +16,7 @@
 #import "Rock.h"
 #import "PrefixHeader.pch"
 #import "LevelData.h"
+#import "PauseMenu.h"
 
 @class ShipManager;
 @interface GameScene : SKScene<SpawnerDelegate, SKPhysicsContactDelegate> {
@@ -25,13 +26,16 @@
     StarController *starController;
     
     Background *background;
-    Rock *rocks;
     SKSpriteNode *pause;
+    PauseMenu *pauseMenu;
+    BOOL isPaused;
     
 }
 
 - (id)initWithSize:(CGSize)size andFile:(NSString *)file;
-
 - (void)loadLevelFromFile:(NSString *)fileName;
+- (void)togglePause;
+
+- (void)moveToLevelSelection;
 
 @end

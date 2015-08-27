@@ -9,6 +9,7 @@
 #import "GameViewController.h"
 #import "GameScene.h"
 #import "MenuScene.h"
+#import "LoadingScene.h"
 
 @implementation SKScene (Unarchive)
 
@@ -46,11 +47,17 @@
     //GameScene *scene = [GameScene unarchiveFromFile:@"GameScene"];
     //GameScene *scene = [GameScene sceneWithSize:self.view.frame.size];
     
+    
     MenuScene *scene = [MenuScene sceneWithSize:self.view.frame.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
+    
+    LoadingScene *loading = [LoadingScene sceneWithSize:self.view.frame.size];
+    loading.scaleMode = SKSceneScaleModeAspectFill;
+    [loading setSceneToShow:scene];
+    
     // Present the scene.
-    [skView presentScene:scene];
+    [skView presentScene:loading];
 }
 
 - (BOOL)shouldAutorotate

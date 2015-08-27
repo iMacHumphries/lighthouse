@@ -9,6 +9,8 @@
 #import "EDTimeLine.h"
 #import "PrefixHeader.pch"
 #import "Ship.h"
+#import "Spawner.h"
+#import "Fog.h"
 
 @implementation EDTimeLine
 
@@ -17,17 +19,20 @@ const float MAX_TIME = 60;
 
 - (id)initWithImageNamed:(NSString *)name {
     if (self = [super initWithImageNamed:name]) {
+        realNodes = [[NSMutableArray alloc] init];
+        [self setZPosition:20];
         [self setName:@"ui"];
         [self setPosition:CGPointMake(WIDTH/2, HEIGHT/4)];
+        [self setScale:0.5f * SCALER];
         [self setSize:CGSizeMake(WIDTH, self.size.height)];
         
         SKLabelNode *min = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"%i",(int)START_TIME]];
-        [min setPosition:CGPointMake(-WIDTH/2 + min.frame.size.width, 0)];
+        [min setPosition:CGPointMake(-self.size.width + min.frame.size.width, 0)];
         [min setName:@"ui"];
         [self addChild:min];
         
         SKLabelNode *max = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"%i",(int)MAX_TIME]];
-        [max setPosition:CGPointMake(WIDTH/2- max.frame.size.width, 0)];
+        [max setPosition:CGPointMake(self.size.width - max.frame.size.width, 0)];
         [max setName:@"ui"];
         [self addChild:max];
         
@@ -55,15 +60,22 @@ const float MAX_TIME = 60;
 }
 
 - (void)addNodeOnTimeLine:(SKNode *)node withTime:(float)time {
+    [realNodes addObject:node];
     SKNode *copy = [node copy];
     [copy setPosition:[self getPositionForTime:time]];
     if (![node isKindOfClass:[Spawner class]])
         [copy setName:@"onTimeLine"];
     [copy setScale:0.5];
+    [copy setZPosition:self.zPosition+1];
     [self.parent addChild:copy];
     if ([copy isKindOfClass:[Ship class]]) {
         Ship *ship = (Ship *)copy;
         [ship hault];
+    } else if ([copy isKindOfClass:[Fog class]]) {
+        Fog *fog = (Fog *)copy;
+        [fog setName:@"onTimeLine"];
+        [fog setStrength:0];
+        [fog.emitter removeFromParent];
     }
     [timeNodes addObject:copy];
 }
@@ -84,6 +96,32 @@ const float MAX_TIME = 60;
     return x*(1/WIDTH) * MAX_TIME;
 }
 
+- (SKNode *)getRealNodeForTimeLineNode:(SKNode*)timeLineNode {
+    SKNode *result = timeLineNode;
+    NSString *timeText;
+    for (SKLabelNode *child in timeLineNode.children) {
+        if ([child isKindOfClass:[SKLabelNode class]]) {
+            timeText = child.text;
+            break;
+        }
+    }
+    NSLog(@"comparing to %@",timeText);
+    for (SKNode *real in realNodes) {
+        NSLog(@"real here");
+        for (SKLabelNode *child in real.children) {
+            if ([child isKindOfClass:[SKLabelNode class]]){
+                if ([child.text isEqualToString:timeText]) {
+                   result = real;
+                    NSLog(@"found the real one!");
+                } else {
+                    NSLog(@"not the real one..");
+                }
+            }
+        }
+    }
+    return result;
+}
+
 - (SKNode *)getTwinNodeOnTimeLine:(SKNode *)node {
     SKLabelNode *nodeLabel;
     for (SKNode *child in node.children) {
@@ -95,9 +133,9 @@ const float MAX_TIME = 60;
     for (SKNode *timeNode in timeNodes) {
         for (SKNode *child in timeNode.children) {
             if ([child isKindOfClass:[SKLabelNode class]]) {
-                SKLabelNode *timeLabel = (SKLabelNode *)child;
+                SKLabelNode *timeLab = (SKLabelNode *)child;
                 NSString *nodeText = nodeLabel.text;
-                NSString *timeNodeText = timeLabel.text;
+                NSString *timeNodeText = timeLab.text;
                 if ([nodeText isEqualToString:timeNodeText]) {
                     return timeNode;
                 }

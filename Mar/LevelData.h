@@ -20,5 +20,7 @@
 @property (nonatomic, retain) NSMutableArray *rocks;
 @property (nonatomic, retain) NSMutableArray *lighthouses;
 @property (nonatomic, retain) NSMutableArray *spawners;
+@property (nonatomic, retain) NSMutableArray *subs;
+@property (nonatomic, retain) NSMutableArray *fogs;
 
 @end

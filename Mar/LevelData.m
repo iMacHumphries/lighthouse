@@ -8,15 +8,22 @@
 
 #import "LevelData.h"
 #import "Ship.h"
+#import "Lighthouse.h"
+#import "Spawner.h"
+#import "Rock.h"
+#import "Sub.h"
+#import "Fog.h"
 
 @implementation LevelData
-@synthesize level,ships,rocks,lighthouses,spawners;
+@synthesize level,ships,rocks,lighthouses,spawners, subs, fogs;
 
 static NSString* const LEVEL_KEY = @"level";
 static NSString* const SHIPS_KEY = @"ships";
 static NSString* const ROCKS_KEY = @"rocks";
 static NSString* const LIGHTHOUSES_KEY = @"lighthouses";
 static NSString* const SPAWNERS_KEY = @"spawners";
+static NSString* const SUBS_KEY = @"subs";
+static NSString* const FOGS_KEY = @"fogs";
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
     if (self = [super init]) {
@@ -24,6 +31,8 @@ static NSString* const SPAWNERS_KEY = @"spawners";
         self.rocks= [[NSMutableArray alloc] init];
         self.lighthouses = [[NSMutableArray alloc] init];
         self.spawners = [[NSMutableArray alloc] init];
+        self.subs = [[NSMutableArray alloc] init];
+        self.fogs = [[NSMutableArray alloc] init];
         
         //level
         if ([dictionary objectForKey:LEVEL_KEY])
@@ -62,6 +71,24 @@ static NSString* const SPAWNERS_KEY = @"spawners";
             for (int i=0; i<rocksArray.count;i++) {
                 Rock *rock = [[Rock alloc] initWithDictionary:[rocksArray objectAtIndex:i]];
                 [self.rocks addObject:rock];
+            }
+        }
+        
+        //subs
+        if ([dictionary objectForKey:SUBS_KEY]) {
+            NSMutableArray *subsArray = [dictionary objectForKey:SUBS_KEY];
+            for (int i=0; i<subsArray.count;i++) {
+                Sub *sub = [[Sub alloc] initWithDictionary:[subsArray objectAtIndex:i]];
+                [self.subs addObject:sub];
+            }
+        }
+        
+        //fogs
+        if ([dictionary objectForKey:FOGS_KEY]) {
+            NSMutableArray *fogsArray = [dictionary objectForKey:FOGS_KEY];
+            for (int i=0; i<fogsArray.count;i++) {
+                Fog *fog = [[Fog alloc] initWithDictionary:[fogsArray objectAtIndex:i]];
+                [self.fogs addObject:fog];
             }
         }
         
@@ -104,6 +131,19 @@ static NSString* const SPAWNERS_KEY = @"spawners";
     }
     [jsonDictionary setObject:rockArray forKey:ROCKS_KEY];
 
+    //subs
+    NSMutableArray *subArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < subs.count; i++) {
+        [subArray addObject:[[subs objectAtIndex:i] encodeJSON]];
+    }
+    [jsonDictionary setObject:subArray forKey:SUBS_KEY];
+    
+    //fogs
+    NSMutableArray *fogsArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < fogs.count; i++) {
+        [fogsArray addObject:[[fogs objectAtIndex:i] encodeJSON]];
+    }
+    [jsonDictionary setObject:fogsArray forKey:FOGS_KEY];
     
     
     NSData *jsonData2 = [NSJSONSerialization dataWithJSONObject:jsonDictionary options:NSJSONWritingPrettyPrinted error:&error];

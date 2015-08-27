@@ -16,6 +16,12 @@ NSString * const PLAY = @"play";
 NSString * const EDITOR = @"editor";
 
 - (void)didMoveToView:(SKView *)view {
+    
+    SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"sea2.png"];
+    [background setSize:CGSizeMake(WIDTH, HEIGHT)];
+    [background setPosition:CGPointMake(WIDTH/2, HEIGHT/2)];
+    [self addChild:background];
+    
     playButton = [SKSpriteNode spriteNodeWithImageNamed:@"tempButton.png"];
     [playButton setName:PLAY];
     [playButton setPosition:CGPointMake(WIDTH/2, HEIGHT/2)];

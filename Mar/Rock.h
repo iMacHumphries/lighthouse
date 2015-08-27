@@ -7,7 +7,8 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "SKSpriteNode+JSONEncodable.h"
 
 @interface Rock : SKSpriteNode
-
+- (void)addPhysics;
 @end

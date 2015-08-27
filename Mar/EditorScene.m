@@ -9,18 +9,23 @@
 #import "EditorScene.h"
 #import "Ship.h"
 #import "MenuScene.h"
-
+#import "Wave.h"
+#import "Spawner.h"
+#import "Rock.h"
+#import "Sub.h"
+#import "Fog.h"
 
 @implementation EditorScene
 
-static NSString * const UI = @"ui";
 static NSString * const DETAIL = @"detail";
 static NSString * const LABEL = @"label";
 static NSString * const ON_TIME_LINE = @"onTimeLine";
 static NSString * const ADD = @"add";
-static NSString * const CONFIRM = @"confirm";
-static NSString * const EDIT = @"edit";
-static NSString * const DELETE = @"delete";
+    static NSString * const CONFIRM = @"confirm";
+    static NSString * const EDIT = @"edit";
+    static NSString * const DELETE = @"delete";
+    static NSString * const CENTER_X = @"X";
+    static NSString * const CENTER_Y = @"Y";
 static NSString * const SHOW_HIDE = @"show/hide";
     static NSString * const EMAIL = @"Email";
     static NSString * const LOAD = @"Load";
@@ -31,81 +36,86 @@ static NSString * const SPAWNER = @"spawner.png";
 
 static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
 
-
 - (void)didMoveToView:(SKView *)view {
+    SKSpriteNode * BUTTON = [SKSpriteNode spriteNodeWithImageNamed:@"tempButton.png"];
     currentSelectedNode = NULL;
     [self setName:SCENE];
     
-    background = [[Background alloc] initWithImageNamed:@"water.png"];
+    background = [[Background alloc] initWithImageNamed:@"sea2.png"];
     [background setSize:CGSizeMake(WIDTH - 100, HEIGHT - 100)];
     [self addChild:background];
-    
-    addButton = [SKSpriteNode spriteNodeWithImageNamed:@"tempButton.png"];
+    [background addWaves];
+
+    addButton = [BUTTON copy];
     [addButton setName:ADD];
-    [addButton setZPosition:10];
+    [addButton setZPosition:50];
     [addButton setPosition:CGPointMake(addButton.size.width + 5, addButton.size.height + 5)];
     SKLabelNode *la =[SKLabelNode labelNodeWithText:@"+"];
     [la setName:ADD];
     [addButton addChild:la];
     [self addChild:addButton];
+    [addButton setScale:0.5f * SCALER];
     
     edSelection = [[EDSelection alloc] initWithImageNamed:@"selectionMenu.png"];
     [edSelection setDelegate:self];
+    [edSelection setScale:0.5f * SCALER];
     
     timeLine = [[EDTimeLine alloc] initWithImageNamed:@"timeLine.png"];
     [self addChild:timeLine];
     
-    confirm = [SKSpriteNode spriteNodeWithImageNamed:@"tempButton.png"];
-    [confirm setPosition:CGPointMake(WIDTH - confirm.size.width - 5, addButton.position.y)];
-    [confirm setColorBlendFactor:0.8f];
-    [confirm setColor:[UIColor greenColor]];
+    confirm = [BUTTON copy];
     [confirm setName:CONFIRM];
-    [confirm setZPosition:11];
-    
-    
-    edit = [SKSpriteNode spriteNodeWithImageNamed:@"tempButton.png"];
-    [edit setPosition:CGPointMake(confirm.position.x - edit.size.width - 20, confirm.position.y)];
-    [edit setColorBlendFactor:0.8f];
-    [edit setColor:[UIColor blueColor]];
+    edit = [BUTTON copy];
     [edit setName:EDIT];
-    [edit setZPosition:11];
-    SKLabelNode *editLA = [SKLabelNode labelNodeWithText:@"Edit"];
-    [editLA setName:EDIT];
-    [edit addChild:editLA];
-    
-
-    deleteButton = [SKSpriteNode spriteNodeWithImageNamed:@"tempButton.png"];
-    [deleteButton setPosition:CGPointMake(edit.position.x - deleteButton.size.width - 20, edit.position.y)];
-    [deleteButton setColorBlendFactor:0.8f];
-    [deleteButton setColor:[UIColor redColor]];
+    deleteButton = [BUTTON copy];
     [deleteButton setName:DELETE];
-    [deleteButton setZPosition:11];
-    SKLabelNode *delLA = [SKLabelNode labelNodeWithText:@"Delete"];
-    [delLA setName:DELETE];
-    [deleteButton addChild:delLA];
+    centerX = [BUTTON copy];
+    [centerX setName:CENTER_X];
+    centerY = [BUTTON copy];
+    [centerY setName:CENTER_Y];
     
-    showHideButton = [SKSpriteNode spriteNodeWithImageNamed:@"tempButton.png"];
+    [self createBottomRightControlsNodes:@[confirm, edit, deleteButton, centerX, centerY]
+                                  Colors:@[[UIColor greenColor], [UIColor blueColor],[UIColor redColor],[UIColor yellowColor], [UIColor yellowColor]]];
+    
+    showHideButton = [BUTTON copy];
     [showHideButton setPosition:CGPointMake(addButton.position.x, HEIGHT - showHideButton.size.height - 20)];
     [showHideButton setColorBlendFactor:0.8f];
     [showHideButton setColor:[UIColor greenColor]];
     [showHideButton setName:SHOW_HIDE];
-    [showHideButton setZPosition:11];
+    [showHideButton setZPosition:50];
     showHideLabel = [SKLabelNode labelNodeWithText:@">"];
     [showHideLabel setName:SHOW_HIDE];
     [showHideButton addChild:showHideLabel];
     [self addChild:showHideButton];
-    showHideButtons= [[NSMutableArray alloc] init];
+    [showHideButton setScale:0.5f * SCALER];
     
     popUp = [[EDSpawnerPopUp alloc] init];
+    fogPopUp = [[EDFogPopUp alloc] init];
     
-    [self addButtonsToShowHideMenuWithTitles:[NSArray arrayWithObjects:EMAIL, LOAD, NEW, EXIT, nil]];
+    [self addButtonsToShowHideMenuWithTitles:@[EMAIL, LOAD, NEW, EXIT]];
     
     UIRotationGestureRecognizer *rotateGesture = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotation:)];
     [self.view addGestureRecognizer:rotateGesture];
     
     UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
     [self.view addGestureRecognizer:pinch];
-    
+}
+
+- (void)createBottomRightControlsNodes:(NSArray *)nodes Colors:(NSArray*)colors {
+    float SPACING = 5;
+    for (int i =0; i < nodes.count; i++) {
+        UIColor *color = [colors objectAtIndex:i];
+        SKSpriteNode *node = [nodes objectAtIndex:i];
+        
+        SKLabelNode *label = [SKLabelNode labelNodeWithText:node.name];
+        [label setName:node.name];
+        [node addChild:label];
+        [node setPosition:CGPointMake(WIDTH - (node.size.width - SPACING) *(i+1), addButton.position.y)];
+        [node setColorBlendFactor:0.8f];
+        [node setColor:color];
+        [node setZPosition:50];
+        [node setScale:0.5f * SCALER];
+    }
 }
 
 - (void)handleRotation:(UIRotationGestureRecognizer *)recognizer {
@@ -116,7 +126,6 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
 }
 
 - (void)handlePinch:(UIPinchGestureRecognizer *)sender {
-
     if ( currentSelectedNode) {
         if (sender.state == UIGestureRecognizerStateChanged) {
            [currentSelectedNode runAction:[SKAction scaleBy:[sender scale] duration:0.0f]];
@@ -143,15 +152,15 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
 }
 
 - (void)addButtonsToShowHideMenuWithTitles:(NSArray *)titles {
-    int buttonCount = titles.count;
-    
+    int buttonCount = (int)titles.count;
+    showHideButtons= [[NSMutableArray alloc] init];
     for (int i =0; i < buttonCount; i++) {
         SKSpriteNode *newButton = [SKSpriteNode spriteNodeWithImageNamed:@"tempButton.png"];
         [newButton setPosition:CGPointMake(showHideButton.position.x + (10 *(i+1)) + (newButton.size.width *(i+1)), showHideButton.position.y)];
         [newButton setColorBlendFactor:0.65f];
         [newButton setColor:[UIColor greenColor]];
         [newButton setName:titles[i]];
-        [newButton setZPosition:11];
+        [newButton setZPosition:50];
         [newButton setScale:0.5];
         SKLabelNode *label = [SKLabelNode labelNodeWithText:titles[i]];
         [label setName:titles[i]];
@@ -180,22 +189,28 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
             [node setPosition:showHideButton.position];
             [self addChild:node];
             [node runAction:[SKAction sequence:@[ [SKAction moveTo:pos duration:0.1 +(i *0.05)],
-                                                  [SKAction scaleTo:1 duration:0.1 +(i *0.05)]
+                                                  [SKAction scaleTo:0.5f * SCALER duration:0.1 +(i *0.05)]
                                                   ]]];
         }
     }
     isShow = !isShow;
 }
 
-
-- (void)toggleConfirm {
-    if (isConfirmMenu) {
+- (void)toggleBottomRightControl {
+    if (isBottomRightControl) {
         [confirm removeFromParent];
-    }
-    else
+        [edit removeFromParent];
+        [deleteButton removeFromParent];
+        [centerX removeFromParent];
+        [centerY removeFromParent];
+    } else {
         [self addChild:confirm];
-    
-    isConfirmMenu = !isConfirmMenu;
+        [self addChild:edit];
+        [self addChild:deleteButton];
+        [self addChild:centerX];
+        [self addChild:centerY];
+    }
+    isBottomRightControl = !isBottomRightControl;
 }
 
 - (void)toggleAddMenu {
@@ -205,49 +220,52 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
     else {
         [self addChild:edSelection];
         [edSelection setScale:0.3];
-        [edSelection runAction:[SKAction scaleTo:1 duration:0.2]];
-        if (isConfirmMenu)
-            [self toggleConfirm];
+        [edSelection runAction:[SKAction scaleTo:0.5f * SCALER duration:0.2]];
+        if (isBottomRightControl)
+            [self toggleBottomRightControl];
     }
     
     isAddMenu = !isAddMenu;
 }
 
 - (void)togglePopUpDetail {
+    isEditing = !isEditing;
     if (isPopUpDetail) {
-        Spawner *spawn = (Spawner *) currentSelectedNode;
-        [spawn setNodesToSpawn:[popUp nodes]];
-        [spawn setTimeRange:[popUp time]];
+        if ([currentSelectedNode isKindOfClass:[Spawner class]]) {
+            Spawner *spawn = (Spawner *) currentSelectedNode;
+            [spawn setNodesToSpawn:[popUp nodes]];
+            [spawn setTimeRange:[popUp time]];
+        } else if ([currentSelectedNode isKindOfClass:[Fog class]]) {
+            Fog *fog = (Fog *) currentSelectedNode;
+            [fog setStrength:[fogPopUp strength]];
+            fog.lifeTime = [fogPopUp liveTime];
+            NSLog(@"setting str :%f",[fogPopUp strength]);
+            NSLog(@"setting liveTiem : %f",[fogPopUp liveTime]);
+            NSLog(@"liveTime : %f",[fog lifeTime]);
+        }
         [popUp removeFromParent];
+        [fogPopUp removeFromParent];
+        isEditing = false;
     } else {
         if ([currentSelectedNode isKindOfClass:[Spawner class]])
-             [currentSelectedNode addChild:popUp];
+            [currentSelectedNode addChild:popUp];
+        else if ([currentSelectedNode isKindOfClass:[Fog class]]) {
+            [currentSelectedNode addChild:fogPopUp];
+            if ([currentSelectedNode.name isEqualToString:ON_TIME_LINE]) {
+                NSLog(@"looking for real");
+                 [fogPopUp setFog:(Fog *)[timeLine getRealNodeForTimeLineNode:currentSelectedNode]];
+            } else {
+                NSLog(@"this is the real one.");
+                [fogPopUp setFog:(Fog *)currentSelectedNode];
+            }
+        }
     }
     isPopUpDetail = !isPopUpDetail;
 }
 
-- (void)toggleEdit {
-    if (showingEditButton)
-        [edit removeFromParent];
-    else
-        [self addChild:edit];
-    
-    showingEditButton = !showingEditButton;
-    isEditing = !showingEditButton;
-}
-
-- (void)toggleDeleteMode {
-    if (isShowingDelete)
-        [deleteButton removeFromParent];
-    else
-        [self addChild:deleteButton];
-    
-    isShowingDelete = !isShowingDelete;
-    isDeleteMode = !isShowingDelete;
-}
-
 - (void)confirmPressed {
-    [self toggleConfirm];
+    if (isBottomRightControl)
+        [self toggleBottomRightControl];
     [self singleSelectionEnded];
     currentSelectedNode = NULL;
 }
@@ -259,15 +277,25 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
 }
 
 - (void)editPressed {
-    [self toggleEdit];
     [self togglePopUpDetail];
 }
 
 - (void)deletePressed {
-    [self toggleDeleteMode];
+    if (isBottomRightControl)
+        [self toggleBottomRightControl];
     if (currentSelectedNode)
         [currentSelectedNode removeFromParent];
     [self singleSelectionEnded];
+}
+
+- (void)centerXPressed {
+    if (currentSelectedNode)
+        [currentSelectedNode setPosition:CGPointMake(WIDTH/2, currentSelectedNode.position.y)];
+}
+
+- (void)centerYPressed {
+    if (currentSelectedNode && ![currentSelectedNode isKindOfClass:[Spawner class]] && ![currentSelectedNode.name isEqualToString:ON_TIME_LINE])
+        [currentSelectedNode setPosition:CGPointMake(currentSelectedNode.position.x, HEIGHT/2)];
 }
 
 - (void)showHidePressed {
@@ -365,6 +393,34 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
         [timeLine addNodeOnTimeLine:spawner withTime:spawner.waitTime];
         spawnerCount++;
     }
+    
+    for (Rock *rock in levelData.rocks) {
+        [self addChild:rock];
+    }
+    i=0;
+    for (Sub *sub in levelData.subs) {
+        [self addChild:sub];
+        SKLabelNode *label = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"sub%i",[self subsCount]]];
+        [label setName:LABEL];
+        [label setUserInteractionEnabled:NO];
+        [sub addChild:label];
+        [timeLine addNodeOnTimeLine:sub withTime:sub.waitTime];
+        i++;
+
+    }
+    
+    i=0;
+    for (Fog *fog in levelData.fogs) {
+        [self addChild:fog];
+        SKLabelNode *label = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"fog%i",[self fogsCount]]];
+        [label setFontColor:[UIColor blackColor]];
+        [label setName:LABEL];
+        [label setUserInteractionEnabled:NO];
+        [fog addChild:label];
+        [timeLine addNodeOnTimeLine:fog withTime:fog.waitTime];
+        [fog editorFog];
+        i++;
+    }
    
 }
 
@@ -373,14 +429,8 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
     currentSelectedNode = node;
     if (!node) return;
     
-    if (!isShowingDelete)
-        [self toggleDeleteMode];
-    
-    if (!isConfirmMenu)
-        [self toggleConfirm];
-    
-    if (!showingEditButton)
-        [self toggleEdit];
+    if (!isBottomRightControl)
+        [self toggleBottomRightControl];
     
     if ([node isKindOfClass:[SKSpriteNode class]]) {
         SKSpriteNode *sprite = (SKSpriteNode *)node;
@@ -390,12 +440,8 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
 }
 
 - (void)singleSelectionEnded {
-    if (isShowingDelete)
-        [self toggleDeleteMode];
-    if (isConfirmMenu)
-        [self toggleConfirm];
-    if (showingEditButton)
-        [self toggleEdit];
+    if (isBottomRightControl)
+        [self toggleBottomRightControl];
     if (isPopUpDetail)
         [self togglePopUpDetail];
     if (currentSelectedNode) {
@@ -408,49 +454,67 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
 
 - (void)selectionEndedWithNode:(SKNode *)node {
     [self toggleAddMenu];
-    if ([node isKindOfClass:[Ship class]]) {
-        SKLabelNode *label = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"ship%i",[self shipsCount]]];
+    if ([node isKindOfClass:[Ship class]] || [node isKindOfClass:[Sub class]]) {
+        SKLabelNode *label = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"%@%i",node.name, [self shipsCount]]];
         [label setName:LABEL];
         [label setUserInteractionEnabled:NO];
         [node addChild:label];
         [timeLine addNodeOnTimeLine:node];
-    }
-   
-    if (![node isKindOfClass:[Spawner class]]) {
+        //bad
         currentSelectedNode = node;
         [currentSelectedNode setZPosition:10];
         [self addChild:currentSelectedNode];
         [self selectNode:node];
-    } else {
-         SKLabelNode *label = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"spawner%i",spawnerCount]];
+    } else if ( [node isKindOfClass:[Fog class]]) {
+        SKLabelNode *label = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"%@%i",node.name, [self shipsCount]]];
+        [label setName:LABEL];
+        [label setUserInteractionEnabled:NO];
+        [node addChild:label];
+        [timeLine addNodeOnTimeLine:node];
+        //bad
+        Fog *fog = (Fog *)node;
+        [fog editorFog];
+        currentSelectedNode = fog;
+        [currentSelectedNode setZPosition:10];
+        [self addChild:currentSelectedNode];
+        [self selectNode:node];
+    
+    }
+    else if ([node isKindOfClass:[Spawner class]]) {
+        SKLabelNode *label = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"spawner%i",spawnerCount]];
         [label setFontSize:0.0f];
         [node addChild:label];
         [timeLine addNodeOnTimeLine:node];
         spawnerCount++;
+    } else {
+        currentSelectedNode = node;
+        [currentSelectedNode setZPosition:10];
+        [self addChild:currentSelectedNode];
+        [self selectNode:node];
     }
 }
 
 - (void)moveWithSelectedNode:(CGPoint)location {
+    if (isEditing) return;
     if ([currentSelectedNode isKindOfClass:[Spawner class]] || [currentSelectedNode.name isEqualToString:ON_TIME_LINE])
         isLockY = true;
     else
         isLockY = false;
     
-    if (!isEditing) {
-        if (isLockY) {
-            [currentSelectedNode setPosition:CGPointMake(location.x, currentSelectedNode.position.y)];
-             [timeLine updateTextForNode:currentSelectedNode];
-        }
-        else {
-            [currentSelectedNode setPosition:location];
-        }
+    if (isLockY) {
+        [currentSelectedNode setPosition:CGPointMake(location.x, currentSelectedNode.position.y)];
+        [timeLine updateTextForNode:currentSelectedNode];
+    }
+    else {
+        [currentSelectedNode setPosition:location];
     }
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [edSelection touchesBegan:touches withEvent:event];
     [timeLine updateTextForNode:NULL];
     [popUp touchesBegan:touches withEvent:event];
-    [edSelection touchesBegan:touches withEvent:event];
+    [fogPopUp touchesBegan:touches withEvent:event];
     for (UITouch *touch in touches) {
         if ([touch tapCount] > 1) return;
         CGPoint location = [touch locationInNode:self];
@@ -459,6 +523,7 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
         while (node.parent != NULL && ![self isMainUI:node.parent])
             node = node.parent;
         
+        NSLog(@"%@ pressed", node.name);
         
         if ([node.name isEqualToString:ADD]) {
             [self addPressed];
@@ -478,6 +543,10 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
             [self exitPressed];
         } else if ([node.name isEqualToString:SHOW_HIDE]) {
             [self showHidePressed];
+        } else if ([node.name isEqualToString:CENTER_X]) {
+            [self centerXPressed];
+        } else if ([node.name isEqualToString:CENTER_Y]) {
+            [self centerYPressed];
         } else if (![self isMainUI:node]) {
             [self selectNode:node];
         } else if (currentSelectedNode) {
@@ -489,6 +558,7 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     [popUp touchesMoved:touches withEvent:event];
+    [fogPopUp touchesMoved:touches withEvent:event];
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         if (currentSelectedNode && [touch tapCount] <= 1) {
@@ -497,18 +567,22 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
     }
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-}
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {}
 
 - (void)update:(NSTimeInterval)currentTime {
-
+    for (SKNode *node in self.children) {
+        if (![node isKindOfClass:[Wave class]]&&[self isOffScreen:node]) {
+            NSLog(@"found node offscreen");
+            [node setPosition:CGPointMake(WIDTH/2, HEIGHT/2)];
+        }
+    }
 }
 
 - (void)saveGame {
-    NSLog(@"saving game...");
     [self saveShipTimes];
+    [self saveSubTimes];
     [self saveSpawners];
+    [self saveFogs];
     
     levelData = [[LevelData alloc] init];
     [levelData setLevel:1];
@@ -516,7 +590,9 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
     [levelData setRocks:[self rocks]];
     [levelData setLighthouses:[self lighthouses]];
     [levelData setSpawners:[self spawners]];
-   
+    [levelData setSubs:[self subs]];
+    [levelData setFogs:[self fogs]];
+    
     [self emailToMe];
 }
 
@@ -526,11 +602,22 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
     }
 }
 
+- (void)saveFogs {
+    for (Fog *fog in [self fogs]) {
+        [fog setWaitTime:[timeLine timeForNode:fog onTimeLine:NO]];
+    }
+}
+
 - (void)saveShipTimes {
     for (Ship *ship in [self ships]) {
         float wait = [timeLine getTimeForNode:ship];
-        NSLog(@"saving wait %f", wait);
         [ship setWaitTime:wait];
+    }
+}
+
+- (void)saveSubTimes {
+    for (Sub *sub in [self subs]) {
+        [sub setWaitTime:[timeLine getTimeForNode:sub]];
     }
 }
 
@@ -547,8 +634,12 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
 
 - (NSMutableArray *)ships {
     return [self querySceneForClass:[Ship class] notEqualTo:ON_TIME_LINE];
-    
 }
+
+- (NSMutableArray *)subs {
+    return [self querySceneForClass:[Sub class] notEqualTo:ON_TIME_LINE];
+}
+
 - (NSMutableArray *)lighthouses {
     return [self querySceneForClass:[Lighthouse class] notEqualTo:@"null"];
 }
@@ -557,20 +648,36 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
      return [self querySceneForClass:[Spawner class] notEqualTo:@"null"];
 }
 
+//- (NSMutableArray *)fogsOnTimeLine {
+//    return [self querySceneForClass:[Fog class] notEqualTo:@"fog"];
+//}
+
+- (NSMutableArray *)fogs {
+    return [self querySceneForClass:[Fog class] notEqualTo:ON_TIME_LINE];
+}
+
 - (NSMutableArray *)rocks {
     return [self querySceneForClass:[Rock class] notEqualTo:@"null"];
 }
 
 - (int)shipsCount {
-    return [[self ships] count];
+    return (int)[[self ships] count];
+}
+
+- (int)subsCount {
+    return (int)[[self subs] count];
 }
 
 - (int)lighthousesCount {
-    return [[self lighthouses] count];
+    return (int)[[self lighthouses] count];
 }
 
 - (int)rocksCount {
-    return [[self rocks] count];
+    return (int)[[self rocks] count];
+}
+
+- (int)fogsCount {
+    return (int)[[self fogs] count];
 }
 
 - (void)emailToMe {
@@ -615,6 +722,12 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
         
     }];
     
+}
+
+- (BOOL)isOffScreen:(SKNode *)node {
+    float offset = 0;
+    return (node.position.x > WIDTH + offset || node.position.x < 0 - offset ||
+            node.position.y > HEIGHT + offset + node.frame.size.height*2 || node.position.y < 0 - offset);
 }
 
 @end

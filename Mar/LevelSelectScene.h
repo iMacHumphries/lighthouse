@@ -7,6 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "MenuScene.h"
 
 @interface LevelSelectScene : SKScene
 

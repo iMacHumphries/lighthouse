@@ -15,20 +15,22 @@
 
 typedef enum : NSUInteger {
     NORMAL,
+    SUBMARINE,
     
     shipTypeCount
 } ShipType;
 
 @interface Spawner : SKSpriteNode {
-
+    int recursionCount;
 }
 
 - (void)start;
-- (void)stop;
 
 @property (nonatomic, retain) id delegate;
 @property (nonatomic, assign) int nodesToSpawn;
 @property (nonatomic, assign) float timeRange;
 @property (nonatomic, assign) float waitTime;
+@property (nonatomic, assign) BOOL spawnSubs;
+@property (nonatomic, assign) BOOL spawnShips;
 
 @end

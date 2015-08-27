@@ -15,6 +15,8 @@
     NSMutableArray *nodesToRemove;
     
 }
+- (void)removeNode:(SKNode *)targetNode;
+- (void)destroyAll;
 - (void)addNode:(SKNode*)node;
 - (void)update:(CFTimeInterval)currentTime;
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;

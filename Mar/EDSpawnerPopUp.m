@@ -10,14 +10,10 @@
 
 @implementation EDSpawnerPopUp
 @synthesize time,nodes;
-
 static const int MAX_NODES = 50;
 static const int MIN_NODES = 1;
 static const float MAX_TIME = 60.0f;
 static const float MIN_TIME = 1.0f;
-static const float OFF = 100.0f;
-static const float SPACE = 50.0f;
-static NSString *const NAME = @"ui";
 
 - (id)init {
     if (self = [super init]) {
@@ -31,21 +27,21 @@ static NSString *const NAME = @"ui";
     [self setScale:1.5f];
     
     nodesLabel = [SKLabelNode labelNodeWithText:@"nodes  "];
-    [nodesLabel setName:NAME];
+    [nodesLabel setName:UI];
     [nodesLabel setPosition:CGPointMake(-self.size.width/2 + OFF, self.size.height/2 - OFF)];
     [self addChild:nodesLabel];
     nodesSlider = [[Slider alloc] initWithSize:CGSizeMake(self.size.width - nodesLabel.frame.size.width- SPACE, 10) minValue:MIN_NODES maxValue:MAX_NODES];
     [nodesSlider setPosition:CGPointMake(nodesLabel.position.x + nodesLabel.frame.size.width + SPACE, nodesLabel.position.y)];
-    [nodesSlider setName:NAME];
+    [nodesSlider setName:UI];
     [self addChild:nodesSlider];
     
     timeLabel = [SKLabelNode labelNodeWithText:@"time  "];
     [timeLabel setPosition:CGPointMake(nodesLabel.position.x, nodesLabel.position.y - timeLabel.frame.size.height - SPACE)];
-    [timeLabel setName:NAME];
+    [timeLabel setName:UI];
     [self addChild:timeLabel];
     timeSlider = [[Slider alloc] initWithSize:nodesSlider.size minValue:MIN_TIME maxValue:MAX_TIME];
     [timeSlider setPosition:CGPointMake(nodesSlider.position.x, nodesSlider.position.y - timeSlider.size.height - SPACE)];
-    [timeSlider setName:NAME];
+    [timeSlider setName:UI];
     [self addChild:timeSlider];
 }
 

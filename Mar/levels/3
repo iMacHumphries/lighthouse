@@ -1,0 +1,47 @@
+{
+  "lighthouses" : [
+
+  ],
+  "fogs" : [
+    {
+      "x" : 284,
+      "wait" : 6.035156,
+      "image" : "fog.png",
+      "y" : 160,
+      "z" : 10,
+      "scale" : 1.07286,
+      "strength" : 27.13178,
+      "lifeTime" : 23.25581,
+      "height" : 82.61024,
+      "name" : "fog",
+      "rotation" : 0,
+      "width" : 86.90169
+    }
+  ],
+  "ships" : [
+
+  ],
+  "level" : 1,
+  "spawners" : [
+    {
+      "x" : 8.320312,
+      "image" : "spawner.png",
+      "y" : 80,
+      "timeRange" : 28.31148,
+      "z" : 21,
+      "scale" : 0.2773438,
+      "height" : 21.35547,
+      "nodesToSpawn" : 23,
+      "name" : "spawner",
+      "rotation" : 0,
+      "waitTime" : 0.8789062,
+      "width" : 22.46484
+    }
+  ],
+  "subs" : [
+
+  ],
+  "rocks" : [
+
+  ]
+}

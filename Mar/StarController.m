@@ -13,7 +13,7 @@
 
 - (id)init {
     if (self = [super init]) {
-        [self setZPosition:10];
+        [self setZPosition:15];
         star = [SKSpriteNode spriteNodeWithImageNamed:@"starFill.png"];
         emptyStar = [SKSpriteNode spriteNodeWithImageNamed:@"starFrame.png"];
         
@@ -41,7 +41,7 @@
 }
 
 - (int)starCount {
-    return [stars count];
+    return (int)[stars count];
 }
 
 @end

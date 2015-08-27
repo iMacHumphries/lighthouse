@@ -7,6 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "PrefixHeader.pch"
 #import "Slider.h"
 
 @interface EDPopUpDetail : SKSpriteNode {

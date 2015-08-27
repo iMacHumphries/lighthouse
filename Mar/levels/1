@@ -1,0 +1,83 @@
+{
+  "lighthouses" : [
+    {
+      "scale" : 0.5546875,
+      "x" : 284,
+      "y" : 59.16666,
+      "name" : "lighthouse",
+      "z" : 10,
+      "rotation" : 0,
+      "width" : 43.26562,
+      "image" : "lighthouse.png",
+      "height" : 154.7578
+    }
+  ],
+  "spawners" : [
+
+  ],
+  "rocks" : [
+    {
+      "scale" : 0.5546875,
+      "x" : 117.5938,
+      "y" : 167.0833,
+      "name" : "rock",
+      "z" : 10,
+      "rotation" : 0,
+      "width" : 71,
+      "image" : "rock.png",
+      "height" : 71
+    },
+    {
+      "scale" : 0.5546875,
+      "x" : 465.9375,
+      "y" : 166.6667,
+      "name" : "rock",
+      "z" : 10,
+      "rotation" : 0,
+      "width" : 71,
+      "image" : "rock.png",
+      "height" : 71
+    },
+    {
+      "scale" : 0.5546875,
+      "x" : 284,
+      "y" : 18.33334,
+      "name" : "rocks",
+      "z" : 10,
+      "rotation" : 0,
+      "width" : 568,
+      "image" : "rocks.png",
+      "height" : 50
+    }
+  ],
+  "ships" : [
+    {
+      "scale" : 0.5546875,
+      "x" : 118.7031,
+      "y" : 273.75,
+      "name" : "ship",
+      "waitTime" : 1.289063,
+      "z" : 10,
+      "rotation" : 0,
+      "width" : 25.51562,
+      "image" : "ship.png",
+      "height" : 53.25
+    },
+    {
+      "scale" : 0.5546875,
+      "x" : 467.0469,
+      "y" : 274.1667,
+      "name" : "ship",
+      "waitTime" : 1.289063,
+      "z" : 10,
+      "rotation" : 0,
+      "width" : 25.51562,
+      "image" : "ship.png",
+      "height" : 53.25
+    }
+  ],
+  "subs" : [
+
+  ],
+  "level" : 1
+}

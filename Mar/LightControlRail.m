@@ -23,9 +23,8 @@
   
         radius = track.size.width/2;
         minRadius = radius - 1;
-        NSLog(@"radius %f",radius);
         
-       // [self setPosition:CGPointMake(WIDTH/2, 0)];
+    // [self setPosition:CGPointMake(WIDTH/2, 0)];
     
     }
     return self;

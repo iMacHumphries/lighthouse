@@ -15,6 +15,7 @@
 #import "LevelData.h"
 #import <MessageUI/MessageUI.h>
 #import "EDSpawnerPopUp.h"
+#import "EDFogPopUp.h"
 
 @interface EditorScene : SKScene<EDSelectionDelegate, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate, UIActionSheetDelegate, UIAlertViewDelegate> {
     LevelData *levelData;
@@ -31,16 +32,10 @@
     BOOL isAddMenu;
     
     SKSpriteNode *confirm;
-    BOOL isConfirmMenu;
-    
     SKSpriteNode *edit;
-    BOOL isEditing;
-    BOOL showingEditButton;
-    
     SKSpriteNode *deleteButton;
-    BOOL isDeleteMode;
-    BOOL isShowingDelete;
-    
+    BOOL isEditing;
+ 
     SKSpriteNode *showHideButton;
     SKLabelNode *showHideLabel;
     NSMutableArray *showHideButtons;
@@ -51,12 +46,24 @@
     int spawnerCount;
     
     EDSpawnerPopUp *popUp;
+    EDFogPopUp *fogPopUp;
     BOOL isPopUpDetail;
     
+    SKSpriteNode *centerX;
+    SKSpriteNode *centerY;
+    
+    BOOL isBottomRightControl;
 
 }
 - (void)toggleAddMenu;
 - (int)shipsCount;
-
-
 @end
+
+/**
+ Adding new content to editor:
+ Add in EDSelection.
+ Fix LoadContent Method
+ Fix SaveContent Method
+ Make sure spawner class can spawn the new type.
+ Add type to GameScene Loader method
+ */

@@ -7,10 +7,14 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "NodeManager.h"
 
 @interface Background : SKSpriteNode {
     SKShader *shader;
     float moveFactor;
+    NodeManager *waveManager;
+    
 }
 - (void)update:(NSTimeInterval)currentTime;
+- (void)addWaves;
 @end

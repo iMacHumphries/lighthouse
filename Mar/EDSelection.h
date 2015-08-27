@@ -21,4 +21,5 @@
 
 @property (nonatomic, retain) SKNode *selectedNode;
 @property (nonatomic, assign) id delegate;
+
 @end

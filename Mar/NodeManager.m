@@ -7,6 +7,7 @@
 //
 
 #import "NodeManager.h"
+#import "Wave.h"
 
 @implementation NodeManager
 - (id)init {
@@ -22,12 +23,26 @@
     [nodes addObject:node];
 }
 
-- (void)removeNode:(SKNode *)targetNode{
-    [targetNode removeFromParent];
-    [nodesToRemove addObject:targetNode];
+- (void)destroyAll {
+    nodes = [[NSMutableArray alloc]init];
+    nodesToRemove = [[NSMutableArray alloc]init];
+}
+
+- (void)removeNode:(SKNode *)targetNode {
+   // if (![targetNode isKindOfClass:[Wave class]]) {
+        [targetNode removeFromParent];
+        [nodesToRemove addObject:targetNode];
+    //}
+    
 }
 
 - (void)update:(CFTimeInterval)currentTime {
+    for (SKNode *node in nodes) {
+        if ([node isKindOfClass:[Wave class]]) {
+            Wave *wave = (Wave *)node;
+            [wave update:currentTime];
+        }
+    }
     for (SKNode *node in nodes)
         if ([node isOffScreen])
             [self removeNode:node];

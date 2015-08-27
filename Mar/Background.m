@@ -8,6 +8,7 @@
 
 #import "Background.h"
 #import "PrefixHeader.pch"
+#import "Wave.h"
 
 @implementation Background
 
@@ -21,34 +22,26 @@
         [self setPosition:CGPointMake(WIDTH/2, HEIGHT/2)];
         [self setZPosition:-11];
         
-        [self addWaterShader];
-    
+        waveManager = [[NodeManager alloc] init];
+        //[self addWaves];
     }
     return self;
 }
 
-- (void)addWaterShader {
-   
-    shader = [SKShader shaderWithFileNamed:@"waterShader.fsh"];
-    [self loadUniforms];
-   // self.shader = shader;
-
-}
-
-- (void)loadUniforms {
-    shader.uniforms = @[
-                        [SKUniform uniformWithName:@"u_dudvMap" texture:[SKTexture textureWithImage:[UIImage imageNamed:@"waterDUDV.png"]]],
-                        [SKUniform uniformWithName:@"u_myTexture" texture:self.texture],
-                        [SKUniform uniformWithName:@"u_moveFactor" float:moveFactor],
-                        ];
+- (void)addWaves {
+    SKAction *wait = [SKAction waitForDuration:2.3];
+    SKAction *addWave = [SKAction runBlock:^{
+        Wave *wave = [[Wave alloc] init];
+        [self.parent addChild:wave];
+        [waveManager addNode:wave];
+    }];
+    
+    [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[wait,addWave]]]];
 }
 
 
 - (void)update:(NSTimeInterval)currentTime {
-//    float WAVE_SPEED = .00000001f;
-//    moveFactor += WAVE_SPEED * currentTime;
-//    moveFactor = fmodf(moveFactor, 1.0f);
-//   [self loadUniforms];
+    [waveManager update:currentTime];
 }
 
 @end
