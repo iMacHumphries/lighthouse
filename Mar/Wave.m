@@ -61,7 +61,7 @@
 
 - (void)loadUniforms {
     shader.uniforms = @[
-                        [SKUniform uniformWithName:@"u_dudvMap" texture:[SKTexture textureWithImage:[UIImage imageNamed:@"waterDUDV.png"]]],
+                        [SKUniform uniformWithName:@"u_dudvMap" texture:[SKTexture textureWithImage:[UIImage imageWithContentsOfFile:PATH_FOR(@"waterDUDV.png")]]],
                         [SKUniform uniformWithName:@"u_myTexture" texture:self.texture],
                         [SKUniform uniformWithName:@"u_moveFactor" float:moveFactor],
                         ];

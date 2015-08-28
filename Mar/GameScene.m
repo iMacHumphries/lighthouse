@@ -219,12 +219,13 @@
 }
 
 - (void)moveToLevelSelection {
+    NSLog(@"moving to level selection");
     LevelSelectScene *scene = [[LevelSelectScene alloc] initWithSize:self.size box:currentBox];
     [self.view presentScene:scene transition:[SKTransition fadeWithColor:[UIColor blackColor] duration:0.4]];
 }
 
 - (void)destroy {
-    NSLog(@"destroying");
+    NSLog(@"destroying... ^.^");
     self.scene.view.paused = false;
     for (SKNode *child in self.children) {
         [child removeAllActions];
@@ -238,6 +239,13 @@
     [shipManager destroyAll];
     shipManager = NULL;
     
+    for (SKNode *node in lighthouseManager.nodes) {
+        if ([node isKindOfClass:[Lighthouse class]]) {
+            Lighthouse *lh = (Lighthouse *)node;
+            lh.spotLight = NULL;
+        }
+    }
+    
     [lighthouseManager destroyAll];
     lighthouseManager = NULL;
     
@@ -247,5 +255,10 @@
     pauseMenu = NULL;
     currentLevel = NULL;
     currentLevel = NULL;
+   
+}
+
+- (void)dealloc {
+    
 }
 @end

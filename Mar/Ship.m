@@ -7,6 +7,7 @@
 //
 
 #import "Ship.h"
+#import "PrefixHeader.pch"
 
 @implementation Ship
 
@@ -15,7 +16,7 @@
         self.imageName = @"ship.png";
         self.brokenImageName = @"brokenShip.png";
         [self setName:@"ship"];
-        [self setTexture:[SKTexture textureWithImage:[UIImage imageNamed:@"ship.png"]]];
+        [self setTexture:[SKTexture textureWithImage:[UIImage imageWithContentsOfFile:PATH_FOR(@"ship.png")]]];
     }
     return self;
 }

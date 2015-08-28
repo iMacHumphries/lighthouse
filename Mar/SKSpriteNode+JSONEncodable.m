@@ -63,7 +63,7 @@ static NSString* const HEIGHT_KEY = @"height";
         if ([dictionary objectForKey:SCALE_KEY])
             [self setScale:[[dictionary objectForKey:SCALE_KEY] floatValue]];
         if ([dictionary objectForKey:IMAGE_KEY])
-            [self setTexture:[SKTexture textureWithImage:[UIImage imageNamed:[dictionary objectForKey:IMAGE_KEY]]]];
+            [self setTexture:[SKTexture textureWithImage:[UIImage imageWithContentsOfFile:PATH_FOR([dictionary objectForKey:IMAGE_KEY])]]];
         if ([dictionary objectForKey:NAME_KEY])
             [self setName:[dictionary objectForKey:NAME_KEY]];
         if ([dictionary objectForKey:WIDTH_KEY] && [dictionary objectForKey:HEIGHT_KEY]) {

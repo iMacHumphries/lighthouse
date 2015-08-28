@@ -7,6 +7,7 @@
 //
 
 #import "Sub.h"
+#import "PrefixHeader.pch"
 
 @implementation Sub
 @synthesize isUnderWater;
@@ -35,7 +36,7 @@
     [bubbles removeFromParent];
     [self addChild:bubbles];
     SKAction *fadeOut = [SKAction fadeAlphaTo:0.1 duration:0.5];
-    SKAction *switchTexture = [SKAction setTexture:[SKTexture textureWithImage:[UIImage imageNamed:@"subShadow.png"]]];
+    SKAction *switchTexture = [SKAction setTexture:[SKTexture textureWithImage:[UIImage imageWithContentsOfFile:PATH_FOR(@"subShadow.png")]]];
     SKAction *fadein = [SKAction fadeAlphaTo:1 duration:0.1];
     SKAction *sequence = [SKAction sequence:@[fadeOut, switchTexture,fadein]];
     [self runAction:sequence];
@@ -46,7 +47,7 @@
     isUnderWater = false;
     [self setAlpha:0.1];
     [bubbles removeFromParent];
-    SKAction *switchTexture = [SKAction setTexture:[SKTexture textureWithImage:[UIImage imageNamed:@"subYellow.png"]]];
+    SKAction *switchTexture = [SKAction setTexture:[SKTexture textureWithImage:[UIImage imageWithContentsOfFile:PATH_FOR(@"subYellow.png")]]];
     SKAction *fadeIn = [SKAction fadeAlphaTo:1.0 duration:0.2];
     SKAction *sequence = [SKAction sequence:@[switchTexture, fadeIn]];
     [self runAction:sequence];

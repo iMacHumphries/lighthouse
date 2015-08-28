@@ -217,6 +217,7 @@
 		B5F3951D1B8FF12F00F7EA66 /* Box.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Box.m; sourceTree = "<group>"; };
 		B5F3951F1B8FF35B00F7EA66 /* LevelLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelLoader.h; sourceTree = "<group>"; };
 		B5F395201B8FF35B00F7EA66 /* LevelLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelLoader.m; sourceTree = "<group>"; };
+		B5F395231B90171900F7EA66 /* Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		B5F7F8961B7B887B007FDC81 /* waterShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = waterShader.fsh; sourceTree = "<group>"; };
 		B5F7F8981B7BFB6D007FDC81 /* waterTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = waterTile.png; sourceTree = "<group>"; };
 		B5F7F89A1B7BFBBB007FDC81 /* waterDUDV.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = waterDUDV.png; sourceTree = "<group>"; };
@@ -283,18 +284,12 @@
 			isa = PBXGroup;
 			children = (
 				B5F7F8C81B7EE985007FDC81 /* PrefixHeader.pch */,
+				B5F395231B90171900F7EA66 /* Macros.h */,
 				B500DEBE1B7971610028D315 /* AppDelegate.h */,
 				B500DEBF1B7971610028D315 /* AppDelegate.m */,
 				B500DEC61B7971610028D315 /* GameViewController.h */,
 				B500DEC71B7971610028D315 /* GameViewController.m */,
-				B500DEC11B7971610028D315 /* GameScene.h */,
-				B500DEC21B7971610028D315 /* GameScene.m */,
-				B5CD98BA1B854C580066A2F2 /* PauseMenu.h */,
-				B5CD98BB1B854C580066A2F2 /* PauseMenu.m */,
-				B5F7F8BF1B7EE721007FDC81 /* MenuScene.h */,
-				B5F7F8C01B7EE721007FDC81 /* MenuScene.m */,
-				B5D99E8E1B8E546D00A6EB4C /* LoadingScene.h */,
-				B5D99E8F1B8E546D00A6EB4C /* LoadingScene.m */,
+				B5F395281B901D4100F7EA66 /* scenes */,
 				B5E3B65F1B7EF06400A2A123 /* Editor */,
 				B500DEF11B799B3B0028D315 /* controllers */,
 				B500DEF01B799B2E0028D315 /* modal */,
@@ -340,20 +335,10 @@
 		B500DEF01B799B2E0028D315 /* modal */ = {
 			isa = PBXGroup;
 			children = (
+				B5F395251B901D0100F7EA66 /* rocks */,
+				B5F395241B901CE300F7EA66 /* lighthouse */,
 				B5F2E1E41B869191003A1852 /* ships */,
-				B500DEFD1B79B9DC0028D315 /* Background.h */,
-				B500DEFE1B79B9DC0028D315 /* Background.m */,
-				B500DF041B79C2B60028D315 /* Lighthouse.h */,
-				B500DF051B79C2B60028D315 /* Lighthouse.m */,
-				B5364C621B825B6C005DF532 /* Rock.h */,
-				B5364C631B825B6C005DF532 /* Rock.m */,
-				B5D99EA61B8E68D700A6EB4C /* BottomRocks.h */,
-				B5D99EA71B8E68D700A6EB4C /* BottomRocks.m */,
-				B500DEF51B79A8210028D315 /* SpotLight.h */,
-				B500DEF61B79A8210028D315 /* SpotLight.m */,
-				B5F7F8961B7B887B007FDC81 /* waterShader.fsh */,
-				B5CD98B21B84E7580066A2F2 /* Wave.h */,
-				B5CD98B31B84E7580066A2F2 /* Wave.m */,
+				B5F395261B901D1300F7EA66 /* background */,
 				B54BC5161B8EA65B00D30E5B /* Fog.h */,
 				B54BC5171B8EA65B00D30E5B /* Fog.m */,
 			);
@@ -369,8 +354,6 @@
 				B5CD98871B83E7A80066A2F2 /* NodeManager.m */,
 				B5F7F8B61B7ED72A007FDC81 /* StarController.h */,
 				B5F7F8B71B7ED72A007FDC81 /* StarController.m */,
-				B5F7F89E1B7C3352007FDC81 /* LightControlRail.h */,
-				B5F7F89F1B7C3352007FDC81 /* LightControlRail.m */,
 				B5F395191B8FF0E900F7EA66 /* LevelManagement */,
 			);
 			name = controllers;
@@ -448,12 +431,7 @@
 				B5E3B7801B7FBF9500A2A123 /* EDSelection.m */,
 				B5364C711B82DD97005DF532 /* EDTimeLine.h */,
 				B5364C721B82DD97005DF532 /* EDTimeLine.m */,
-				B5CD98911B83EE040066A2F2 /* EDPopUpDetail.h */,
-				B5CD98921B83EE040066A2F2 /* EDPopUpDetail.m */,
-				B5CD989B1B841DC70066A2F2 /* EDSpawnerPopUp.h */,
-				B5CD989C1B841DC70066A2F2 /* EDSpawnerPopUp.m */,
-				B54BC5111B8EA23900D30E5B /* EDFogPopUp.h */,
-				B54BC5121B8EA23900D30E5B /* EDFogPopUp.m */,
+				B5F395271B901D3000F7EA66 /* popUps */,
 			);
 			name = Editor;
 			sourceTree = "<group>";
@@ -500,6 +478,70 @@
 				B5CD98811B83CEC20066A2F2 /* LevelSelectScene.m */,
 			);
 			name = Scenes;
+			sourceTree = "<group>";
+		};
+		B5F395241B901CE300F7EA66 /* lighthouse */ = {
+			isa = PBXGroup;
+			children = (
+				B500DF041B79C2B60028D315 /* Lighthouse.h */,
+				B500DF051B79C2B60028D315 /* Lighthouse.m */,
+				B500DEF51B79A8210028D315 /* SpotLight.h */,
+				B500DEF61B79A8210028D315 /* SpotLight.m */,
+				B5F7F89E1B7C3352007FDC81 /* LightControlRail.h */,
+				B5F7F89F1B7C3352007FDC81 /* LightControlRail.m */,
+			);
+			name = lighthouse;
+			sourceTree = "<group>";
+		};
+		B5F395251B901D0100F7EA66 /* rocks */ = {
+			isa = PBXGroup;
+			children = (
+				B5364C621B825B6C005DF532 /* Rock.h */,
+				B5364C631B825B6C005DF532 /* Rock.m */,
+				B5D99EA61B8E68D700A6EB4C /* BottomRocks.h */,
+				B5D99EA71B8E68D700A6EB4C /* BottomRocks.m */,
+			);
+			name = rocks;
+			sourceTree = "<group>";
+		};
+		B5F395261B901D1300F7EA66 /* background */ = {
+			isa = PBXGroup;
+			children = (
+				B500DEFD1B79B9DC0028D315 /* Background.h */,
+				B500DEFE1B79B9DC0028D315 /* Background.m */,
+				B5F7F8961B7B887B007FDC81 /* waterShader.fsh */,
+				B5CD98B21B84E7580066A2F2 /* Wave.h */,
+				B5CD98B31B84E7580066A2F2 /* Wave.m */,
+			);
+			name = background;
+			sourceTree = "<group>";
+		};
+		B5F395271B901D3000F7EA66 /* popUps */ = {
+			isa = PBXGroup;
+			children = (
+				B5CD98911B83EE040066A2F2 /* EDPopUpDetail.h */,
+				B5CD98921B83EE040066A2F2 /* EDPopUpDetail.m */,
+				B5CD989B1B841DC70066A2F2 /* EDSpawnerPopUp.h */,
+				B5CD989C1B841DC70066A2F2 /* EDSpawnerPopUp.m */,
+				B54BC5111B8EA23900D30E5B /* EDFogPopUp.h */,
+				B54BC5121B8EA23900D30E5B /* EDFogPopUp.m */,
+			);
+			name = popUps;
+			sourceTree = "<group>";
+		};
+		B5F395281B901D4100F7EA66 /* scenes */ = {
+			isa = PBXGroup;
+			children = (
+				B500DEC11B7971610028D315 /* GameScene.h */,
+				B500DEC21B7971610028D315 /* GameScene.m */,
+				B5CD98BA1B854C580066A2F2 /* PauseMenu.h */,
+				B5CD98BB1B854C580066A2F2 /* PauseMenu.m */,
+				B5F7F8BF1B7EE721007FDC81 /* MenuScene.h */,
+				B5F7F8C01B7EE721007FDC81 /* MenuScene.m */,
+				B5D99E8E1B8E546D00A6EB4C /* LoadingScene.h */,
+				B5D99E8F1B8E546D00A6EB4C /* LoadingScene.m */,
+			);
+			name = scenes;
 			sourceTree = "<group>";
 		};
 		B5F7F8AE1B7ED172007FDC81 /* effects */ = {

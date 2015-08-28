@@ -36,7 +36,7 @@
 
 - (void)removeStar {
     if ([stars count] <= 0) return;
-    [[stars lastObject] runAction:[SKAction setTexture:[SKTexture textureWithImage:[UIImage imageNamed:@"starFrame.png"]]]];
+    [[stars lastObject] runAction:[SKAction setTexture:[SKTexture textureWithImage:[UIImage imageWithContentsOfFile:PATH_FOR(@"starFrame.png")]]]];
     [stars removeLastObject];
 }
 

@@ -13,7 +13,6 @@
 
 @class LightControlRail;
 @interface Lighthouse : SKSpriteNode {
-    SpotLight *spotLight;
     LightControlRail *lightSlider;
 }
 

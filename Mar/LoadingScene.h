@@ -12,5 +12,5 @@
     
 }
 
-@property (retain, nonatomic) SKScene *sceneToShow;
+@property (nonatomic, retain) SKScene *sceneToShow;
 @end

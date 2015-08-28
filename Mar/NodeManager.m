@@ -75,4 +75,8 @@
     }
 }
 
+- (NSMutableArray *)nodes {
+    return nodes;
+}
+
 @end

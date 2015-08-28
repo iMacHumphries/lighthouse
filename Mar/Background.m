@@ -16,7 +16,7 @@
     if (self = [super initWithImageNamed:name]) {
         [self setName:@"background"];
         [self setLightingBitMask:1];
-        [self setNormalTexture:[SKTexture textureWithImage:[UIImage imageNamed:name]]];
+        [self setNormalTexture:[SKTexture textureWithImage:[UIImage imageWithContentsOfFile:PATH_FOR(name)]]];
         
         [self setSize:CGSizeMake(WIDTH, HEIGHT)];
         [self setPosition:CGPointMake(WIDTH/2, HEIGHT/2)];
