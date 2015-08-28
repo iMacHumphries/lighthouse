@@ -17,6 +17,8 @@
 #import "PrefixHeader.pch"
 #import "LevelData.h"
 #import "PauseMenu.h"
+#import "Level.h"
+#import "Box.h"
 
 @class ShipManager;
 @interface GameScene : SKScene<SpawnerDelegate, SKPhysicsContactDelegate> {
@@ -30,10 +32,12 @@
     PauseMenu *pauseMenu;
     BOOL isPaused;
     
+    Level *currentLevel;
+    Box *currentBox;
+    
 }
 
-- (id)initWithSize:(CGSize)size andFile:(NSString *)file;
-- (void)loadLevelFromFile:(NSString *)fileName;
+- (id)initWithSize:(CGSize)size level:(Level *)_level;
 - (void)togglePause;
 
 - (void)moveToLevelSelection;

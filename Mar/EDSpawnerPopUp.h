@@ -7,14 +7,21 @@
 //
 
 #import "EDPopUpDetail.h"
+#import "Spawner.h"
 
 @interface EDSpawnerPopUp : EDPopUpDetail {
+    Spawner *spawner;
+    
     Slider *nodesSlider;
     SKLabelNode *nodesLabel;
     
     Slider *timeSlider;
     SKLabelNode *timeLabel;
+    
+    Switch *shipSwitch;
+    Switch *subSwitch;
 }
+- (void)setSpawner:(Spawner *)_spawner;
 
 @property (nonatomic, assign) float time;
 @property (nonatomic, assign) int nodes;

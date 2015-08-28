@@ -22,6 +22,10 @@ static const float MIN_TIME = 1.0f;
     return self;
 }
 
+- (void)setSpawner:(Spawner *)_spawner {
+    spawner = _spawner;
+}
+
 // override
 - (void)addDetails {
     [self setScale:1.5f];
@@ -43,11 +47,44 @@ static const float MIN_TIME = 1.0f;
     [timeSlider setPosition:CGPointMake(nodesSlider.position.x, nodesSlider.position.y - timeSlider.size.height - SPACE)];
     [timeSlider setName:UI];
     [self addChild:timeSlider];
+    
+    shipSwitch = [[Switch alloc] init];
+    SKSpriteNode *s = [SKSpriteNode spriteNodeWithImageNamed:@"ship"];
+    [s setName:UI];
+    [s setZPosition:shipSwitch.zPosition+1];
+    [s setScale:0.6];
+    [shipSwitch addChild:s];
+    [shipSwitch setPosition:CGPointMake(-self.size.width/2 + OFF, timeSlider.position.y -SPACE - shipSwitch.size.height)];
+    [self addChild:shipSwitch];
+    
+    subSwitch = [[Switch alloc] init];
+    SKSpriteNode *sub = [SKSpriteNode spriteNodeWithImageNamed:@"subYellow"];
+    [sub setName:UI];
+    [sub setZPosition:subSwitch.zPosition+1];
+    [sub setScale:0.6];
+    [subSwitch addChild:sub];
+    [subSwitch setPosition:CGPointMake(shipSwitch.position.x + subSwitch.size.width, shipSwitch.position.y)];
+    [self addChild:subSwitch];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [nodesSlider touchesBegan:touches withEvent:event];
     [timeSlider touchesBegan:touches withEvent:event];
+    
+    for (UITouch *touch in touches) {
+        CGPoint location = [touch locationInNode:self];    
+        for (SKNode *node in [self nodesAtPoint:location]) {
+            if (node == shipSwitch) {
+                [shipSwitch toggle];
+                spawner.spawnShips = [shipSwitch isOn];
+            
+            } else if (node == subSwitch) {
+                [subSwitch toggle];
+                spawner.spawnSubs = [subSwitch isOn];
+            }
+        }
+    }
+    
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {

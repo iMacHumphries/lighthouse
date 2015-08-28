@@ -43,14 +43,8 @@
     /* Sprite Kit applies additional optimizations to improve rendering performance */
     skView.ignoresSiblingOrder = YES;
     
-    // Create and configure the scene.
-    //GameScene *scene = [GameScene unarchiveFromFile:@"GameScene"];
-    //GameScene *scene = [GameScene sceneWithSize:self.view.frame.size];
-    
-    
     MenuScene *scene = [MenuScene sceneWithSize:self.view.frame.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
-    
     
     LoadingScene *loading = [LoadingScene sceneWithSize:self.view.frame.size];
     loading.scaleMode = SKSceneScaleModeAspectFill;

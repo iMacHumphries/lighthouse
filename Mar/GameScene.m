@@ -12,12 +12,15 @@
 #import "Wave.h"
 #import "Sub.h"
 #import "LevelSelectScene.h"
+#import "LevelManager.h"
 
 @implementation GameScene
 
-- (id)initWithSize:(CGSize)size andFile:(NSString *)file {
+- (id)initWithSize:(CGSize)size level:(Level *)_level {
     if (self = [super initWithSize:size]) {
-        [self loadLevelFromFile:file];
+        currentLevel = _level;
+        currentBox = [[LevelManager sharedInstance] boxForID:currentLevel.boxID];
+         [self loadLevel:currentLevel];
     }
     return self;
 }
@@ -25,10 +28,20 @@
 - (void)didMoveToView:(SKView *)view {
     background = [[Background alloc] initWithImageNamed:@"sea2.png"];
     [self addChild:background];
-    //[background addWaves];
+    
+    pause = [SKSpriteNode spriteNodeWithImageNamed:@"pause.png"];
+    [pause setName:@"pause"];
+    [pause setPosition:CGPointMake(WIDTH - pause.size.width - 10, HEIGHT - pause.size.width -10)];
+    [pause setZPosition:20];
+    [self addChild:pause];
+    
 }
 
-- (void)loadLevelFromFile:(NSString *)fileName {
+- (void)willMoveFromView:(SKView *)view {
+    [self destroy];
+}
+
+- (void)loadLevel:(Level *)level {
     self.physicsWorld.gravity = CGVectorMake(0,0);
     self.physicsWorld.contactDelegate = self;
     
@@ -40,18 +53,7 @@
     starController = [[StarController alloc] init];
     [self addChild:starController];
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:@""];
-    NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    NSError *jsonError;
-    NSData *objectData = [content dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:objectData
-                                                         options:NSJSONReadingMutableContainers
-                                                           error:&jsonError];
-    if (jsonError)
-        NSLog(@"error %@",[jsonError localizedDescription]);
-    
-    
-    LevelData *levelData = [[LevelData alloc] initWithDictionary:json];
+    LevelData *levelData = currentLevel.data;
     
     for (Ship *ship in levelData.ships) {
         [shipManager addNode:ship];
@@ -88,24 +90,14 @@
         [self addChild:fog];
         [fog start];
     }
-    
-    NSLog(@"level Data %@",levelData);
-    
-    pause = [SKSpriteNode spriteNodeWithImageNamed:@"pause.png"];
-    [pause setName:@"pause"];
-    [pause setPosition:CGPointMake(WIDTH - pause.size.width - 10, HEIGHT - pause.size.width -10)];
-    [pause setZPosition:20];
-    [self addChild:pause];
 }
 
 - (void)togglePause {
-    if (isPaused){
-        NSLog(@"remove pauseMenu");
+    if (isPaused)
         [pauseMenu removeFromParent];
-    } else {
-        NSLog(@"add pausemenu");
+    else
         [self addChild:pauseMenu];
-    }
+    
     isPaused =!isPaused;
     
     for (SKNode *node in self.children) {
@@ -120,19 +112,18 @@
     
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
-        SKNode *node = [self nodeAtPoint:location];
-         NSLog(@"touched %@",node.name);
+ //       SKNode *node = [self nodeAtPoint:location];
 
-        for (SKNode *n in  [self nodesAtPoint:location]) {
-            NSLog(@"looking throu %@",n.name);
+
+        for (SKNode *node in  [self nodesAtPoint:location]) {
+            if (node == pause) {
+                [self togglePause];
+            } else if ([node isKindOfClass:[Sub class]]){
+                Sub *sub = (Sub *)node;
+                [sub reveal];
+            }
         }
         
-        if (node == pause) {
-            [self togglePause];
-        } else if ([node isKindOfClass:[Sub class]]){
-            Sub *sub = (Sub *)node;
-            [sub reveal];
-        }
     }
 }
 
@@ -228,10 +219,33 @@
 }
 
 - (void)moveToLevelSelection {
-    [shipManager destroyAll];
-    [self removeAllChildren];
-    LevelSelectScene *scene = [LevelSelectScene sceneWithSize:self.size];
+    LevelSelectScene *scene = [[LevelSelectScene alloc] initWithSize:self.size box:currentBox];
     [self.view presentScene:scene transition:[SKTransition fadeWithColor:[UIColor blackColor] duration:0.4]];
 }
 
+- (void)destroy {
+    NSLog(@"destroying");
+    self.scene.view.paused = false;
+    for (SKNode *child in self.children) {
+        [child removeAllActions];
+        [child removeAllChildren];
+        [child removeFromParent];
+    }
+    [self removeAllActions];
+    [self removeAllChildren];
+    [self removeFromParent];
+    
+    [shipManager destroyAll];
+    shipManager = NULL;
+    
+    [lighthouseManager destroyAll];
+    lighthouseManager = NULL;
+    
+    starController = NULL;
+    background = NULL;
+    pause = NULL;
+    pauseMenu = NULL;
+    currentLevel = NULL;
+    currentLevel = NULL;
+}
 @end

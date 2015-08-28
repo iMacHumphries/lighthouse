@@ -25,7 +25,6 @@
 		B500DF061B79C2B60028D315 /* Lighthouse.m in Sources */ = {isa = PBXBuildFile; fileRef = B500DF051B79C2B60028D315 /* Lighthouse.m */; };
 		B5364C5E1B8035A0005DF532 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5364C5D1B8035A0005DF532 /* MessageUI.framework */; };
 		B5364C641B825B6C005DF532 /* Rock.m in Sources */ = {isa = PBXBuildFile; fileRef = B5364C631B825B6C005DF532 /* Rock.m */; };
-		B5364C6A1B826CA0005DF532 /* levels in Resources */ = {isa = PBXBuildFile; fileRef = B5364C691B826CA0005DF532 /* levels */; };
 		B5364C701B82719B005DF532 /* SKSpriteNode+JSONEncodable.m in Sources */ = {isa = PBXBuildFile; fileRef = B5364C6F1B82719B005DF532 /* SKSpriteNode+JSONEncodable.m */; };
 		B5364C731B82DD97005DF532 /* EDTimeLine.m in Sources */ = {isa = PBXBuildFile; fileRef = B5364C721B82DD97005DF532 /* EDTimeLine.m */; };
 		B5364C751B82DF37005DF532 /* timeLine.png in Resources */ = {isa = PBXBuildFile; fileRef = B5364C741B82DF37005DF532 /* timeLine.png */; };
@@ -33,6 +32,9 @@
 		B54BC5151B8EA63A00D30E5B /* fog.png in Resources */ = {isa = PBXBuildFile; fileRef = B54BC5141B8EA63A00D30E5B /* fog.png */; };
 		B54BC5181B8EA65B00D30E5B /* Fog.m in Sources */ = {isa = PBXBuildFile; fileRef = B54BC5171B8EA65B00D30E5B /* Fog.m */; };
 		B54BC51B1B8EB27900D30E5B /* Switch.m in Sources */ = {isa = PBXBuildFile; fileRef = B54BC51A1B8EB27900D30E5B /* Switch.m */; };
+		B54BC51E1B8F77E900D30E5B /* BoxSelectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B54BC51D1B8F77E900D30E5B /* BoxSelectScene.m */; };
+		B54BC5201B8F788600D30E5B /* levels in Resources */ = {isa = PBXBuildFile; fileRef = B54BC51F1B8F788600D30E5B /* levels */; };
+		B54BC5221B8F7C0D00D30E5B /* box.png in Resources */ = {isa = PBXBuildFile; fileRef = B54BC5211B8F7C0D00D30E5B /* box.png */; };
 		B5CD98821B83CEC20066A2F2 /* LevelSelectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CD98811B83CEC20066A2F2 /* LevelSelectScene.m */; };
 		B5CD98881B83E7A80066A2F2 /* NodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CD98871B83E7A80066A2F2 /* NodeManager.m */; };
 		B5CD988E1B83E89F0066A2F2 /* SKNode+OffScreenAwareness.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CD988D1B83E89F0066A2F2 /* SKNode+OffScreenAwareness.m */; };
@@ -71,6 +73,10 @@
 		B5F2E1F21B86CC9C003A1852 /* FloatingNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F2E1F11B86CC9C003A1852 /* FloatingNode.m */; };
 		B5F2E1F51B86D1ED003A1852 /* BrokenFloatingNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F2E1F41B86D1ED003A1852 /* BrokenFloatingNode.m */; };
 		B5F2E1F71B86D763003A1852 /* brokenYellowSub.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F2E1F61B86D763003A1852 /* brokenYellowSub.png */; };
+		B5F395151B8FEC1200F7EA66 /* LevelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F395141B8FEC1200F7EA66 /* LevelManager.m */; };
+		B5F395181B8FECD300F7EA66 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F395171B8FECD300F7EA66 /* Level.m */; };
+		B5F3951E1B8FF12F00F7EA66 /* Box.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F3951D1B8FF12F00F7EA66 /* Box.m */; };
+		B5F395211B8FF35B00F7EA66 /* LevelLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F395201B8FF35B00F7EA66 /* LevelLoader.m */; };
 		B5F7F8971B7B887B007FDC81 /* waterShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B5F7F8961B7B887B007FDC81 /* waterShader.fsh */; };
 		B5F7F8991B7BFB6D007FDC81 /* waterTile.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F7F8981B7BFB6D007FDC81 /* waterTile.png */; };
 		B5F7F89B1B7BFBBB007FDC81 /* waterDUDV.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F7F89A1B7BFBBB007FDC81 /* waterDUDV.png */; };
@@ -133,7 +139,6 @@
 		B5364C5D1B8035A0005DF532 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		B5364C621B825B6C005DF532 /* Rock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rock.h; sourceTree = "<group>"; };
 		B5364C631B825B6C005DF532 /* Rock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rock.m; sourceTree = "<group>"; };
-		B5364C691B826CA0005DF532 /* levels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = levels; sourceTree = "<group>"; };
 		B5364C6E1B82719B005DF532 /* SKSpriteNode+JSONEncodable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKSpriteNode+JSONEncodable.h"; sourceTree = "<group>"; };
 		B5364C6F1B82719B005DF532 /* SKSpriteNode+JSONEncodable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKSpriteNode+JSONEncodable.m"; sourceTree = "<group>"; };
 		B5364C711B82DD97005DF532 /* EDTimeLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDTimeLine.h; sourceTree = "<group>"; };
@@ -146,6 +151,10 @@
 		B54BC5171B8EA65B00D30E5B /* Fog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fog.m; sourceTree = "<group>"; };
 		B54BC5191B8EB27900D30E5B /* Switch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Switch.h; sourceTree = "<group>"; };
 		B54BC51A1B8EB27900D30E5B /* Switch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Switch.m; sourceTree = "<group>"; };
+		B54BC51C1B8F77E900D30E5B /* BoxSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxSelectScene.h; sourceTree = "<group>"; };
+		B54BC51D1B8F77E900D30E5B /* BoxSelectScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxSelectScene.m; sourceTree = "<group>"; };
+		B54BC51F1B8F788600D30E5B /* levels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = levels; sourceTree = "<group>"; };
+		B54BC5211B8F7C0D00D30E5B /* box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = box.png; sourceTree = "<group>"; };
 		B5CD98801B83CEC20066A2F2 /* LevelSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelSelectScene.h; sourceTree = "<group>"; };
 		B5CD98811B83CEC20066A2F2 /* LevelSelectScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelSelectScene.m; sourceTree = "<group>"; };
 		B5CD98861B83E7A80066A2F2 /* NodeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeManager.h; sourceTree = "<group>"; };
@@ -200,6 +209,14 @@
 		B5F2E1F31B86D1ED003A1852 /* BrokenFloatingNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrokenFloatingNode.h; sourceTree = "<group>"; };
 		B5F2E1F41B86D1ED003A1852 /* BrokenFloatingNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrokenFloatingNode.m; sourceTree = "<group>"; };
 		B5F2E1F61B86D763003A1852 /* brokenYellowSub.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brokenYellowSub.png; sourceTree = "<group>"; };
+		B5F395131B8FEC1200F7EA66 /* LevelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelManager.h; sourceTree = "<group>"; };
+		B5F395141B8FEC1200F7EA66 /* LevelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelManager.m; sourceTree = "<group>"; };
+		B5F395161B8FECD300F7EA66 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
+		B5F395171B8FECD300F7EA66 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
+		B5F3951C1B8FF12F00F7EA66 /* Box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box.h; sourceTree = "<group>"; };
+		B5F3951D1B8FF12F00F7EA66 /* Box.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Box.m; sourceTree = "<group>"; };
+		B5F3951F1B8FF35B00F7EA66 /* LevelLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelLoader.h; sourceTree = "<group>"; };
+		B5F395201B8FF35B00F7EA66 /* LevelLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelLoader.m; sourceTree = "<group>"; };
 		B5F7F8961B7B887B007FDC81 /* waterShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = waterShader.fsh; sourceTree = "<group>"; };
 		B5F7F8981B7BFB6D007FDC81 /* waterTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = waterTile.png; sourceTree = "<group>"; };
 		B5F7F89A1B7BFBBB007FDC81 /* waterDUDV.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = waterDUDV.png; sourceTree = "<group>"; };
@@ -276,8 +293,6 @@
 				B5CD98BB1B854C580066A2F2 /* PauseMenu.m */,
 				B5F7F8BF1B7EE721007FDC81 /* MenuScene.h */,
 				B5F7F8C01B7EE721007FDC81 /* MenuScene.m */,
-				B5CD98801B83CEC20066A2F2 /* LevelSelectScene.h */,
-				B5CD98811B83CEC20066A2F2 /* LevelSelectScene.m */,
 				B5D99E8E1B8E546D00A6EB4C /* LoadingScene.h */,
 				B5D99E8F1B8E546D00A6EB4C /* LoadingScene.m */,
 				B5E3B65F1B7EF06400A2A123 /* Editor */,
@@ -295,7 +310,7 @@
 		B500DEBA1B7971610028D315 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B5364C691B826CA0005DF532 /* levels */,
+				B54BC51F1B8F788600D30E5B /* levels */,
 				B5F7F8AE1B7ED172007FDC81 /* effects */,
 				B5364C6D1B827074005DF532 /* res */,
 				B500DEBB1B7971610028D315 /* Info.plist */,
@@ -325,11 +340,9 @@
 		B500DEF01B799B2E0028D315 /* modal */ = {
 			isa = PBXGroup;
 			children = (
+				B5F2E1E41B869191003A1852 /* ships */,
 				B500DEFD1B79B9DC0028D315 /* Background.h */,
 				B500DEFE1B79B9DC0028D315 /* Background.m */,
-				B5F2E1E41B869191003A1852 /* ships */,
-				B5E3B6651B7F9F6600A2A123 /* LevelData.h */,
-				B5E3B6661B7F9F6600A2A123 /* LevelData.m */,
 				B500DF041B79C2B60028D315 /* Lighthouse.h */,
 				B500DF051B79C2B60028D315 /* Lighthouse.m */,
 				B5364C621B825B6C005DF532 /* Rock.h */,
@@ -358,6 +371,7 @@
 				B5F7F8B71B7ED72A007FDC81 /* StarController.m */,
 				B5F7F89E1B7C3352007FDC81 /* LightControlRail.h */,
 				B5F7F89F1B7C3352007FDC81 /* LightControlRail.m */,
+				B5F395191B8FF0E900F7EA66 /* LevelManagement */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -380,6 +394,7 @@
 		B5364C6D1B827074005DF532 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				B54BC5211B8F7C0D00D30E5B /* box.png */,
 				B54BC5141B8EA63A00D30E5B /* fog.png */,
 				B5D99EA41B8E67E600A6EB4C /* rock.png */,
 				B5D99EA01B8E655400A6EB4C /* lvlButton.png */,
@@ -456,6 +471,35 @@
 				B5F2E1E61B8691B4003A1852 /* Sub.m */,
 			);
 			name = ships;
+			sourceTree = "<group>";
+		};
+		B5F395191B8FF0E900F7EA66 /* LevelManagement */ = {
+			isa = PBXGroup;
+			children = (
+				B5F395221B8FFB2600F7EA66 /* Scenes */,
+				B5F3951C1B8FF12F00F7EA66 /* Box.h */,
+				B5F3951D1B8FF12F00F7EA66 /* Box.m */,
+				B5F395161B8FECD300F7EA66 /* Level.h */,
+				B5F395171B8FECD300F7EA66 /* Level.m */,
+				B5E3B6651B7F9F6600A2A123 /* LevelData.h */,
+				B5E3B6661B7F9F6600A2A123 /* LevelData.m */,
+				B5F3951F1B8FF35B00F7EA66 /* LevelLoader.h */,
+				B5F395201B8FF35B00F7EA66 /* LevelLoader.m */,
+				B5F395131B8FEC1200F7EA66 /* LevelManager.h */,
+				B5F395141B8FEC1200F7EA66 /* LevelManager.m */,
+			);
+			name = LevelManagement;
+			sourceTree = "<group>";
+		};
+		B5F395221B8FFB2600F7EA66 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				B54BC51C1B8F77E900D30E5B /* BoxSelectScene.h */,
+				B54BC51D1B8F77E900D30E5B /* BoxSelectScene.m */,
+				B5CD98801B83CEC20066A2F2 /* LevelSelectScene.h */,
+				B5CD98811B83CEC20066A2F2 /* LevelSelectScene.m */,
+			);
+			name = Scenes;
 			sourceTree = "<group>";
 		};
 		B5F7F8AE1B7ED172007FDC81 /* effects */ = {
@@ -581,9 +625,9 @@
 				B5F7F89B1B7BFBBB007FDC81 /* waterDUDV.png in Resources */,
 				B5F7F8BB1B7ED910007FDC81 /* starFrame.png in Resources */,
 				B5F7F8A41B7C3AA9007FDC81 /* blackTrack.png in Resources */,
-				B5364C6A1B826CA0005DF532 /* levels in Resources */,
 				B5F7F8BE1B7EDE08007FDC81 /* lighthouse.png in Resources */,
 				B5F2E1E91B869229003A1852 /* sub.png in Resources */,
+				B54BC5221B8F7C0D00D30E5B /* box.png in Resources */,
 				B5F2E1F71B86D763003A1852 /* brokenYellowSub.png in Resources */,
 				B5F7F8A91B7EC5CE007FDC81 /* rocks.png in Resources */,
 				B5CD98A11B8425D80066A2F2 /* popUpDetail.png in Resources */,
@@ -591,6 +635,7 @@
 				B5CD98A31B84361F0066A2F2 /* pause.png in Resources */,
 				B500DECB1B7971610028D315 /* Main.storyboard in Resources */,
 				B500DEF91B79A9E40028D315 /* water.png in Resources */,
+				B54BC5201B8F788600D30E5B /* levels in Resources */,
 				B5F2E1E11B868E2F003A1852 /* bubbles.sks in Resources */,
 				B5CD98B61B84F6910066A2F2 /* waveShader.fsh in Resources */,
 				B5D99EA11B8E655400A6EB4C /* lvlButton.png in Resources */,
@@ -625,6 +670,7 @@
 				B5364C731B82DD97005DF532 /* EDTimeLine.m in Sources */,
 				B5364C641B825B6C005DF532 /* Rock.m in Sources */,
 				B500DEE71B7975CA0028D315 /* Ship.m in Sources */,
+				B5F395151B8FEC1200F7EA66 /* LevelManager.m in Sources */,
 				B54BC51B1B8EB27900D30E5B /* Switch.m in Sources */,
 				B500DEC81B7971610028D315 /* GameViewController.m in Sources */,
 				B5E3B7811B7FBF9500A2A123 /* EditorScene.m in Sources */,
@@ -637,7 +683,9 @@
 				B5F7F8B81B7ED72A007FDC81 /* StarController.m in Sources */,
 				B500DEEF1B79992B0028D315 /* Spawner.m in Sources */,
 				B5CD988E1B83E89F0066A2F2 /* SKNode+OffScreenAwareness.m in Sources */,
+				B5F395181B8FECD300F7EA66 /* Level.m in Sources */,
 				B5F7F8C11B7EE721007FDC81 /* MenuScene.m in Sources */,
+				B5F395211B8FF35B00F7EA66 /* LevelLoader.m in Sources */,
 				B5CD98961B83EEAF0066A2F2 /* Slider.m in Sources */,
 				B5F2E1F21B86CC9C003A1852 /* FloatingNode.m in Sources */,
 				B500DEFF1B79B9DC0028D315 /* Background.m in Sources */,
@@ -645,6 +693,8 @@
 				B500DEF71B79A8210028D315 /* SpotLight.m in Sources */,
 				B5D99E901B8E546D00A6EB4C /* LoadingScene.m in Sources */,
 				B5CD98BC1B854C580066A2F2 /* PauseMenu.m in Sources */,
+				B5F3951E1B8FF12F00F7EA66 /* Box.m in Sources */,
+				B54BC51E1B8F77E900D30E5B /* BoxSelectScene.m in Sources */,
 				B500DEC01B7971610028D315 /* AppDelegate.m in Sources */,
 				B500DEC31B7971610028D315 /* GameScene.m in Sources */,
 				B5364C701B82719B005DF532 /* SKSpriteNode+JSONEncodable.m in Sources */,

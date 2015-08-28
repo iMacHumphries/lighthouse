@@ -47,11 +47,19 @@ static NSString * const FOG = @"fog";
     const float SPACING = 10.0f;
     float y = self.size.height/2 - SPACE - TOP_OFFSET;
     float x = -self.size.width/2 + SPACE;
-    for (int i =0; i< buttons.count; i++) {
+    int index = 0;
+    for (int i = 0; i< buttons.count; i++) {
         NSString *name =[buttons objectAtIndex:i];
         SKSpriteNode *button = [SKSpriteNode spriteNodeWithImageNamed:@"tempButton.png"];
         [button setName:name];
         [button setZPosition:11];
+        index = i;
+        
+        if (i > 5) {
+            index = i - 6;
+            y = self.size.height/2 - SPACE - TOP_OFFSET *2 - button.size.height;
+        }
+
         SKSpriteNode *image = [SKSpriteNode spriteNodeWithImageNamed:name];
         [image setScale:0.3f];
         if ([name isEqualToString:SPAWNER])
@@ -59,7 +67,7 @@ static NSString * const FOG = @"fog";
         else if ([name isEqualToString:BOT_ROCKS])
             [image setScale:0.2f];
         [button addChild:image];
-        [button setPosition:CGPointMake(x + (SPACING * i) + (button.size.width *i), y)];
+        [button setPosition:CGPointMake(x + (SPACING * index) + (button.size.width *index), y)];
         [self addChild:button];
     }
 }

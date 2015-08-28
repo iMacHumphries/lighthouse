@@ -25,8 +25,6 @@ static NSString *const SPAWN_SUB = @"isSub";
         SKSpriteNode *spawn = [SKSpriteNode spriteNodeWithImageNamed:@"spawner.png"];
         [spawn setScale:0.7f];
         [self addChild:spawn];
-        self.spawnSubs = true;
-        self.spawnShips = false;
     }
     return self;
 }
@@ -56,17 +54,14 @@ static NSString *const SPAWN_SUB = @"isSub";
 - (NSUInteger)controlledRandomType {
     recursionCount++;
     NSUInteger random = arc4random() % shipTypeCount;
-    NSLog(@"random %i",random);
     if (recursionCount > 10) return random;
     if (!spawnShips) {
         if (random == NORMAL) {
-            NSLog(@"new random because it is a ship %i",random);
             random = [self controlledRandomType];
         }
     }
     if (!spawnSubs) {
         if (random == SUBMARINE) {
-            NSLog(@"new random because it is a sub %i",random);
             random = [self controlledRandomType];
         }
     }

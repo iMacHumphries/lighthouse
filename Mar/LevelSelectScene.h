@@ -8,7 +8,10 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "MenuScene.h"
+#import "Box.h"
 
-@interface LevelSelectScene : SKScene
-
+@interface LevelSelectScene : SKScene {
+    Box *currentBox;
+}
+- (id)initWithSize:(CGSize)size box:(Box *)box;
 @end

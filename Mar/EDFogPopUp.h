@@ -8,7 +8,6 @@
 
 #import "EDPopUpDetail.h"
 #import "Fog.h"
-#import "Switch.h"
 
 @interface EDFogPopUp : EDPopUpDetail {
     Slider *strengthSlider;

@@ -44,7 +44,7 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
     background = [[Background alloc] initWithImageNamed:@"sea2.png"];
     [background setSize:CGSizeMake(WIDTH - 100, HEIGHT - 100)];
     [self addChild:background];
-    [background addWaves];
+    //[background addWaves];
 
     addButton = [BUTTON copy];
     [addButton setName:ADD];
@@ -247,8 +247,10 @@ static NSString * const RESET = @"Shut up Ben, I know what I am doing...";
         [fogPopUp removeFromParent];
         isEditing = false;
     } else {
-        if ([currentSelectedNode isKindOfClass:[Spawner class]])
+        if ([currentSelectedNode isKindOfClass:[Spawner class]]) {
             [currentSelectedNode addChild:popUp];
+            [popUp setSpawner:(Spawner *)currentSelectedNode];
+        }
         else if ([currentSelectedNode isKindOfClass:[Fog class]]) {
             [currentSelectedNode addChild:fogPopUp];
             if ([currentSelectedNode.name isEqualToString:ON_TIME_LINE]) {
