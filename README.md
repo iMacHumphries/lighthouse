@@ -1,2 +1,2 @@
 # lighthouse
-SpriteKit game development.
+SpriteKit game development.  With map editor.
